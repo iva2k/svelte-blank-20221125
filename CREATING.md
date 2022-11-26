@@ -91,8 +91,8 @@ Create file `tsconfig.lint.json` with:
 
 ```json
 {
-  "extends": "./tsconfig.json",
-  "include": ["./playwright.config.ts", "./svelte.config.js", "./tests/**/*.ts"]
+	"extends": "./tsconfig.json",
+	"include": ["./playwright.config.ts", "./svelte.config.js", "./tests/**/*.ts"]
 }
 ```
 
@@ -145,6 +145,70 @@ pnpm i -D @sveltejs/adapter-static
 + import adapter from '@sveltejs/adapter-static';
 ```
 
-However, latest svelte-kit demo app uses dynamic routes that don't work with adapter-static.
-Note: Tauri-based app could still use a server if needed. Add and setup a necessary adapter as needed.
+Note: Latest svelte-kit demo app uses dynamic routes (in sverdle page) that don't work with adapter-static, to continue, should remove that whole section `rm -rf ./src/routes/sverdle/` and any links to the sverdle routes in the source files.
+Tauri-based app could still use a server if needed. Add and setup a necessary adapter as needed, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
 
+### Add Tauri
+
+Add desktop support using Tauri (version 1.2 as of writing time).
+
+Note: iOS and Android support is promised in Tauri discussions, but not implemented yet as of 2022-11.
+
+```bash
+pnpm i -D @tauri-apps/api @tauri-apps/cli
+```
+
+Add scripts to package.json:
+
+```json
+   {
+     scripts {
+-      "dev": "vite dev",
+-      "build": "vite build",
++      "dev": "tauri dev",
++      "build": "tauri build",
++      "svelte:dev": "vite dev --port 3000",
++      "svelte:build": "vite build",
++      "tauri": "tauri",
+     }
+   }
+```
+
+```bash
+pnpm run tauri init
+# What is your app name? - svelte-blank-20221125
+# What should the window title be? - svelte-blank-20221125
+# Where are your web assets (HTML/CSS/JS) located, relative to the "<current dir>/src-tauri/tauri.conf.json" file that will be created? - ../build
+# What is the url of your dev server? - http://localhost:3000
+# What is your frontend dev command? � pnpm run svelte:dev
+# What is your frontend build command? � pnpm run svelte:build
+```
+
+Add `export ssr = false` to `src/routes/+layout.svelte`:
+
+```ts
+<script>
+	import Header from './Header.svelte';
+	import './styles.css';
+
++	// For Tauri:
++	export const prerender = true;
++	export const ssr = false;
+</script>
+```
+
+
+Change bundle identifier (to remove the issue "Error: You must change the bundle identifier in `tauri.conf.json > tauri > bundle > identifier`. The default value `com.tauri.dev` is not allowed as it must be unique across applications.")
+
+```json
+// src-tauri/tauri.conf.json
+{
+  ...
+  "tauri": {
+    ...
+    "bundle": {
+      ...
+-      "identifier": "com.tauri.dev",
++      "identifier": "com.iva2k.svelte-blank-20221125",
+      ...
+```

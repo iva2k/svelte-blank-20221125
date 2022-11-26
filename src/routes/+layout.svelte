@@ -1,6 +1,10 @@
 <script>
 	import Header from './Header.svelte';
 	import './styles.css';
+
+	// For Tauri:
+	export const prerender = true;
+	export const ssr = false;
 </script>
 
 <div class="app">

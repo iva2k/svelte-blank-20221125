@@ -2,9 +2,12 @@
 	"name": "svelte-blank-20221125",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
+		"dev": "tauri dev",
+		"build": "tauri build",
+		"svelte:dev": "vite dev --port 3000",
+		"svelte:build": "vite build",
+		"svelte:preview": "vite preview",
+		"tauri": "tauri",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -16,7 +19,10 @@
 		"@neoconfetti/svelte": "^1.0.0",
 		"@playwright/test": "1.25.0",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "1.0.0-next.48",
 		"@sveltejs/kit": "next",
+		"@tauri-apps/api": "^1.2.0",
+		"@tauri-apps/cli": "^1.2.1",
 		"@types/cookie": "^0.5.1",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -33,6 +39,12 @@
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
 		"vite": "^3.1.0"
+	},
+	"packageManager": "pnpm@7.1.9",
+	"engines": {
+		"npm": ">=7.0.0",
+		"pnpm": ">=7.1.9",
+		"node": ">=18.0.0"
 	},
 	"type": "module"
 }

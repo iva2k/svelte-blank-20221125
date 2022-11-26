@@ -16,7 +16,7 @@
 			"$lib/*": ["./src/lib/*"]
 		}
 	},
-	"exclude": ["./node_modules/**", ".svelte-kit/[!ambient.d.ts]**", ".types"]
+	"exclude": ["./node_modules/**", ".svelte-kit/[!ambient.d.ts]**", ".types", "./src-tauri/target/**"]
 
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

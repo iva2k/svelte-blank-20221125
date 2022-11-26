@@ -12,3 +12,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .types
 log.*
+/src-tauri/target
+/src-tauri/WixTools
+/src-tauri/Cargo.lock
