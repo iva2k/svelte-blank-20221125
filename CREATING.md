@@ -435,4 +435,3 @@ Add the following to `.vscode/settings.json` file (if not already there):
 ```bash
 pnpm install -D glob sass shx vite-plugin-static-copy cpy
 ```
-
