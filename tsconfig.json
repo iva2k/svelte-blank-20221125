@@ -8,8 +8,16 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
-	}
+		"strict": true,
+		"outDir": ".types",
+		"paths": {
+			"$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"],
+			"$lib": ["./src/lib"],
+			"$lib/*": ["./src/lib/*"]
+		}
+	},
+	"exclude": ["./node_modules/**", ".svelte-kit/[!ambient.d.ts]**", ".types"]
+
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
