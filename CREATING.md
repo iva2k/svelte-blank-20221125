@@ -91,8 +91,8 @@ Create file `tsconfig.lint.json` with:
 
 ```json
 {
-	"extends": "./tsconfig.json",
-	"include": ["./playwright.config.ts", "./svelte.config.js", "./tests/**/*.ts"]
+  "extends": "./tsconfig.json",
+  "include": ["./playwright.config.ts", "./svelte.config.js", "./tests/**/*.ts"]
 }
 ```
 
@@ -188,15 +188,10 @@ Add `export ssr = false` to `src/routes/+layout.svelte`:
 
 ```ts
 <script>
-	import Header from './Header.svelte';
-	import './styles.css';
-
-+	// For Tauri:
-+	export const prerender = true;
-+	export const ssr = false;
+  import Header from './Header.svelte'; import './styles.css'; + // For Tauri: + export const
+  prerender = true; + export const ssr = false;
 </script>
 ```
-
 
 Change bundle identifier (to remove the issue "Error: You must change the bundle identifier in `tauri.conf.json > tauri > bundle > identifier`. The default value `com.tauri.dev` is not allowed as it must be unique across applications.")
 
@@ -294,4 +289,3 @@ pnpm i -D cross-env
 ```
 
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
-
