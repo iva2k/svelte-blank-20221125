@@ -221,9 +221,14 @@ pnpm install -D @storybook/addon-controls @storybook/addon-docs @storybook/addon
 Add peer dependencies (some may be already installed):
 
 ```bash
+pnpm i -D vite @babel/core babel-loader @storybook/builder-webpack5 @storybook/core-common @storybook/addons @storybook/api @storybook/client-api @storybook/client-logger @storybook/node-logger
 pnpm i -D @storybook/components @storybook/core-events @storybook/theming
 # The React packages were peer dependencies, somehow they leaked into storybook core dependencies:
-pnpm i -D react@17.0.0 react-dom@17.0.0 @mdx-js/react @types/react@17.0.0 webpack@^5.73.0
+pnpm i -D react@^17.0.0 react-dom@17.0.0 @mdx-js/react @types/react@^17.0.0 webpack@^5.73.0
+# These packages were throwing errors in "build-storybook" script:
+pnpm i -D @storybook/preview-web @storybook/addon-backgrounds @storybook/addon-measure @storybook/addon-outline @storybook/channel-postmessage @storybook/channel-websocket
+# These packages fix build errors in Storybook/Vite/pnpm
+pnpm i -D @prefresh/vite @prefresh/core preact @mdx-js/preact
 ```
 
 One might ask - why add react et.al.? Storybook uses `react` & `react-dom` for its UI. Some of @storybook/addon-\* packages list them as peer dependencies, but it does not work well in npm package mess and breaks things. Current solution is to add react and all related packages as devDependencies.
