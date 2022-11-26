@@ -12,7 +12,9 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .types
 log.*
+test-results.json
 /storybook-static
 /src-tauri/target
 /src-tauri/WixTools
 /src-tauri/Cargo.lock
+/playwright-report
