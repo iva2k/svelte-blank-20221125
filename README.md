@@ -1,4 +1,4 @@
-# Blank SvelteKit App + Tauri + Prettier + ESLint
+# Blank SvelteKit App + Tauri + Storybook + Prettier + ESLint
 
 A cross-platform Desktop / Mobile / Web application starter.
 
@@ -6,6 +6,8 @@ Built with:
 
 - [Svelte](https://svelte.dev) – UI framework
 - [Svelte Kit](https://kit.svelte.dev) – UI build system
+- [Tauri](https://tauri.studio) – Desktop Application framework
+- [Storybook](https://storybook.js.org) – Tool for building UI components and pages in isolation
 - [Prettier](https://prettier.io/) - Opinionated Code Formatter
 - [ESLint](https://eslint.org) - Pluggable JavaScript linter
 

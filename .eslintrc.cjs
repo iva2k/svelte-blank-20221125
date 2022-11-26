@@ -17,10 +17,11 @@ module.exports = {
 		'svelte3/typescript': () => require('typescript')
 	},
 	parserOptions: {
+		project: ['./tsconfig.json', './tsconfig.lint.json'],
+		tsconfigRootDir: './',
 		sourceType: 'module',
 		ecmaVersion: 2020,
-		project: ['./tsconfig.json', './tsconfig.lint.json'],
-		tsconfigRootDir: './'
+		extraFileExtensions: ['.svelte']
 	},
 	env: {
 		browser: true,

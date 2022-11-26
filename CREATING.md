@@ -212,3 +212,86 @@ Change bundle identifier (to remove the issue "Error: You must change the bundle
 +      "identifier": "com.iva2k.svelte-blank-20221125",
       ...
 ```
+
+### Add Storybook
+
+```bash
+## pnpm is a bit tricky with storybook install, use `pnpx` with "-s" flag to skip installing dependencies.
+## see https://github.com/storybookjs/storybook/issues/12995#issuecomment-813630999
+pnpx sb init -s --builder @storybook/builder-vite
+pnpm install
+pnpm install -D @storybook/addon-controls @storybook/addon-docs @storybook/addon-svelte-csf
+```
+
+Add peer dependencies (some may be already installed):
+
+```bash
+pnpm i -D @storybook/components @storybook/core-events @storybook/theming
+# The React packages were peer dependencies, somehow they leaked into storybook core dependencies:
+pnpm i -D react@17.0.0 react-dom@17.0.0 @mdx-js/react @types/react@17.0.0 webpack@^5.73.0
+```
+
+One might ask - why add react et.al.? Storybook uses `react` & `react-dom` for its UI. Some of @storybook/addon-\* packages list them as peer dependencies, but it does not work well in npm package mess and breaks things. Current solution is to add react and all related packages as devDependencies.
+
+Another ongoing problem with Storybook is heavy reliance on webpack4 and slow migration toward webpack5, and further, it impossible to cleanly cut over to vite and remove all webpack versions as of 2022-06.
+
+Disable Storybook telemetry and add Svelte CSF:
+
+```js
+// .storybook/main.js
+module.exports = {
+  addons: [
+     ...
++    '@storybook/addon-svelte-csf',
+     ...
+  ],
+  core: {
++    disableTelemetry: true, // 👈 Disables telemetry
+  }
+};
+```
+
+Remove example stories and components:
+
+```bash
+npx rimraf src/stories
+```
+
+### Solve Storybook Issues
+
+#### Preprocess in .storybook/main.js
+
+It turned out that storybook `main.js` trying to import preprocess from `svelte.config.js` is not viable (import is async, returns Promis, and can't await in top-level .cjs files). The solution was to hard-code same preprocess in `.storybook/main.js` same as in `svelte.config.js`.
+
+```js
+// .storybook/main.cjs
++ const preprocess = require('svelte-preprocess');
+module.exports = {
+  ...
+  svelteOptions: {
+-    preprocess: require('../svelte.config.js').preprocess
++    preprocess: preprocess(),
+  },
+```
+
+#### Node version
+
+Note: As of 2022-0522 Node 17 and 18 have breaking changes (migrated to ssl3):
+
+- `Error: error:0308010C:digital envelope routines::unsupported`
+- <https://github.com/webpack/webpack/issues/14532>
+- <https://github.com/storybookjs/storybook/issues/18019>
+- <https://github.com/storybookjs/storybook/issues/16555>
+
+One solution would be to use node<17.0.0 in package.json "engines" and engine-strict=true in .npmrc, however...
+
+The problem with node<17.0.0 is it breaks playwright which requires node>17. No solution to use playwright with node<17 yet. Argh!
+
+For all other issues, adding `cross-env NODE_OPTIONS=--openssl-legacy-provider` to all affected scripts (storybook ones) in `package.json` is the only practical solution for now (it opens up old security vulnerabilities in legacy openssl).
+
+```bash
+pnpm i -D cross-env
+```
+
+TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
+
