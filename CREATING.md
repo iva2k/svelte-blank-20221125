@@ -274,6 +274,27 @@ module.exports = {
   },
 ```
 
+#### Vite $app and $lib aliases
+
+See <https://github.com/storybookjs/storybook/issues/14952>
+
+Add vite config to .storybook/main.cjs:
+
+```js
+module.exports = {
++  async viteFinal(config) {
++    config.resolve.alias = {
++      ...config.resolve.alias,
++      // $app: path.resolve('./.svelte-kit/dev/runtime/app')
++      $lib: path.resolve(__dirname, '../src/lib')
++      // $components: path.resolve(__dirname, '../src/lib/components')
++    };
++    return config;
++  },
+  ...
+};
+```
+
 #### Node version
 
 Note: As of 2022-0522 Node 17 and 18 have breaking changes (migrated to ssl3):
