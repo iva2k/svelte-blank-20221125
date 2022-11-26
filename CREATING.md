@@ -294,3 +294,138 @@ pnpm i -D cross-env
 ```
 
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
+
+### Add Prettier & ESLint Rules, Stylelint, Postcss and Autoprefixer
+
+ESLint and Prettier is already part of Svelte Kit installation, so some of the packages below are already present.
+
+#### Stylelint and additional ESLint rules (Storybook)
+
+```bash
+pnpm install -D stylelint @ronilaukkarinen/stylelint-a11y stylelint-config-standard stylelint-config-recommended
+pnpm install -D eslint-plugin-storybook
+```
+
+Note: stylelint-a11y original creator / maintainer is AWOL, using an updated and maintained fork.
+
+Edit `.eslintrc.cjs` file:
+
+```js
+// .eslintrc.cjs
+module.exports = {
+  ...
+  extends: [
+     'eslint:recommended',
+     'plugin:@typescript-eslint/recommended',
+     'plugin:import/recommended',
++    'plugin:storybook/recommended',
+     'prettier'
+  ],
+  ...
+  parserOptions: {
+     project: ['./tsconfig.json', './tsconfig.lint.json'],
+     tsconfigRootDir: './',
+     sourceType: 'module',
+     ecmaVersion: 2020,
++    extraFileExtensions: ['.svelte']
+  },
+  ...
++  rules: {
++    'import/no-mutable-exports': 'off'
++  }
+};
+```
+
+#### Postcss, Autoprefixer
+
+Autoprefixer is a PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from [Can I Use](https://caniuse.com/). It is recommended by Google and used in Twitter and Alibaba.
+
+```bash
+pnpm install -D postcss postcss-cli postcss-import postcss-nesting postcss-html autoprefixer
+```
+
+Add file `postcss.config.cjs` with the following contents:
+
+```js
+const autoprefixer = require('autoprefixer');
+
+const config = {
+  plugins: {
+    'postcss-import': {},
+    'postcss-nesting': {},
+    autoprefixer
+  }
+};
+
+module.exports = config;
+```
+
+#### Prettier and additional Stylelint rules
+
+```bash
+pnpm install -D prettier stylelint-config-prettier stylelint-config-html
+```
+
+#### Create Stylelint configuration
+
+Add file `.stylelintrc.json`:
+
+```json
+// .stylelintrc.json
+{
+  ... see file in the repo
+}
+```
+
+#### VSCode formatOnSave
+
+VSCode can format all documents on save, and it should match Stylelint & Prettier.
+
+Some issues can be with VSCode user settings that are not visible right away. If saving any files and then running `pnpm format` shows those files as changed in the process, check "editor.defaultFormatter" for that file type.
+
+For example, VSCode would re-format .json files differently. It turns out VSCode was using different JSON formatter set in user settings, and ignored top-level "editor.defaultFormatter". To fix that, add `jsonc` and `json` settings to `.vscode/settings.json` file as shown below.
+
+Add the following to `.vscode/settings.json` file (if not already there):
+
+```json
+// .vscode/settings.json
+{
++  "editor.defaultFormatter": "esbenp.prettier-vscode",
++  "editor.formatOnSave": true,
++  "editor.formatOnPaste": true,
++  "editor.formatOnType": false,
++  "editor.codeActionsOnSave": {
++    "source.fixAll.eslint": true,
++    "source.fixAll.html": true
++  },
++  "eslint.validate": ["svelte"],
++  "editor.tokenColorCustomizations": {
++    "[Svelte]": {
++      "textMateRules": [
++        {
++          "settings": {
++            "foreground": "#569CD6" // any color you like
++          },
++          "scope": "support.class.component.svelte" // scope name you want to adjust highlighting for
++        }
++      ]
++    }
++  },
++  "svelte.enable-ts-plugin": true,
++  "javascript.format.enable": false,
++  "files.insertFinalNewline": true,
++  "files.trimFinalNewlines": false,
++  "[json]": {
++    "editor.defaultFormatter": "esbenp.prettier-vscode"
++  },
++  "[jsonc]": {
++    "editor.defaultFormatter": "esbenp.prettier-vscode"
++  },
++  "[svelte]": {
++    "editor.defaultFormatter": "svelte.svelte-vscode"
++  },
++  "[html]": {
++    "editor.defaultFormatter": "vscode.html-language-features"
++  }
+}
+```

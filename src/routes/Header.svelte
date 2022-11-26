@@ -120,7 +120,8 @@
     transition: color 0.2s linear;
   }
 
-  a:hover {
+  a:hover,
+  a:focus {
     color: var(--color-theme-1);
   }
 </style>

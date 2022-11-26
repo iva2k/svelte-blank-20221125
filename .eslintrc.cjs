@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
+    'plugin:storybook/recommended',
     'prettier'
   ],
   plugins: ['svelte3', '@typescript-eslint', 'import'],
@@ -27,5 +28,8 @@ module.exports = {
     browser: true,
     es2017: true,
     node: true
+  },
+  rules: {
+    'import/no-mutable-exports': 'off'
   }
 };
