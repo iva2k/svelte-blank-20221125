@@ -654,3 +654,21 @@ pnpm install -D @capacitor/cli
 npx cap init svelte-blank-20221125 com.iva2k.svelteblank20221125 --web-dir=build
 ```
 
+Add few scripts for convenince:
+
+```json
+// package.json
+{
+  ...
+  "scripts": {
+     ...
++    "open:android": "cap open android",
++    "dev:android": "cap run android",
+```
+
+##### Add Android platform
+
+```bash
+pnpm install @capacitor/android
+npx cap add android
+```

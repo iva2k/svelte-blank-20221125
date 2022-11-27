@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': ^7.20.2
+  '@capacitor/android': ^4.5.0
   '@capacitor/cli': ^4.5.0
   '@capacitor/core': ^4.5.0
   '@fontsource/fira-mono': ^4.5.0
@@ -86,6 +87,7 @@ specifiers:
   webpack: ^5.73.0
 
 dependencies:
+  '@capacitor/android': 4.5.0_@capacitor+core@4.5.0
   '@capacitor/core': 4.5.0
 
 devDependencies:
@@ -1608,6 +1610,14 @@ packages:
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
+
+  /@capacitor/android/4.5.0_@capacitor+core@4.5.0:
+    resolution: {integrity: sha512-GRoQ0Q1XOupU4pK3aipWfwCGXRuAq32IHpOoNSZm3Enu1/FhoOlIvHMlnnIQTpq6sBye/cqBIuYsOpPBMi3VNg==}
+    peerDependencies:
+      '@capacitor/core': ^4.4.0
+    dependencies:
+      '@capacitor/core': 4.5.0
+    dev: false
 
   /@capacitor/cli/4.5.0:
     resolution: {integrity: sha512-GwWE5Ef6LsdD7DzVrdzVMtU+UZbpLjKR7uNsuSA44MaSlxqMuq2Njdl0nWYp5Oj/kacOsHKC6USbLzwe4S5caw==}
