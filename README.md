@@ -23,6 +23,7 @@ Built with:
 Continuous Integrations:
 
 - [Chromatic](https://www.chromatic.com) - Storybook Github CI
+- [Netlify](https://svelte-blank-20221125.netlify.app) - App Demo
 
 ## Install
 
