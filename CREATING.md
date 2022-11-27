@@ -619,3 +619,38 @@ Add the following to `.vscode/settings.json` file (if not already there):
 ```bash
 pnpm install -D glob sass shx vite-plugin-static-copy cpy
 ```
+
+### Add Capacitor
+
+Capcitor has 2 largely independent parts that we could use:
+
+1. Plugins to use native functionality on various platforms
+2. Build apps for mobile platforms - iOS, Android
+
+Use of native functionality (like Camera, GPS, etc.) can be very handy for some apps.
+
+Since Tauri has no iOS/Andoid support (it's in development), we can use Capacitor to bridge that gap.
+
+We will target QR code scanning as a very usefull feature for #1.
+
+#### Setup
+
+The following setup is based on `@sveltejs/adapter-static` which puts output to 'build' folder by default (beware that other adapters place output files into different location).
+
+First, install pre-requisites per <https://capacitorjs.com/docs/getting-started/environment-setup>.
+
+Then, install VSCode extension:
+
+```bash
+code --install-extension ionic.ionic
+```
+
+Add Capacitor to the project:
+
+```bash
+pnpm install @capacitor/core
+pnpm install -D @capacitor/cli
+# use npx vs. pnpx with cap as pnpx won't run cap (or call cap directly, without npx):
+npx cap init svelte-blank-20221125 com.iva2k.svelteblank20221125 --web-dir=build
+```
+
