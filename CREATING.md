@@ -186,13 +186,12 @@ pnpm run tauri init
 
 Add `export ssr = false` to `src/routes/+layout.svelte`:
 
-```ts
+```html
 <script>
-  import Header from './Header.svelte';
-  import './styles.css';
-+ // For Tauri:
-+ export const prerender = true;
-+ export const ssr = false;
+  import Header from './Header.svelte'; import './styles.css';
+  + // For Tauri:
+  + export const prerender = true;
+  + export const ssr = false;
 </script>
 ```
 
