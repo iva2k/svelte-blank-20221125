@@ -28,6 +28,7 @@
     "@neoconfetti/svelte": "^1.0.0",
     "@playwright/test": "1.25.0",
     "@ronilaukkarinen/stylelint-a11y": "^1.2.4",
+    "@storybook/addon-a11y": "^6.5.13",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-backgrounds": "^6.5.13",
     "@storybook/addon-controls": "^6.5.13",

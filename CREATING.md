@@ -133,7 +133,7 @@ See [Remove Default Sever](#remove-default-server) below.
 
 ### Remove Default Server
 
-For using Tauri (standalone app) - is supposed explicitly opt out of SvelteKit\'s assumption needing a server. Just attach the @sveltejs/adapter-static in `svelte.config.js`:
+For using Tauri (standalone app) - is supposed to explicitly opt out of SvelteKit\'s assumption needing a server. Just attach the @sveltejs/adapter-static in `svelte.config.js`:
 
 ```bash
 pnpm i -D @sveltejs/adapter-static
@@ -180,16 +180,19 @@ pnpm run tauri init
 # What should the window title be? - svelte-blank-20221125
 # Where are your web assets (HTML/CSS/JS) located, relative to the "<current dir>/src-tauri/tauri.conf.json" file that will be created? - ../build
 # What is the url of your dev server? - http://localhost:3000
-# What is your frontend dev command? � pnpm run svelte:dev
-# What is your frontend build command? � pnpm run svelte:build
+# What is your frontend dev command? - pnpm run svelte:dev
+# What is your frontend build command? - pnpm run svelte:build
 ```
 
 Add `export ssr = false` to `src/routes/+layout.svelte`:
 
 ```ts
 <script>
-  import Header from './Header.svelte'; import './styles.css'; + // For Tauri: + export const
-  prerender = true; + export const ssr = false;
+  import Header from './Header.svelte';
+  import './styles.css';
++ // For Tauri:
++ export const prerender = true;
++ export const ssr = false;
 </script>
 ```
 
@@ -315,6 +318,21 @@ pnpm i -D cross-env
 ```
 
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
+### Add @storybook/addon-a11y
+
+```bash
+pnpm i -D @storybook/addon-a11y
+```
+
+```js
+module.exports = {
+  ...
+  addons: [
+    ...
++   '@storybook/addon-a11y'
+  ]
+```
+
 
 ### Add Prettier & ESLint Rules, Stylelint, Postcss and Autoprefixer
 
