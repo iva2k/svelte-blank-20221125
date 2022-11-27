@@ -325,11 +325,7 @@ An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.s
 
 <https://github.com/storybookjs/storybook/issues/16673>
 
-Finally, got Storybook working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader). However, Counter.svelte has Typescript, and Storybook chokes on it, similar to this issue:
-
-<https://stackoverflow.com/questions/70681325/storybook-vite-svelte-typescript-typescript-not-being-processed-in-st>
-
-That references a bug that has been fixed, however, I'm still getting Storybook not taking .svelte components with Typescript.
+At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader). 
 
 ### Add @storybook/addon-a11y
 
