@@ -672,3 +672,13 @@ Add few scripts for convenince:
 pnpm install @capacitor/android
 npx cap add android
 ```
+
+##### Add iOS platform
+
+```bash
+pnpm install @capacitor/ios
+npx cap add ios
+```
+
+Now we can use Capacitor plugins for native functionality.
+
