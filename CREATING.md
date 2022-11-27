@@ -682,3 +682,64 @@ npx cap add ios
 
 Now we can use Capacitor plugins for native functionality.
 
+#### Add Geolocation
+
+For a quick example, add Geolocation:
+
+```bash
+pnpm install @capacitor/geolocation
+npx cap sync
+```
+
+Create `src/routes/geolocation/+page.svelte`:
+
+```js
+<script lang="ts">
+  import { Geolocation, type Position } from '@capacitor/geolocation';
+
+  let loc: Position | null = null;
+  async function getCurrentPosition() {
+    const res = await Geolocation.getCurrentPosition();
+    loc = res;
+  }
+</script>
+
+<div>
+  <h1>Geolocation</h1>
+  <p>Your location is:</p>
+  <p>Latitude: {loc?.coords.latitude}</p>
+  <p>Longitude: {loc?.coords.longitude}</p>
+
+  <button on:click={getCurrentPosition}>Get Current Location</button>
+</div>
+```
+
+Add the page to the PureHeader links:
+
+```js
+<header>
+  ...
+  <nav>
+    ...
+    <ul>
+      ...
+      <li aria-current={pathname === '/about' ? 'page' : undefined}>
+        <a href="/about">About</a>
+      </li>
++      <li aria-current={pathname === '/geolocation' ? 'page' : undefined}>
++        <a href="/geolocation">Geolocation</a>
++      </li>
+        ...
+```
+
+And finally add option to PureHeader.stories.tsx:
+
+```tsx
+export default {
+  ...
+  argTypes: {
+    pathname: {
+-      options: ['/', '/about'],
++      options: ['/', '/about', '/geolocation'],
+    ...
+```

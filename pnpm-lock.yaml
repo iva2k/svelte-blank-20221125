@@ -5,6 +5,7 @@ specifiers:
   '@capacitor/android': ^4.5.0
   '@capacitor/cli': ^4.5.0
   '@capacitor/core': ^4.5.0
+  '@capacitor/geolocation': ^4.1.0
   '@capacitor/ios': ^4.5.0
   '@fontsource/fira-mono': ^4.5.0
   '@mdx-js/react': ^2.1.5
@@ -90,6 +91,7 @@ specifiers:
 dependencies:
   '@capacitor/android': 4.5.0_@capacitor+core@4.5.0
   '@capacitor/core': 4.5.0
+  '@capacitor/geolocation': 4.1.0_@capacitor+core@4.5.0
   '@capacitor/ios': 4.5.0_@capacitor+core@4.5.0
 
 devDependencies:
@@ -1651,6 +1653,14 @@ packages:
     resolution: {integrity: sha512-afx+hvQIrPcHbTdsBIryE96JlfSt1Rw8cWhb1J34v6Exje6zQZQa3fQZ6gcgkON+zkDIK8u3yRcIps0xMUdsMQ==}
     dependencies:
       tslib: 2.4.1
+    dev: false
+
+  /@capacitor/geolocation/4.1.0_@capacitor+core@4.5.0:
+    resolution: {integrity: sha512-hfI4MUcu1zcJPTvm0g6V3telTGwq9sCU8EnY4hFJpLedbIQeWPthCOSbFtNHAU5mVaAP1Zls3x6TsXL8TX08EA==}
+    peerDependencies:
+      '@capacitor/core': ^4.0.0
+    dependencies:
+      '@capacitor/core': 4.5.0
     dev: false
 
   /@capacitor/ios/4.5.0_@capacitor+core@4.5.0:

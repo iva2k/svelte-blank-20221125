@@ -27,6 +27,7 @@
   "dependencies": {
     "@capacitor/android": "^4.5.0",
     "@capacitor/core": "^4.5.0",
+    "@capacitor/geolocation": "^4.1.0",
     "@capacitor/ios": "^4.5.0"
   },
   "devDependencies": {
