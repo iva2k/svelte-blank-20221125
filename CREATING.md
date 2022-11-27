@@ -318,6 +318,19 @@ pnpm i -D cross-env
 ```
 
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
+
+#### Using \*.stories.svelte files
+
+An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.stories.svelte` files. And storyStoreV7=false does not load stories at all (no filed issues). So use only `.stories.tsx` for now.
+
+<https://github.com/storybookjs/storybook/issues/16673>
+
+Finally, got Storybook working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader). However, Counter.svelte has Typescript, and Storybook chokes on it, similar to this issue:
+
+<https://stackoverflow.com/questions/70681325/storybook-vite-svelte-typescript-typescript-not-being-processed-in-st>
+
+That references a bug that has been fixed, however, I'm still getting Storybook not taking .svelte components with Typescript.
+
 ### Add @storybook/addon-a11y
 
 ```bash
