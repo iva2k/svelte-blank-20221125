@@ -241,7 +241,7 @@ Another ongoing problem with Storybook is heavy reliance on webpack4 and slow mi
 Disable Storybook telemetry and add Svelte CSF:
 
 ```js
-// .storybook/main.js
+// .storybook/main.cjs
 module.exports = {
   addons: [
      ...
@@ -262,9 +262,9 @@ npx rimraf src/stories
 
 ### Solve Storybook Issues
 
-#### Preprocess in .storybook/main.js
+#### Preprocess in .storybook/main.cjs
 
-It turned out that storybook `main.js` trying to import preprocess from `svelte.config.js` is not viable (import is async, returns Promis, and can't await in top-level .cjs files). The solution was to hard-code same preprocess in `.storybook/main.js` same as in `svelte.config.js`.
+It turned out that storybook `main.js` trying to import preprocess from `svelte.config.js` is not viable (import is async, returns Promise, and can't await in top-level .cjs files). The solution was to hard-code same preprocess in `.storybook/main.cjs` same as in `svelte.config.js`.
 
 ```js
 // .storybook/main.cjs
@@ -325,7 +325,7 @@ An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.s
 
 <https://github.com/storybookjs/storybook/issues/16673>
 
-At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader). 
+At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader).
 
 ### Add @storybook/addon-a11y
 
@@ -342,6 +342,128 @@ module.exports = {
   ]
 ```
 
+### Add Storybook App Theme Switcher Addon
+
+There's a default Storybook theming addon: `@storybook/theming`. It allows control over theming of all parts of Storybook app (UI, docs, preview), but it won't affect the components preview.
+
+To add custom theme to Storybook app, create file .storybook/manager.cjs and .storybook/YourTheme.cjs with the following code:
+
+```js
+// .storybook/manager.cjs
+import { addons } from '@storybook/addons';
+// import { themes } from '@storybook/theming';
+import yourTheme from './YourTheme';
+addons.setConfig({
+  // theme: themes.dark
+  theme: yourTheme
+});
+```
+
+```js
+// .storybook/YourTheme.cjs
+import { create } from '@storybook/theming';
+
+export default create({
+  // base: 'light',
+  base: 'dark',
+  brandTitle: 'My custom storybook',
+  brandUrl: 'https://example.com',
+  brandImage: 'https://place-hold.it/350x150',
+  brandTarget: '_self'
+
+  colorPrimary: 'hotpink',
+  colorSecondary: 'deepskyblue',
+
+  // UI
+  appBg: 'white',
+  appContentBg: 'silver',
+  appBorderColor: 'grey',
+  appBorderRadius: 4,
+
+  // Typography
+  fontBase: '"Open Sans", sans-serif',
+  fontCode: 'monospace',
+
+  // Text colors
+  textColor: 'black',
+  textInverseColor: 'rgba(255,255,255,0.9)',
+
+  // Toolbar default and active colors
+  barTextColor: 'silver',
+  barSelectedColor: 'black',
+  barBg: 'hotpink',
+
+  // Form colors
+  inputBg: 'white',
+  inputBorder: 'silver',
+  inputTextColor: 'black',
+  inputBorderRadius: 4
+});
+```
+
+The above will not affect Storybook docs, which have their own theme. To change that, modify .storybook/preview.cjs:
+
+```js
+// .storybook/preview.cjs
++ // import { themes } from '@storybook/theming';
++ import yourTheme from './YourTheme.cjs';
+export const parameters = {
++  // for '@storybook/theming':
++  docs: {
++    // theme: themes.dark
++    theme: yourTheme
++  },
+  ...
+};
+```
+
+### Add Storybook Theme Switcher Addon
+
+To change themes in Storybook component previews, use an addon [Theme Switcher addon](https://storybook.js.org/addons/storybook-addon-themes). It can coexist with `@storybook/theming`, though will show two identical icons on the toolbar with different menus.
+
+```bash
+pnpm i -D storybook-addon-themes
+```
+
+Add plugin to Storybook:
+
+```js
+// .storybook/main.cjs
+
+module.exports = {
+  ...
+  addons: [
+    ...
++    'storybook-addon-themes'
+  ],
+  ...
+```
+
+Add themes list:
+
+```js
+// .storybook/preview.cjs
+
+export const parameters = {
+   ...
++  themes: {
++    default: 'twitter',
++    list: [
++      { name: 'twitter', class: 'theme-twt', color: '#00aced' },
++      { name: 'facebook', class: 'theme-fb', color: '#3b5998' }
++    ]
++  }
+};
+```
+
+The theme only changes class on the root element (which can be chosen to differ from the default \<body\> tag). The actual theme should be provided and can match app theme.
+
+It is possible to load the app theme in .storybook/preview.cjs, just add the CSS file:
+
+```js
+// .storybook/preview.cjs
++ import '../src/app.css';
+```
 
 ### Add Prettier & ESLint Rules, Stylelint, Postcss and Autoprefixer
 

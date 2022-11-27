@@ -66,6 +66,7 @@ specifiers:
   react-dom: 17.0.0
   sass: ^1.56.1
   shx: ^0.3.4
+  storybook-addon-themes: ^6.1.0
   stylelint: ^14.15.0
   stylelint-config-html: ^1.1.0
   stylelint-config-prettier: ^9.0.4
@@ -147,6 +148,7 @@ devDependencies:
   react-dom: 17.0.0_react@17.0.0
   sass: 1.56.1
   shx: 0.3.4
+  storybook-addon-themes: 6.1.0_nqrdfb2fumdx4ein5wk3wjg3lu
   stylelint: 14.15.0
   stylelint-config-html: 1.1.0_qendsqix7hqecpnpx4fjs6qry4
   stylelint-config-prettier: 9.0.4_stylelint@14.15.0
@@ -12126,6 +12128,34 @@ packages:
 
   /store2/2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
+    dev: true
+
+  /storybook-addon-themes/6.1.0_nqrdfb2fumdx4ein5wk3wjg3lu:
+    resolution: {integrity: sha512-ZT8aNgrwFVNEOmOPBLNS0WBacjvMFo/bZ83P8MmsJ3Ewqt0AbmPioghTZccARUn/EQ+LrDxyh2D0QgmLaKo07Q==}
+    peerDependencies:
+      react: '*'
+      svelte: '*'
+      vue: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      '@storybook/addons': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
+      '@storybook/api': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
+      '@storybook/components': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
+      '@storybook/core-events': 6.5.13
+      '@storybook/theming': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
+      core-js: 3.26.1
+      global: 4.4.0
+      memoizerific: 1.11.3
+      react: 17.0.0
+      svelte: 3.53.1
+    transitivePeerDependencies:
+      - react-dom
     dev: true
 
   /stream-browserify/2.0.2:
