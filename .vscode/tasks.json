@@ -1,0 +1,114 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "debug-stop",
+      "command": "echo ${input:terminate}",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "debug-start",
+      "type": "shell",
+      "isBackground": true,
+      "command": "pnpm",
+      "args": ["svelte:dev"],
+      "group": "none",
+      "detail": "svelte dev",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          // "beginsPattern": ".*Generating browser application bundles .*",
+          "beginsPattern": ".* SvelteKit v .*",
+          "endsPattern": ".* local: .*"
+        }
+      }
+    },
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["lint"],
+      "problemMatcher": {
+        "owner": "eslint",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "^([^\\s].*)$",
+            "file": 1
+          },
+          {
+            "regexp": "^\\s+(\\d+):(\\d+)\\s+(error|warning|info)\\s+(.*)\\s\\s+(.*)$",
+            "line": 1,
+            "column": 2,
+            "severity": 3,
+            "message": 4,
+            "code": 5,
+            "loop": true
+          }
+        ]
+      },
+      "detail": "lint check"
+    },
+    {
+      "label": "svelte build",
+      "type": "shell",
+      "isBackground": true,
+      "command": "pnpm",
+      "args": ["svelte:build"],
+      "group": "none",
+      "problemMatcher": [],
+      "detail": "svelte build"
+    },
+    {
+      "label": "lint:fix",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["format"],
+      "problemMatcher": ["$eslint-stylish"],
+      "detail": "lint fix"
+    },
+    {
+      "label": "lint:css",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["lint:css"],
+      "problemMatcher": {
+        "owner": "stylelint",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": [
+          {
+            "regexp": "^([^\\s].*)$",
+            "file": 1
+          },
+          {
+            "regexp": "^\\s+(\\d+):(\\d+)\\s+(✖)\\s+(.+)\\s(\\S+)\\s*(([\\n\\r]+\\s\\s\\s+(\\D.*))*)$",
+            "line": 1,
+            "column": 2,
+            "severity": 3,
+            "message": 4,
+            "code": 5,
+            "loop": true
+          }
+        ]
+      },
+      "detail": "style fix"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "debug-start"
+    }
+  ]
+}
