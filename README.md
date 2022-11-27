@@ -13,6 +13,10 @@ Built with:
 - [Stylelint](https://stylelint.io/) - A mighty, modern CSS linter
 - [Postcss](https://postcss.org/) - Transforming styles with JS plugins
 
+Continuous Integrations:
+
+- [Chromatic](https://www.chromatic.com) - Storybook Github CI
+
 ## Install
 
 ### Start Your App

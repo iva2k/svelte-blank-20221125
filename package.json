@@ -19,7 +19,8 @@
     "storybook": " echo RUN storybook(:dev) && cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "storybook:dev": " pnpm storybook",
     "storybook:build": "echo RUN storybook:build && cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
-    "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm check && pnpm test"
+    "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm check && pnpm test",
+    "chromatic": "npx chromatic --build-script-name=storybook:build"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -66,6 +67,7 @@
     "@typescript-eslint/parser": "^5.27.0",
     "autoprefixer": "^10.4.13",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.11.4",
     "cpy": "^9.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.16.0",
@@ -109,5 +111,7 @@
     "pnpm": ">=7.1.9",
     "node": ">=18.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "readme": "ERROR: No README data found!",
+  "_id": "svelte-blank-20221125@0.0.1"
 }

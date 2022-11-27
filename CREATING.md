@@ -465,6 +465,21 @@ It is possible to load the app theme in .storybook/preview.cjs, just add the CSS
 + import '../src/app.css';
 ```
 
+### Publish Storybook on Chromatic
+
+Login to [www.chromatic.com](https://www.chromatic.com) and setup yor project, get [YOUR_TOKEN]. Then connect:
+
+```bash
+pnpm i -D chromatic
+npx chromatic --build-script-name=storybook:build --project-token=[YOUR_TOKEN]
+```
+
+Also add project token to the Github repo, see <https://www.chromatic.com/docs/github-actions>:
+
+Go to Settings > Secrets > Actions Secrets > New Repository Secret, then enter Name - CHROMATIC_PROJECT_TOKEN and Secret - [YOUR_TOKEN].
+
+Create file '.github/workflows/chromatic.yml' (see contents in sources).
+
 ### Add Prettier & ESLint Rules, Stylelint, Postcss and Autoprefixer
 
 ESLint and Prettier is already part of Svelte Kit installation, so some of the packages below are already present.
