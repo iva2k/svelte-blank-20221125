@@ -46,5 +46,6 @@
   "[xml]": {
     "editor.defaultFormatter": "DotJoshJohnson.xml"
   },
-  "npm.packageManager": "pnpm"
+  "npm.packageManager": "pnpm",
+  "vitest.commandLine": "pnpm run test:unit"
 }
