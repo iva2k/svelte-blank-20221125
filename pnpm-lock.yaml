@@ -80,7 +80,6 @@ specifiers:
   stylelint-config-standard: ^29.0.0
   svelte: ^3.53.1
   svelte-check: ^2.7.1
-  svelte-loader: ^3.1.4
   svelte-preprocess: ^4.10.6
   tslib: ^2.3.1
   typescript: ^4.7.4
@@ -112,7 +111,7 @@ devDependencies:
   '@storybook/addon-links': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
   '@storybook/addon-measure': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
   '@storybook/addon-outline': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
-  '@storybook/addon-svelte-csf': 2.0.10_cqzrtgx24cisdexl5jy5o76yri
+  '@storybook/addon-svelte-csf': 2.0.10_2md5txjxkqf77rpxpybb4dvrfq
   '@storybook/addons': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
   '@storybook/api': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
   '@storybook/builder-vite': 0.2.5_xx4gzz2tt7morlpsozliryqazu
@@ -126,7 +125,7 @@ devDependencies:
   '@storybook/core-events': 6.5.13
   '@storybook/node-logger': 6.5.13
   '@storybook/preview-web': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
-  '@storybook/svelte': 6.5.13_wx5tuq3ua5gqjsj75puqkjzhwy
+  '@storybook/svelte': 6.5.13_mqo43a566zze3gj6rbqi6zxn6y
   '@storybook/testing-library': 0.0.13_q3ro2d4tisdm4fljj6b5phevaq
   '@storybook/theming': 6.5.13_q3ro2d4tisdm4fljj6b5phevaq
   '@sveltejs/adapter-auto': 1.0.0-next.89
@@ -170,7 +169,6 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.15.0
   svelte: 3.53.1
   svelte-check: 2.9.2_urcxw4q27qixb3qpuosu4cre6q
-  svelte-loader: 3.1.4_svelte@3.53.1
   svelte-preprocess: 4.10.7_rayh5rxkzlo2b5a5jixz2quaq4
   tslib: 2.4.1
   typescript: 4.9.3
@@ -2591,7 +2589,7 @@ packages:
       ts-dedent: 2.2.0
     dev: true
 
-  /@storybook/addon-svelte-csf/2.0.10_cqzrtgx24cisdexl5jy5o76yri:
+  /@storybook/addon-svelte-csf/2.0.10_2md5txjxkqf77rpxpybb4dvrfq:
     resolution: {integrity: sha512-0cmUBRuzyHUGOrgz/2eQNyRmWB262jFGyN1W7ZO1p7zUOJbtlNFK9LAuHzlsvcY0k6mzTXDSJuKl8e99jNQ6LA==}
     peerDependencies:
       '@storybook/svelte': '>=6.4.20'
@@ -2601,9 +2599,8 @@ packages:
       svelte-loader:
         optional: true
     dependencies:
-      '@storybook/svelte': 6.5.13_wx5tuq3ua5gqjsj75puqkjzhwy
+      '@storybook/svelte': 6.5.13_mqo43a566zze3gj6rbqi6zxn6y
       svelte: 3.53.1
-      svelte-loader: 3.1.4_svelte@3.53.1
       ts-dedent: 2.2.0
     dev: true
 
@@ -3756,7 +3753,7 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /@storybook/svelte/6.5.13_wx5tuq3ua5gqjsj75puqkjzhwy:
+  /@storybook/svelte/6.5.13_mqo43a566zze3gj6rbqi6zxn6y:
     resolution: {integrity: sha512-QWC7VkHJzwu7BIkxUksDd0mWOvyOaiBgmS1x9dr66tyR+IGXvsoxtujwLMYe/cJuAxwAahphqXy+AmRNwhBLIg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -3785,7 +3782,6 @@ packages:
       read-pkg-up: 7.0.1
       regenerator-runtime: 0.13.11
       svelte: 3.53.1
-      svelte-loader: 3.1.4_svelte@3.53.1
       sveltedoc-parser: 4.1.0
       ts-dedent: 2.2.0
       webpack: 5.75.0
@@ -12779,19 +12775,6 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-dev-helper/1.1.9:
-    resolution: {integrity: sha512-oU+Xv7Dl4kRU2kdFjsoPLfJfnt5hUhsFUZtuzI3Ku/f2iAFZqBoEuXOqK3N9ngD4dxQOmN4OKWPHVi3NeAeAfQ==}
-    dev: true
-
-  /svelte-hmr/0.14.12_svelte@3.53.1:
-    resolution: {integrity: sha512-4QSW/VvXuqVcFZ+RhxiR8/newmwOCTlbYIezvkeN6302YFRE8cXy0naamHcjz8Y9Ce3ITTZtrHrIL0AGfyo61w==}
-    engines: {node: ^12.20 || ^14.13.1 || >= 16}
-    peerDependencies:
-      svelte: '>=3.19.0'
-    dependencies:
-      svelte: 3.53.1
-    dev: true
-
   /svelte-hmr/0.15.1_svelte@3.53.1:
     resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -12799,17 +12782,6 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.53.1
-    dev: true
-
-  /svelte-loader/3.1.4_svelte@3.53.1:
-    resolution: {integrity: sha512-DtgVPb03UWhPW0GGlWx+1w6+LeCSnFijpX+4NCUNlRQjuzy8fcjBWaC+Q5cMCrk8JDB8YBqHt+SijDmAz1A/Ww==}
-    peerDependencies:
-      svelte: '>3.0.0'
-    dependencies:
-      loader-utils: 2.0.4
-      svelte: 3.53.1
-      svelte-dev-helper: 1.1.9
-      svelte-hmr: 0.14.12_svelte@3.53.1
     dev: true
 
   /svelte-preprocess/4.10.7_rayh5rxkzlo2b5a5jixz2quaq4:
