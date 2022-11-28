@@ -739,6 +739,8 @@ npx cap sync
 Create `src/routes/geolocation/+page.svelte`:
 
 ```js
+// src/routes/geolocation/+page.svelte
+
 <script lang="ts">
   import { Geolocation, type Position } from '@capacitor/geolocation';
 
@@ -768,16 +770,13 @@ Add the page to the PureHeader links:
     ...
     <ul>
       ...
-      <li aria-current={pathname === '/about' ? 'page' : undefined}>
-        <a href="/about">About</a>
-      </li>
 +      <li aria-current={pathname === '/geolocation' ? 'page' : undefined}>
 +        <a href="/geolocation">Geolocation</a>
 +      </li>
         ...
 ```
 
-And finally add option to PureHeader.stories.tsx:
+Add option to PureHeader.stories.tsx:
 
 ```tsx
 export default {
@@ -787,4 +786,103 @@ export default {
 -      options: ['/', '/about'],
 +      options: ['/', '/about', '/geolocation'],
     ...
+```
+
+For Android, add permissions to "android/app/src/main/AndroidManifest.xml" file:
+
+```xml
+<manifest ...>
+  ...
++  <!-- Geolocation API -->
++  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
++  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
++  <uses-feature android:name="android.hardware.location.gps" />
+</manifest>
+```
+
+For iOS, add usage description to "ios/App/App/Info.plist" file:
+
+```xml
+<dict>
++  <key>NSLocationAlwaysUsageDescription</key>
++  <string>To be able to use location services when app is in the background</string>
++  <key>NSLocationWhenInUseUsageDescription</key>
++  <string>To be able to use location services when app is running</string>
+</dict>
+```
+
+#### Add QR Code Scanner
+
+For the QR Code scanner feature, we will use [@capacitor-community/barcode-scanner](https://github.com/capacitor-community/barcode-scanner) plugin. Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
+
+There are also other plugins to try (see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>).
+
+Because of the fact that the Scanner View will be rendered behind the WebView, we have to call `hideBackground()` to make the WebView and the \<html\> element transparent. Every other element that needs transparency, we will have to handle ourself.
+
+The elements are made transparent by adding `background: 'transparent';` in the \<style\> section.
+
+```bash
+pnpm install @capacitor-community/barcode-scanner
+npx cap sync
+```
+
+Create `src/routes/qrscanner.svelte`:
+
+```js
+// See src/routes/qrscanner.svelte file in repo
+```
+
+Add the page to the PureHeader links:
+
+```js
+<header>
+  ...
+  <nav>
+    ...
+    <ul>
+      ...
++      <li aria-current={pathname === '/qrscanner' ? 'page' : undefined}>
++        <a href="/qrscanner">QR Scanner</a>
++      </li>
+```
+
+Add option to PureHeader.stories.tsx:
+
+```tsx
+export default {
+  ...
+  argTypes: {
+    pathname: {
+-      options: ['/', '/about', '/geolocation'],
++      options: ['/', '/about', '/geolocation', 'qrscanner'],
+    ...
+```
+
+For Android, add permissions to "android/app/src/main/AndroidManifest.xml" file:
+
+```xml
+<manifest
+  xmlns:android="http://schemas.android.com/apk/res/android"
++  xmlns:tools="http://schemas.android.com/tools"
+  package="com.example">
+
+  <application
+    ...
++    android:hardwareAccelerated="true"
+  >
+  </application>
+  ...
++  <!-- QR Scanner -->
++  <uses-permission android:name="android.permission.CAMERA" />
++  <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+</manifest>
+```
+
+For iOS, add usage description to "ios/App/App/Info.plist" file:
+
+```xml
+<dict>
++  <key>NSCameraUsageDescription</key>
++  <string>To be able to scan barcodes</string>
+</dict>
 ```
