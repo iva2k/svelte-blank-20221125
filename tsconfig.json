@@ -20,7 +20,9 @@
     "./node_modules/**",
     ".svelte-kit/[!ambient.d.ts]**",
     ".types",
-    "./src-tauri/target/**"
+    "./src-tauri/target/**",
+    "./android/**",
+    "./ios/**"
   ]
 
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

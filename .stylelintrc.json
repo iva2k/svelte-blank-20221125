@@ -58,7 +58,8 @@
     "src/assets/**",
     "build/**",
     "src/lib/styles/normalise.css",
-    "android/**"
+    "android/**",
+    "ios/**"
   ],
   "defaultSeverity": "error",
   "customSyntax": "postcss-html"
