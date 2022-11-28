@@ -19,6 +19,7 @@ test-results.json
 /src-tauri/WixTools
 /src-tauri/Cargo.lock
 /playwright-report
+/coverage
 /android
 /ios
 

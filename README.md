@@ -1,6 +1,10 @@
-# Blank SvelteKit App + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss
+# Blank SvelteKit App
+
+## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest
 
 A cross-platform Desktop / Mobile / Web application starter.
+
+License: Mozilla Public License Version 2.0
 
 <!-- prettier-ignore -->
 |Storybook| [![Netlify Status](https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status)](https://app.netlify.com/sites/svelte-blank-20221125/deploys) |  [![Vercel Status](https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel)](https://vercel.com/iva2k/svelte-blank-20221125) |
@@ -20,6 +24,8 @@ Built with:
 - [ESLint](https://eslint.org) - Pluggable JavaScript linter
 - [Stylelint](https://stylelint.io/) - A mighty, modern CSS linter
 - [Postcss](https://postcss.org/) - Transforming styles with JS plugins
+- [Playwright](https://playwright.dev) - Fast and reliable end-to-end testing for modern web apps
+- [Vitest](https://vitest.dev) - A blazing fast unit test framework powered by Vite
 
 Continuous Integrations:
 
@@ -105,7 +111,7 @@ pnpm run svelte:build
 cap open android
 ```
 
-iOS platform is not installed in this repo, but can easily be added. See [CREATING](./CREATING.md)
+iOS platform is installed but not fully scripted in this repo, but can easily be added. See [CREATING](./CREATING.md)
 
 ## How This App Was Created
 

@@ -1,4 +1,6 @@
-# Creating: Blank SvelteKit App + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss
+# Creating: Blank SvelteKit App
+
+## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest
 
 This file describes how this app was created.
 
@@ -21,7 +23,7 @@ Please follow the [Tauri Getting Started Guide](https://tauri.studio/en/docs/get
 Svelte scaffolding is set up by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
 ```bash
-# create a new project in my-app, use TypeScript syntax, add ESLint, Prettier, Playwright
+# create a new project in my-app, use demo app, TypeScript syntax, ESLint, Prettier, Playwright, Vitest
 npm create svelte@latest my-app
 cd my-app
 pnpm install
@@ -134,6 +136,33 @@ See [Set Svelte SPA mode](#set-svelte-spa-mode) below.
 TODO: (now) Resolve - rearrange scripts.
 
 ## Additions
+
+### Vitest Coverage
+
+When creating SvelteKit project, choose vitest to be added.
+
+For coverage, add '@vitest/coverage-c8' package:
+
+```bash
+pnpm i -D @vitest/coverage-c8
+```
+
+Add '/coverage' to .gitignore, .eslintignore, .prettierignore (see sources).
+
+Add some scripts:
+
+```json
+// package.json
+{
+  ...
+  "scripts": {
+    ...
++    "test:unit": "echo RUN test:unit && vitest run",
++    "test:unit:watch": "echo RUN test:unit:watch && vitest",
++    "test:unit:coverage": "echo RUN test:unit:coverage && vitest run --coverage",
+  }
+}
+```
 
 ### Add Tauri
 
