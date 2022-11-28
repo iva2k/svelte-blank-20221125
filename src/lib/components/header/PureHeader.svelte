@@ -23,6 +23,9 @@
       <li aria-current={pathname === '/about' ? 'page' : undefined}>
         <a href="/about">About</a>
       </li>
+      <li aria-current={pathname.startsWith('/sverdle') ? 'page' : undefined}>
+        <a href="/sverdle">Sverdle</a>
+      </li>
       <li aria-current={pathname === '/geolocation' ? 'page' : undefined}>
         <a href="/geolocation">Geolocation</a>
       </li>

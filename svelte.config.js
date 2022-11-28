@@ -9,7 +9,10 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapter()
+    adapter: adapter({
+      fallback: '200.html'
+    }),
+    prerender: { entries: [] }
   }
 };
 
