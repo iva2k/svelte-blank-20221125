@@ -7,6 +7,7 @@
     "./src/**/*.svelte",
     "./playwright.config.ts",
     "./svelte.config.js",
+    "./capacitor.config.ts",
     "./tests/**/*.ts"
   ]
 }
