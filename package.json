@@ -2,7 +2,7 @@
   "name": "svelte-blank-20221125",
   "version": "0.0.1",
   "scripts": {
-    "dev": "tauri dev",
+    "dev": " tauri dev",
     "build": "tauri build",
     "postinstallNEXT": "echo RUN postinstall && node scripts/assets-clean.mjs",
     "postinstall": "echo RUN postinstall EMPTY",

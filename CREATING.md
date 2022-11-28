@@ -173,6 +173,8 @@ pnpm run tauri init
 
 #### Set Svelte SPA mode
 
+There are errors in many online sources that give wrong information about `prerender` and `ssr` for SPA mode (including SvelteKit's own documentation).
+
 For using Tauri (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit\'s assumption needing a server, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
 
 Note: Tauri-based app could still use a server if needed. Add and setup a necessary adapter as needed.
@@ -193,19 +195,35 @@ export default {
     ...
 +    adapter: adapter({
 +      fallback: 'index.html'
-+    }),
-+    prerender: { entries: [] }
++    })
++    //,prerender: { entries: [] }
   }
 };
 ```
 
-Add `export ssr = false` to `src/routes/+layout.ts`:
+Create `src/routes/+layout.ts`:
 
 ```js
 // src/routes/+layout.ts
-// export const prerender = true; // Default assume no dynamic data
-export const prerender = 'auto'; // Rely on compiler
-export const ssr = false; // SPA for Tauri
+
+// Let SvelteKit decide to prerender for each page by default:
+export const prerender = 'auto';
+// As of @sveltejs/kit 1.0.0-next.563, pages with actions (e.g. sub-routes) throw error in `vite build`.
+// Each such route should set prerender = false if needed in `src/routes/**/+page.ts`.
+
+// Setting ssr = false (which is recommended for SPA in docs) breaks all server-side routes
+// (generated pages have no content, therefore SPA does not load).
+// We let SvelteKit render all routes on server, so deep links will still work:
+export const ssr = true;
+```
+
+Adjust all `src/routes/**+page.ts` files - set prerender = false for pages with action (i.e. having a sub-route), in demo app it is /sverdle:
+
+```js
+// src/routes/sverdle/+page.ts
+
+// This page has action (sub-route), so we need to explicitly disable prerender here;
+export const prerender = false;
 ```
 
 ### Add Storybook
