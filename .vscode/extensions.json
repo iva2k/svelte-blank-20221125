@@ -17,6 +17,7 @@
     "kamikillerto.vscode-colorize",
     "steoates.autoimport",
     "wix.vscode-import-cost",
-    "zignd.html-css-class-completion"
+    "zignd.html-css-class-completion",
+    "zixuanchen.vitest-explorer"
   ]
 }
