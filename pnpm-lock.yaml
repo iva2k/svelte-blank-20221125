@@ -9,6 +9,7 @@ specifiers:
   '@capacitor/geolocation': ^4.1.0
   '@capacitor/ios': ^4.5.0
   '@fontsource/fira-mono': ^4.5.0
+  '@ionic/pwa-elements': ^3.1.1
   '@mdx-js/react': ^2.1.5
   '@neoconfetti/svelte': ^1.0.0
   '@playwright/test': 1.25.0
@@ -96,6 +97,7 @@ dependencies:
   '@capacitor/core': 4.5.0
   '@capacitor/geolocation': 4.1.0_@capacitor+core@4.5.0
   '@capacitor/ios': 4.5.0_@capacitor+core@4.5.0
+  '@ionic/pwa-elements': 3.1.1
 
 devDependencies:
   '@babel/core': 7.20.2
@@ -1865,6 +1867,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@ionic/pwa-elements/3.1.1:
+    resolution: {integrity: sha512-BoEX1pSrKn5dP4VQwaf8DweAmT4ynmpW+9f6oj/W1xLe54bmuXcUY07ziuZX1DLu50xHSYcO5qJ/dbYC/w6wgA==}
+    dev: false
 
   /@ionic/utils-array/2.1.5:
     resolution: {integrity: sha512-HD72a71IQVBmQckDwmA8RxNVMTbxnaLbgFOl+dO5tbvW9CkkSFCv41h6fUuNsSEVgngfkn0i98HDuZC8mk+lTA==}

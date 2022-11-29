@@ -707,8 +707,8 @@ Add few scripts for convenince:
   ...
   "scripts": {
      ...
-+    "open:android": "cap open android",
-+    "dev:android": "cap run android",
++    "android:open": "cap open android",
++    "android:dev": "cap run android",
 ```
 
 ##### Add Android platform
@@ -813,9 +813,15 @@ For iOS, add usage description to "ios/App/App/Info.plist" file:
 
 #### Add QR Code Scanner
 
-For the QR Code scanner feature, we will use [@capacitor-community/barcode-scanner](https://github.com/capacitor-community/barcode-scanner) plugin. Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
+For the QR Code scanner feature, we will use [@capacitor-community/barcode-scanner](https://github.com/capacitor-community/barcode-scanner) plugin.
 
-There are also other plugins to try (see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>).
+Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
+
+There are also other plugins to try:
+
+- see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>
+- see <https://www.npmjs.com/package/qr-scanner>
+- see <https://github.com/zxing-js/library>
 
 Because of the fact that the Scanner View will be rendered behind the WebView, we have to call `hideBackground()` to make the WebView and the \<html\> element transparent. Every other element that needs transparency, we will have to handle ourself.
 
@@ -886,3 +892,31 @@ For iOS, add usage description to "ios/App/App/Info.plist" file:
 +  <string>To be able to scan barcodes</string>
 </dict>
 ```
+
+#### Using PWA Elements
+
+Some Capacitor plugins (such as Camera, Toast) need custom UI elements. May need to add @ionic/pwa-elements to the project (this project does not have that done, and @capacitor-community/barcode-scanner seems to be working just fine without it):
+
+```bash
+pnpm install @ionic/pwa-elements
+```
+
+A typical installation involves importing the package and registering the elements, or adding a script tag to the \<head\> of the index.html for the app
+
+```js
+// src/routes/+layout.svelte
+<script>
+  ...
++  import { onMount } from 'svelte';
++  import { defineCustomElements } from '@ionic/pwa-elements/loader';
++  onMount(async () => {
++    await defineCustomElements(window);
++  });
+  ...
+```
+
+#### Interesting Capacitor Community Plugins
+
+- @capacitor-community/bluetooth-le
+- @capacitor-community/camera-preview
+- @capacitor-community/keep-awake

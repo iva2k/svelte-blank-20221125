@@ -111,7 +111,7 @@ pnpm run svelte:build
 cap open android
 ```
 
-iOS platform is installed but not fully scripted in this repo, but can easily be added. See [CREATING](./CREATING.md)
+iOS platform is installed but not fully scripted in this repo, custom sctipts can easily be added. See [CREATING](./CREATING.md)
 
 ## How This App Was Created
 

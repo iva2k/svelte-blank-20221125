@@ -1,6 +1,14 @@
 <script>
   import Header from '$lib/components/header/Header.svelte';
   import './styles.css';
+
+  import { onMount } from 'svelte';
+  import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+  // Something like this in src/routes/+layout.svelte:<script>:
+  onMount(async () => {
+    await defineCustomElements(window);
+  });
 </script>
 
 <div class="app">

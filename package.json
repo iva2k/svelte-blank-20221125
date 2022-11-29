@@ -28,8 +28,8 @@
     "storybook": " echo RUN storybook(:dev) && cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "storybook:dev": " pnpm storybook",
     "storybook:build": "echo RUN storybook:build && cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
-    "open:android": "cap open android",
-    "dev:android": "cap run android",
+    "android:open": "cap open android",
+    "android:dev": "cap run android",
     "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm check && pnpm test:unit && pnpm test",
     "chromatic": "npx chromatic --build-script-name=storybook:build"
   },
@@ -38,7 +38,8 @@
     "@capacitor/android": "^4.5.0",
     "@capacitor/core": "^4.5.0",
     "@capacitor/geolocation": "^4.1.0",
-    "@capacitor/ios": "^4.5.0"
+    "@capacitor/ios": "^4.5.0",
+    "@ionic/pwa-elements": "^3.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
