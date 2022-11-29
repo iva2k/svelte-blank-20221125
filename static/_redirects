@@ -1,3 +1,2 @@
 # Netlify redirects
-#/*    /index.html  200
-/sverdle    /index.html  200
+# Note: adapter-netlify does all tooling correctly, no fiddling is needed.
