@@ -1,1 +1,3 @@
-/*    /index.html  200
+# Netlify redirects
+#/*    /index.html  200
+/sverdle    /index.html  200
