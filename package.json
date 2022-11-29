@@ -30,7 +30,7 @@
     "storybook:build": "echo RUN storybook:build && cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "android:open": "cap open android",
     "android:dev": "cap run android",
-    "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm check && pnpm test:unit && pnpm test",
+    "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm test:unit && pnpm test && pnpm check",
     "chromatic": "npx chromatic --build-script-name=storybook:build"
   },
   "dependencies": {

@@ -4,8 +4,3 @@
 [build]
   command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm run svelte:build"
   publish = "build"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
