@@ -25,7 +25,7 @@ Svelte scaffolding is set up by [`create-svelte`](https://github.com/sveltejs/ki
 ```bash
 # create a new project in my-app, use demo app, TypeScript syntax, ESLint, Prettier, Playwright, Vitest
 npm create svelte@latest my-app
-cd my-app
+cd my-sync
 pnpm install
 git init && git add -A && git commit -m "Initial commit" # (optional)
 ```
@@ -130,10 +130,6 @@ Some background info on these changes:
 Fix:
 
 See [Set Svelte SPA mode](#set-svelte-spa-mode) below.
-
-### Issue "`svelte-kit sync` now runs on "postinstall" — please remove it from your "prepare" script"
-
-TODO: (now) Resolve - rearrange scripts.
 
 ## Additions
 
