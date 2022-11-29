@@ -908,9 +908,11 @@ A typical installation involves importing the package and registering the elemen
 <script>
   ...
 +  import { onMount } from 'svelte';
-+  import { defineCustomElements } from '@ionic/pwa-elements/loader';
++  // import { defineCustomElements } from '@ionic/pwa-elements/loader'; // Broken -> Directory import '...' is not supported resolving ES modules
++  // Use a hack to import:
++  import loader from '@ionic/pwa-elements/loader/index.cjs.js';
 +  onMount(async () => {
-+    await defineCustomElements(window);
++    await loader.defineCustomElements(window);
 +  });
   ...
 ```

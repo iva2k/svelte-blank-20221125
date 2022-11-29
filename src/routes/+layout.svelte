@@ -3,11 +3,11 @@
   import './styles.css';
 
   import { onMount } from 'svelte';
-  import { defineCustomElements } from '@ionic/pwa-elements/loader';
-
-  // Something like this in src/routes/+layout.svelte:<script>:
+  // import { defineCustomElements } from '@ionic/pwa-elements/loader'; // Broken -> Directory import '...' is not supported resolving ES modules
+  // Use a hack to import:
+  import loader from '@ionic/pwa-elements/loader/index.cjs.js';
   onMount(async () => {
-    await defineCustomElements(window);
+    await loader.defineCustomElements(window);
   });
 </script>
 
