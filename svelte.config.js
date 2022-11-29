@@ -1,4 +1,6 @@
 // import adapter from '@sveltejs/adapter-auto';
+import netlify from '@sveltejs/adapter-netlify';
+import vercel from '@sveltejs/adapter-vercel';
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
@@ -9,9 +11,13 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapter({
-      fallback: 'index.html'
-    })
+    adapter: process.env.VERCEL
+      ? vercel()
+      : process.env.NETLIFY
+      ? netlify()
+      : adapter({
+          fallback: 'index.html'
+        })
     // ,prerender: { entries: [] }
   }
 };

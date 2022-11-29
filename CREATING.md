@@ -255,6 +255,28 @@ Adjust all `src/routes/**+page.ts` files - set prerender = false for pages with 
 export const prerender = false;
 ```
 
+### Deploy on Netlify and Vercel
+
+```bash
+pnpm i -D @sveltejs/adapter-netlify @sveltejs/adapter-vercel
+```
+
+Load adapters in svelte.config.js:
+
+```js
++ import netlify from '@sveltejs/adapter-netlify';
++ import vercel from '@sveltejs/adapter-vercel';
+...
+const config = {
+  ...
+  kit: {
+    adapter:
++      process.env.VERCEL ? vercel() :
++      process.env.NETLIFY ? netlify() :
+      adapter({
+        ...
+```
+
 ### Add Storybook
 
 ```bash
