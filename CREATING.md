@@ -451,6 +451,24 @@ An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.s
 
 At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader).
 
+### Organize Components to src/lib/components
+
+Move Header.svelte to "src/lib/components/header/" and change paths to match in "src/routes/+layout.svelte" file where it is used.
+
+Move Counter.svelte to "src/lib/components/counter/" and change paths to match in "src/routes/+page.svelte" file where it is used.
+
+(See sources).
+
+### Rework Header into Header + PureHeader
+
+Non-pure Header loads $page from $app/store, and it makes it hard to use in Storybook - it will need mocking of $app/stores which is a lot of work and no benefits. Instead we will make PureHeader.
+
+In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `import { page } from '$app/stores';` and replace all usages of $page.pathname to component parameter `pathname` in PureHeader. PureHeader will be usable in Storybook below.
+
+Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
+
+Another change is to add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header in +layout.svelte. For styling to apply into the slot, add `:global()` clauses to some of styles (see sources).
+
 ### Add @storybook/addon-a11y
 
 ```bash

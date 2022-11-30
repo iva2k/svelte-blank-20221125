@@ -1,5 +1,6 @@
 <script>
   import Header from '$lib/components/header/Header.svelte';
+  import github from '$lib/images/github.svg';
   import './styles.css';
 
   import { onMount } from 'svelte';
@@ -10,7 +11,11 @@
 </script>
 
 <div class="app">
-  <Header />
+  <Header>
+    <a href="https://github.com/sveltejs/kit">
+      <img src={github} alt="GitHub" />
+    </a>
+  </Header>
 
   <main>
     <slot />

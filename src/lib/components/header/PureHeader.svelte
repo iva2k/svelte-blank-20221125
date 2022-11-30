@@ -1,6 +1,5 @@
 <script lang="ts">
   import logo from '$lib/images/svelte-logo.svg';
-  import github from '$lib/images/github.svg';
 
   export let pathname = '/';
 </script>
@@ -39,9 +38,7 @@
   </nav>
 
   <div class="corner">
-    <a href="https://github.com/sveltejs/kit">
-      <img src={github} alt="GitHub" />
-    </a>
+    <slot />
   </div>
 </header>
 
@@ -56,7 +53,8 @@
     height: 3em;
   }
 
-  .corner a {
+  .corner a,
+  .corner :global(a) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +62,8 @@
     height: 100%;
   }
 
-  .corner img {
+  .corner img,
+  .corner :global(img) {
     width: 2em;
     height: 2em;
     object-fit: contain;
@@ -131,7 +130,9 @@
   }
 
   a:hover,
-  a:focus {
+  a:focus,
+  .corner :global(a:hover),
+  .corner :global(a:focus) {
     color: var(--color-theme-1);
   }
 </style>
