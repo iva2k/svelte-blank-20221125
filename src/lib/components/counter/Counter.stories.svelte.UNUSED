@@ -1,0 +1,14 @@
+<script lang="ts">
+  import { Meta, Template, Story } from '@storybook/addon-svelte-csf';
+  import Counter from './Counter.svelte';
+</script>
+
+<Meta title="Counter" component={Counter} />
+
+<Template let:args>
+  <Counter {...args} />
+</Template>
+
+<Story name="Primary" args={{ count: 0 }} />
+
+<Story name="Secondary" args={{ count: 11 }} />
