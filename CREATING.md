@@ -1,8 +1,10 @@
 # Creating: Blank SvelteKit App
 
-## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest
+## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
 
 This file describes how this app was created.
+
+It is not a tutorial per se, and uses a dense step-by-step language without too much explanation and expects the reader to dive deeper on their own. Making it into a tutorial will yield a thik book, which is not the goal here.
 
 ## Software Mantra
 
@@ -131,6 +133,12 @@ Fix:
 
 See [Set Svelte SPA mode](#set-svelte-spa-mode) below.
 
+### Issue
+
+.../node_modules/svelte-preprocess postinstall$ echo "[svelte-preprocess] Don't forget to install the preprocessors packages that will be used: node-sass/sass, stylus, less, postcss & postcss-load-config, coffeescript, pug, etc..."
+
+TODO: (now) Resolve - review packages.
+
 ## Additions
 
 ### Vitest Coverage
@@ -164,6 +172,8 @@ Add some scripts:
 
 Add desktop support using Tauri (version 1.2 as of writing time).
 
+Why not Electron? - Tauri is way way better.
+
 Note: iOS and Android support is promised in Tauri discussions, but not implemented yet as of 2022-11.
 
 ```bash
@@ -196,13 +206,38 @@ pnpm run tauri init
 # What is your frontend build command? - pnpm run svelte:build
 ```
 
-#### Set Svelte SPA mode
+#### Change bundle identifier
+
+To remove the issue:
+
+> "Error: You must change the bundle identifier in `tauri.conf.json > tauri > bundle > identifier`. The default value `com.tauri.dev` is not allowed as it must be unique across applications."
+
+Edit file `src-tauri/tauri.conf.json`:
+
+```json
+// src-tauri/tauri.conf.json
+{
+  ...
+  "tauri": {
+    ...
+    "bundle": {
+      ...
+-      "identifier": "com.tauri.dev",
++      "identifier": "com.iva2k.svelte-blank-20221125",
+      ...
+```
+
+### Set Svelte SPA mode
+
+For using Tauri and Capacitor (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit\'s assumption needing a server.
+
+SPA mode is set by using adapter-static and setting `fallback` option, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
 
 There are errors in many online sources that give wrong information about `prerender` and `ssr` for SPA mode (including SvelteKit's own documentation).
 
-For using Tauri (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit\'s assumption needing a server, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
+Note: Tauri and Capacitor -based app could still use a server if needed, but they cannot rely on SvelteKit server-side endpoints.
 
-Note: Tauri-based app could still use a server if needed. Add and setup a necessary adapter as needed.
+For deploying web apps, we can add and setup necessary adapters as needed (see below).
 
 ```bash
 pnpm i -D @sveltejs/adapter-static
@@ -219,14 +254,19 @@ export default {
   kit: {
     ...
 +    adapter: adapter({
++      // default options are shown:
++      // pages: 'build',
++      // assets: 'build',
++      // fallback: null,
++      // precompress: false
 +      fallback: 'index.html'
-+    })
-+    //,prerender: { entries: [] }
++    }),
++    // prerender: { entries: [] },
   }
 };
 ```
 
-Create `src/routes/+layout.ts`:
+Create `src/routes/+layout.ts` to set `prerender` and `ssr`:
 
 ```js
 // src/routes/+layout.ts
@@ -242,7 +282,7 @@ export const prerender = 'auto';
 export const ssr = true;
 ```
 
-Adjust all `src/routes/**+page.ts` files - set prerender = false for pages with action (i.e. having a sub-route), in demo app it is /sverdle:
+Adjust all `src/routes/**+page.ts` files - set prerender = false for pages with action (i.e. having a sub-route), in SvelteKit demo app it is /sverdle:
 
 ```js
 // src/routes/sverdle/+page.ts
@@ -252,6 +292,8 @@ export const prerender = false;
 ```
 
 ### Deploy on Netlify and Vercel
+
+Though it is recommended to use adapter-auto to choose between adapter-netlify and adapter-vercel, it does not fall back to adapter-static, which we need. So we will do it ourselves.
 
 ```bash
 pnpm i -D @sveltejs/adapter-netlify @sveltejs/adapter-vercel
@@ -272,6 +314,10 @@ const config = {
       adapter({
         ...
 ```
+
+See netlify.toml and vercel.json files for other deploy settings.
+
+Storybook (below) is deployed on Chromatic.
 
 ### Add Storybook
 
@@ -326,7 +372,7 @@ npx rimraf src/stories
 
 #### Preprocess in .storybook/main.cjs
 
-It turned out that storybook `main.js` trying to import preprocess from `svelte.config.js` is not viable (import is async, returns Promise, and can't await in top-level .cjs files). The solution was to hard-code same preprocess in `.storybook/main.cjs` same as in `svelte.config.js`.
+It turned out that storybook `main.cjs` trying to import preprocess from `svelte.config.js` is not viable (import is async, returns Promise, and can't await in top-level .cjs files). The solution was to hard-code same preprocess in `.storybook/main.cjs` same as in `svelte.config.js`.
 
 ```js
 // .storybook/main.cjs
@@ -607,6 +653,18 @@ const config = {
 module.exports = config;
 ```
 
+Enable postcss & scss in svelte.config.js:
+
+```js
+import preprocess from 'svelte-preprocess';
+const config = {
+  preprocess: preprocess({
+    postcss: true,
+    scss: { includePaths: ['src', 'node_modules'] }
+  }),
+  ...
+```
+
 #### Prettier and additional Stylelint rules
 
 ```bash
@@ -683,6 +741,30 @@ Add the following to `.vscode/settings.json` file (if not already there):
 pnpm install -D glob sass shx vite-plugin-static-copy cpy
 ```
 
+Add assets copying to svelte.config.js:
+
+```js
++ import { viteStaticCopy } from 'vite-plugin-static-copy';
++ import assets from './assets.js';
+
+const config = {
+  ...
+  kit: {
+    ...
++    vite: () => ({
++      plugins: [
++        // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
++        // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
++        viteStaticCopy({
++          targets: assets,
++          verbose: true
++        })
++      ]
++    })
+  }
+};
+```
+
 ### Add Capacitor
 
 Capcitor has 2 largely independent parts that we could use:
@@ -690,11 +772,11 @@ Capcitor has 2 largely independent parts that we could use:
 1. Plugins to use native functionality on various platforms
 2. Build apps for mobile platforms - iOS, Android
 
-Use of native functionality (like Camera, GPS, etc.) can be very handy for some apps.
+Use of Capacitor \#1 native functionality (like Camera, GPS, etc.) can be very handy for some apps.
 
-Since Tauri has no iOS/Andoid support (it's in development), we can use Capacitor to bridge that gap.
+Since Tauri has no iOS/Android build support (it's in development), we can use Capacitor \#2 to bridge that gap. Once Tauri implements iOS/Android build support, we can revisit \#2, and keep Capacitor just for \#1.
 
-We will target QR code scanning as a very usefull feature for #1.
+We will target QR code scanning as a very usefull feature for \#1.
 
 #### Setup
 
@@ -835,7 +917,7 @@ For the QR Code scanner feature, we will use [@capacitor-community/barcode-scann
 
 Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
 
-There are also other plugins to try:
+There are also other plugins to try (sith web platform support):
 
 - see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>
 - see <https://www.npmjs.com/package/qr-scanner>

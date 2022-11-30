@@ -1,10 +1,23 @@
 # Blank SvelteKit App
 
-## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest
+## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
 
 A cross-platform Desktop / Mobile / Web application starter.
 
 License: Mozilla Public License Version 2.0
+
+This app has very little functionality. Huh? Why? - It is a starter app and it demonstrates the technology stack, main point is it can be deployed from a single codebase to any platform. Yes, ANY platform:
+
+- iOS
+- Android
+- Windows
+- MacOS
+- Linux
+- Web
+
+Is it Native? - No. It uses JavaScript / TypeScript and modern tooling to create blazingly fast websites, web apps, and allow installation as apps on any of the major platforms.
+
+Can it use native features (camera, GPS, etc.)? - Yes! Check Geolocation tab and QR Scanner to get a sense.
 
 <!-- prettier-ignore -->
 |Storybook| [![Netlify Status](https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status)](https://app.netlify.com/sites/svelte-blank-20221125/deploys) |  [![Vercel Status](https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel)](https://vercel.com/iva2k/svelte-blank-20221125) |
@@ -25,10 +38,11 @@ Built with:
 - [Playwright](https://playwright.dev) - Fast and reliable end-to-end testing for modern web apps
 - [Vitest](https://vitest.dev) - A blazing fast unit test framework powered by Vite
 
-Continuous Integrations:
+Continuous Integrations and Deploys:
 
 - [Chromatic](https://www.chromatic.com) - Storybook Github CI
 - [Netlify](https://svelte-blank-20221125.netlify.app) - App Demo
+- [Vercel](https://svelte-blank-20221125.vercel.app) - App Demo
 
 ## Install
 
@@ -109,11 +123,11 @@ pnpm run svelte:build
 cap open android
 ```
 
-iOS platform is installed but not fully scripted in this repo, custom sctipts can easily be added. See [CREATING](./CREATING.md)
+iOS platform is installed but not fully scripted in this repo, custom scripts can easily be added. See [CREATING](./CREATING.md)
 
 ## How This App Was Created
 
-See [CREATING](./CREATING.md).
+See [CREATING](./CREATING.md) for step-by-step instructions.
 
 ## Styling / UI Components
 
