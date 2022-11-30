@@ -467,7 +467,15 @@ In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `
 
 Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
 
-Another change is to add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header in +layout.svelte. For styling to apply into the slot, add `:global()` clauses to some of styles (see sources).
+### Rework PureHeader Corners
+
+Add classes "corner-left" and "corner-right" to left and right corners and split their styling, adding "--corner-left-width" and "--corner-right-width" variables, so their sizes can be changed as needed.
+
+Add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header>PureHeader in "+layout.svelte".
+
+For styling to apply into the slot elements, add `:global()` clauses to some of styles on PureHeader.
+
+(See sources).
 
 ### Add @storybook/addon-a11y
 

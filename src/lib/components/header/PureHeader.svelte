@@ -5,7 +5,7 @@
 </script>
 
 <header>
-  <div class="corner">
+  <div class="corner corner-left">
     <a href="https://kit.svelte.dev">
       <img src={logo} alt="SvelteKit" />
     </a>
@@ -37,7 +37,7 @@
     </svg>
   </nav>
 
-  <div class="corner">
+  <div class="corner corner-right">
     <slot />
   </div>
 </header>
@@ -48,8 +48,12 @@
     justify-content: space-between;
   }
 
-  .corner {
-    width: 3em;
+  .corner-left {
+    width: var(--corner-left-width, '3em');
+    height: 3em;
+  }
+  .corner-right {
+    width: var(--corner-right-width, '3em');
     height: 3em;
   }
 
