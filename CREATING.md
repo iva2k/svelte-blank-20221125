@@ -738,7 +738,7 @@ Add the following to `.vscode/settings.json` file (if not already there):
 ### Add Tooling
 
 ```bash
-pnpm install -D glob sass shx vite-plugin-static-copy cpy
+pnpm install -D glob sass shx vite-plugin-static-copy cpy ts-node @types/node @types/glob
 ```
 
 Add assets copying to svelte.config.js:
@@ -1017,8 +1017,14 @@ A typical installation involves importing the package and registering the elemen
   ...
 ```
 
+Note: `svelte-check` throws error for no type definition in `import loader ...`. See `src/lib/utils.cjs` that shuts this error up.
+
 #### Interesting Capacitor Community Plugins
 
 - @capacitor-community/bluetooth-le
 - @capacitor-community/camera-preview
 - @capacitor-community/keep-awake
+
+#### Fix Issues With Capacitor
+
+None to fix.

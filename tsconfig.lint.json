@@ -7,7 +7,8 @@
     "./src/**/*.svelte",
     "./playwright.config.ts",
     "./svelte.config.js",
-    "./assets.js",
+    "./assets.ts",
+    "./scripts/*.ts",
     "./capacitor.config.ts",
     "./tests/**/*.ts"
   ]

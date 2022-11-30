@@ -3,11 +3,9 @@
   import './styles.css';
 
   import { onMount } from 'svelte';
-  // import { defineCustomElements } from '@ionic/pwa-elements/loader'; // Broken -> Directory import '...' is not supported resolving ES modules
-  // Use a hack to import:
-  import loader from '@ionic/pwa-elements/loader/index.cjs.js';
+  import { loadIonicPWAElements } from '$lib/utils.cjs';
   onMount(async () => {
-    await loader.defineCustomElements(window);
+    await loadIonicPWAElements(window);
   });
 </script>
 

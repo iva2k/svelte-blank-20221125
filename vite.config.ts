@@ -10,8 +10,7 @@ const config: UserConfig = {
     // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
     // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
     viteStaticCopy({
-      targets: assets,
-      verbose: true
+      targets: assets
     })
   ],
   test: {
