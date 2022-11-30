@@ -9,7 +9,7 @@
     "build": "tauri build",
     "postinstall": "echo RUN postinstall && svelte-kit sync && ts-node-esm scripts/assets-clean.ts",
     "postinstallEMPTY": "echo RUN postinstall && svelte-kit sync",
-    "svelte:prebuild": "echo RUN svelte:prebuild && ts-node-esm scripts/assets-copy.ts",
+    "svelte:prebuild": "echo RUN svelte:prebuild && ts-node-esm scripts/assets-copy.ts && svelte-kit sync",
     "svelte:prebuildEMPTY": "echo RUN svelte:prebuild EMPTY",
     "svelte:dev": " echo RUN svelte:dev && pnpm svelte:prebuild && vite dev --port 3000",
     "svelte:build": "echo RUN svelte:build && pnpm svelte:prebuild && vite build && cap sync android",
