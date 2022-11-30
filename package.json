@@ -1,7 +1,10 @@
 {
   "name": "svelte-blank-20221125",
+  "description": "",
   "version": "0.0.1",
   "scripts": {
+    "DISABLEDprebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
+    "DISABLEDpreinstall": "npx only-allow pnpm",
     "dev": " tauri dev",
     "build": "tauri build",
     "postinstallNEXT": "echo RUN postinstall && svelte-kit sync && node scripts/assets-clean.mjs",
@@ -16,7 +19,7 @@
     "prepare": "echo RUN prepare EMPTY",
     "tauri": "tauri",
     "test": "playwright test",
-    "test:debug": "cross-env playwright test --headed --timeout=0",
+    "test:debug": "playwright test --headed --timeout=0",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": " svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "test:unit": "echo RUN test:unit && vitest run",
@@ -135,6 +138,6 @@
     "node": ">=18.0.0"
   },
   "type": "module",
-  "readme": "ERROR: No README data found!",
+  "readme": "README.md",
   "_id": "svelte-blank-20221125@0.0.1"
 }
