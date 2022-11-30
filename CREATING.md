@@ -168,6 +168,22 @@ Add some scripts:
 }
 ```
 
+### Add Playwright Reports
+
+Add few lines to `playwright.config.ts` file so HTML and .json reports are generated:
+
+```js
+// playwright.config.ts
+
+...
+const config: PlaywrightTestConfig = {
++  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
++  reporter: process.env.CI
++    ? [['dot'], ['json', { outputFile: 'test-results.json' }]]
++    : [['list'], ['json', { outputFile: 'test-results.json' }], ['html', { open: 'on-failure' }]],
+  ...
+```
+
 ### Add Tauri
 
 Add desktop support using Tauri (version 1.2 as of writing time).
