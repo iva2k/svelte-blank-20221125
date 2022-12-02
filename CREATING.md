@@ -477,6 +477,12 @@ For styling to apply into the slot elements, add `:global()` clauses to some of 
 
 (See sources).
 
+### Add DarkMode Component
+
+See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
+
+Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
+
 ### Add @storybook/addon-a11y
 
 ```bash

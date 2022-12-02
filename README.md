@@ -131,8 +131,31 @@ See [CREATING](./CREATING.md) for step-by-step instructions.
 
 ## Styling / UI Components
 
+This template has DarkMode component in the header to allow switching the color scheme between 'light' and 'dark'. It has no effect until there's a theme added that supports `<html color-scheme>`.
+
 There are many UI frameworks that work with Svelte / SvelteKit, and choice can be daunting.
 
 <https://bestofsvelte.com/t/ui-library>
 
 <https://sveltesociety.dev/components/>
+
+This project has few of the top UI frameworks integrated in separate git branches:
+
+<!-- prettier-ignore -->
+| Git Branch | UI Framework | Dark Theme Switch | Notes |
+|-|-|:-:|-|
+| [ui-agnostic](../../tree/ui-agnostic)     | [AgnosticUI](https://github.com/AgnosticUI/agnosticui) | Y | |
+| [ui-bootstrap](../../tree/ui-bootstrap)   | [Bootstrap](https://github.com/twbs/bootstrap) | Y | [Sveltestrap](https://github.com/bestguy/sveltestrap), Themes from [Bootswatch](https://github.com/thomaspark/bootswatch) |
+| [ui-bulma](../../tree/ui-bulma)           | [Bulma](https://bulma.io/) | N | |
+| [ui-carbon](../../tree/ui-carbon)         | [Carbon](https://carbon-components-svelte.onrender.com/) | Y | |
+| [ui-framework7](../../tree/ui-framework7) | [Framework7](https://framework7.io/svelte/introduction.html) | N | Incomplete and currently broken |
+| [ui-shoelace](../../tree/ui-shoelace)     | [Shoelace](https://shoelace.style/) | Y | |
+|                                           | Smelte       |   | Material + TailwindCSS |
+|                                           | TailwindCSS  |   | May use components - [Flowbite](https://flowbite.com/docs/getting-started/introduction/) |
+|                                           | [Ionic](https://ionicframework.com) |   | See good [example](https://github.com/Tommertom/svelte-ionic-app) |
+|                                           | [Chota](https://jenil.github.io/chota/) |   | [SvelteChota](https://alexxnb.github.io/svelte-chota/why_chota) |
+| | [Svelterial](https://github.com/svelterialjs/svelterial) |   | [Svelte Materialify](https://github.com/TheComputerM/svelte-materialify) is on a deprecation path. |
+| | [Tachyons](https://tachyons.io) |   | |
+| | [Svelte Material](https://sveltematerialui.com/) |   | |
+| | [Svelte Flat UI](https://svelteui.js.org/#/) |   | |
+| | [Attractions](https://github.com/illright/attractions) |   | |

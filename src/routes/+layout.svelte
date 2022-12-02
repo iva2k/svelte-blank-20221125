@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
+  import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
-  import github from '$lib/images/github.svg';
   import './styles.css';
 
   import { onMount } from 'svelte';
@@ -8,13 +8,26 @@
   onMount(async () => {
     await loadIonicPWAElements(window);
   });
+
+  let isDarkMode: boolean;
 </script>
 
 <div class="app">
-  <Header>
-    <a href="https://github.com/sveltejs/kit">
-      <img src={github} alt="GitHub" />
-    </a>
+  <Header --corner-right-width="8em">
+    <DarkMode bind:isDarkMode>
+      <svelte:fragment let:data>
+        <label>
+          {isDarkMode ? '🔆' : '🌙'}
+          <input
+            id="cb1"
+            type="checkbox"
+            label={isDarkMode ? '🔆' : '🌙'}
+            checked={isDarkMode}
+            on:change={data.onToggle}
+          />
+        </label>
+      </svelte:fragment>
+    </DarkMode>
   </Header>
 
   <main>
