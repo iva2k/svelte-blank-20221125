@@ -18,6 +18,8 @@ async function assetsCopy() {
   );
 }
 
-reporter('%s: BEGIN', scriptName);
-await assetsCopy();
-reporter('%s: DONE', scriptName);
+void (async function main() {
+  reporter('%s: BEGIN', scriptName);
+  await assetsCopy();
+  reporter('%s: DONE', scriptName);
+})();

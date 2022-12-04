@@ -26,6 +26,8 @@ async function assetsClean() {
   );
 }
 
-reporter('%s: BEGIN', scriptName);
-await assetsClean();
-reporter('%s: DONE', scriptName);
+void (async function main() {
+  reporter('%s: BEGIN', scriptName);
+  await assetsClean();
+  reporter('%s: DONE', scriptName);
+})();
