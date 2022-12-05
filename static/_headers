@@ -1,0 +1,3 @@
+# Netlify hraders
+# Note: adapter-netlify does all tooling correctly, no fiddling is needed for _app/immutable.
+# Other routes may be added here, or in netlify.toml.

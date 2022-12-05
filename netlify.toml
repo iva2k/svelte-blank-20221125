@@ -6,12 +6,6 @@
   publish = "build"
 
 [[headers]]
-  for = "/assets/*"
-  [headers.values]
-    cache-control = '''
-      max-age=31536000,
-      immutable
-    '''
   for = "/manifest.webmanifest"
   [headers.values]
     Content-Type = "application/manifest+json"
