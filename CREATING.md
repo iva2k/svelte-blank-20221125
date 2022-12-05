@@ -51,6 +51,44 @@ pnpm run dev -- --open
 
 Run `pnpm run XXX` replacing XXX for each of the scripts in `package.json`. It's a good idea to fix all errors and warnings that might come up, and re-check after each major addition.
 
+### Add Tooling
+
+```bash
+pnpm install -D glob rimraf minimist @types/minimist sass shx vite-plugin-static-copy cpy ts-node @types/node @types/glob
+```
+
+Add assets copying to svelte.config.js:
+
+```js
++ import { viteStaticCopy } from 'vite-plugin-static-copy';
++ import assets from './assets.js';
+
+const config = {
+  ...
+  kit: {
+    ...
++    vite: () => ({
++      plugins: [
++        // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
++        // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
++        viteStaticCopy({
++          targets: assets,
++          verbose: true
++        })
++      ]
++    })
+  }
+};
+```
+
+### SvelteKit Prerender ENAMETOOLONG error
+
+// TODO: (now) File issue
+
+Build fails with ENAMETOOLONG in vite prerender. Root cause is if env.private is large (e.g. due to a bunch of "npm\_\*" variables added by pnpm or vite, e.g. contains a bunch of npm_package_devDependencies and other internal npm stuff), it is passed to fork(script, ...) as args, and it cannot handle such a large environment (more than 32kB size).
+
+See "patches/@sveltejs__kit@1.0.0-next.571.patch"
+
 ### Issue with imports linting
 
 <https://github.com/sveltejs/kit/issues/1560>
@@ -183,6 +221,49 @@ const config: PlaywrightTestConfig = {
 +    : [['list'], ['json', { outputFile: 'test-results.json' }], ['html', { open: 'on-failure' }]],
   ...
 ```
+
+### TODO: (now) Add SEO
+
+### Add Service Worker for Offline Operation
+
+Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
+
+In order for the application to work offline, `csr` should NOT be set to false on any of the pages since it will prevent injecting JavaScript into the layout for offline support.
+
+The app has to satisfy PWA Minimal Requirements, see <https://vite-pwa-org.netlify.app/guide/pwa-minimal-requirements.html>.
+
+If your application has forms, we recommend you to change the behavior of automatic reload to use default `prompt` option to allow the user decide when to update the content of the application, otherwise automatic update may clear form data if it decides to update when the user is filling the form.
+
+```bash
+pnpm add -D @vite-pwa/sveltekit @types/workbox-build@^5.0.1 vite-plugin-pwa@^0.13.3 workbox-core workbox-build workbox-window workbox-precaching workbox-routing @rollup/plugin-replace
+```
+
+Create files and make some changes (see sources):
+
+- Add /dev-dist to .gitignore, .eslintignore, .prettierignore
+- Patch @vite-pwa/sveltekit to fix problem with import in TypeScript, see file "patches/@vite-pwa__sveltekit@0.0.1.patch" for a hot-fix.
+- Add SvelteKitPWA to "vite.config.ts"
+- Create "src/lib/components/offline/Offline.svelte"
+- Create "src/lib/components/reloadprompt/ReloadPrompt.svelte"
+- Create "src/hook-servers.ts"
+- Create "src/claims-sw.ts"
+- Create "src/prompt-sw.ts"
+- Create "pwa-configuration.js" (no typescript!)
+- Add Offline component to "src/routes/+layout.svelte"
+- Make `prerender = true` the default in "src/routes/+layout.svelte" - offline precaching needs all routes prerenderd. Dynamic routes won't work offline.
+- Remove `csr = false` and `csr = dev` from all "src/routes/\*\*/+page.ts" files
+- Add few settings to "netlify.toml"
+- Add few settings to "vercel.json", // TODO: (when available) see <https://vite-pwa-org.netlify.app/deployment/vercel.html>
+
+#### Fix Issues
+
+// TODO: (now) File issue:
+
+Error importing from '@vite-pwa/sveltekit' - there is `export default {...}` in @vite-pwa/sveltekit/dist/index.mjs.
+Changing it to `export {...}` (removing `default`) fixes the problem.
+Use `pnpm patch @vite-pwa/sveltekit`, editing the file in directory created by `pnpm patch`, and creating a patch file with `pnpm patch-commit <path given by pnpm>`.
+
+TODO: (now) Implement "no offline" fallback page - suggest to connect to Internet.
 
 ### Add Tauri
 
@@ -483,6 +564,12 @@ See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svel
 
 Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
 
+// TODO: (now) File issue
+
+There is an unresolved "ParseError" issue <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137> in eslint-plugin-svelte3 which is wrongly closed, causing Lint to fail on ColorSchemeManager class in DarkMode.svelte.
+
+See "patches/eslint-plugin-svelte3@4.0.0.patch" for a hot-fix.
+
 ### Add @storybook/addon-a11y
 
 ```bash
@@ -781,36 +868,6 @@ Add the following to `.vscode/settings.json` file (if not already there):
 +    "editor.defaultFormatter": "vscode.html-language-features"
 +  }
 }
-```
-
-### Add Tooling
-
-```bash
-pnpm install -D glob sass shx vite-plugin-static-copy cpy ts-node @types/node @types/glob
-```
-
-Add assets copying to svelte.config.js:
-
-```js
-+ import { viteStaticCopy } from 'vite-plugin-static-copy';
-+ import assets from './assets.js';
-
-const config = {
-  ...
-  kit: {
-    ...
-+    vite: () => ({
-+      plugins: [
-+        // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
-+        // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
-+        viteStaticCopy({
-+          targets: assets,
-+          verbose: true
-+        })
-+      ]
-+    })
-  }
-};
 ```
 
 ### Add Capacitor

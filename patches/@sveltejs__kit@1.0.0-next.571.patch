@@ -1,0 +1,29 @@
+diff --git a/src/exports/vite/index.js b/src/exports/vite/index.js
+index 3c947f258e12c65b2e158941460148a8b46b7000..7ccb7f6f004aa7712e05285ef0dac6d487d0b95d 100644
+--- a/src/exports/vite/index.js
++++ b/src/exports/vite/index.js
+@@ -443,6 +443,14 @@ function kit() {
+ 						new URL('../../core/prerender/prerender.js', import.meta.url)
+ 					);
+ 
++					// [iva2k] pnpm adds a ton of environmental variables "npm_..." and fork() chokes with "spawn ENAMETOOLONG" error.
++					// Removing all "npm_*" variables solves the issue:
++					const env_filtered = Object.keys(env.private).filter(key => !/^npm_/.test(key)).reduce((acc, key) => {
++					  acc[key] = env.private[key];
++					  return acc;
++					}, { });
++					// console.log('DEBUG [spawn ENAMETOOLONG error] len(env.private+public)=%o, len(filtered)=%o, filtered=%o', JSON.stringify({ ...env.private, ...env.public }).length, JSON.stringify({ ...env_filtered, ...env.public }).length, env_filtered);
++					// console.log('DEBUG [spawn ENAMETOOLONG error] len(env.private+public)=%o, len(filtered)=%o', JSON.stringify({ ...env.private, ...env.public }).length, JSON.stringify({ ...env_filtered, ...env.public }).length);
+ 					const child = fork(
+ 						script,
+ 						[
+@@ -450,7 +458,8 @@ function kit() {
+ 							manifest_path,
+ 							results_path,
+ 							'' + verbose,
+-							JSON.stringify({ ...env.private, ...env.public })
++							// JSON.stringify({ ...env.private, ...env.public })
++							JSON.stringify({ ...env_filtered, ...env.public })
+ 						],
+ 						{
+ 							stdio: 'inherit'

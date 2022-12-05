@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
+  import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
   import './styles.css';
-
-  import { onMount } from 'svelte';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
+
   onMount(async () => {
     await loadIonicPWAElements(window);
   });
@@ -33,6 +35,8 @@
   <main>
     <slot />
   </main>
+
+  <Offline />
 
   <footer>
     <p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>

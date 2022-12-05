@@ -17,7 +17,15 @@ This app has very little functionality. Huh? Why? - It is a starter app and it d
 
 Is it Native? - No. It uses JavaScript / TypeScript and modern tooling to create blazingly fast websites, web apps, and allow installation as apps on any of the major platforms.
 
-Can it use native features (camera, GPS, etc.)? - Yes! Check Geolocation tab and QR Scanner to get a sense.
+Out of the box features:
+
+- SEO and integration with Social Networks (coming next)
+- Offline mode / can work without Internet connection (after the user visits the app when connected, the app's service worker caches all files for offline operation).
+- Support native features (camera, GPS, etc.) - Capacitor included. Check Geolocation and QR Scanner tabs.
+- Support deep links, in online and in offline modes.
+- Codebase support features - Linting, Formatting, Unit Testing, End-to-End testing.
+- Prepared for Isolated Component Development (Storybook).
+- Instrumented for quick deployment - Netlify, Vercel, NGINX, etc.
 
 <!-- prettier-ignore -->
 |Storybook| [![Netlify Status](https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status)](https://app.netlify.com/sites/svelte-blank-20221125/deploys) |  [![Vercel Status](https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel)](https://vercel.com/iva2k/svelte-blank-20221125) |
@@ -26,8 +34,8 @@ Can it use native features (camera, GPS, etc.)? - Yes! Check Geolocation tab and
 
 Built with:
 
-- [Svelte](https://svelte.dev) - UI framework
-- [Svelte Kit](https://kit.svelte.dev) - UI build system
+- [Svelte](https://svelte.dev) - Truly reactive Javascript/TypeScript App UI framework
+- [Svelte Kit](https://kit.svelte.dev) - Javascript/TypeScript App build system
 - [Tauri](https://tauri.studio) - Desktop Application framework
 - [Capacitor](https://capacitorjs.com) - Building crossplatform apps
 - [Storybook](https://storybook.js.org) - Tool for building UI components and pages in isolation
@@ -38,7 +46,7 @@ Built with:
 - [Playwright](https://playwright.dev) - Fast and reliable end-to-end testing for modern web apps
 - [Vitest](https://vitest.dev) - A blazing fast unit test framework powered by Vite
 
-Continuous Integrations and Deploys:
+Continuous Integrations and Deployments:
 
 - [Chromatic](https://www.chromatic.com) - Storybook Github CI
 - [Netlify](https://svelte-blank-20221125.netlify.app) - App Demo

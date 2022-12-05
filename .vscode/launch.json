@@ -11,6 +11,24 @@
       "type": "node-terminal"
     },
     {
+      "command": "pnpm svelte:build:only",
+      "name": "Run pnpm svelte:build:only",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm svelte:build:only-sw",
+      "name": "Run pnpm svelte:build:only-sw",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm svelte:build:only-destroy",
+      "name": "Run pnpm svelte:build:only-destroy",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",

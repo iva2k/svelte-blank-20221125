@@ -1,6 +1,25 @@
 {
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
+    // BEGIN copy from .svelte-kit/tsconfig.json, relatively adjust all paths
+    "baseUrl": ".",
+    "paths": {
+      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"], // Added for (?)
+      "$lib": ["src/lib"],
+      "$lib/*": ["src/lib/*"],
+      "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"]
+      // "*": ["*", "./node_modules/@types/*", "./node_modules/@vite-pwa/sveltekit/*"]
+    },
+    "rootDirs": [".", "./.svelte-kit/types"],
+    "importsNotUsedAsValues": "error",
+    "isolatedModules": true,
+    "preserveValueImports": true,
+    "lib": ["es2020", "DOM", "DOM.Iterable"],
+    "moduleResolution": "node",
+    "module": "es2020",
+    "target": "es2020",
+    // END copy from .svelte-kit/tsconfig.json
+
     "allowJs": true,
     "checkJs": true,
     "esModuleInterop": true,
@@ -10,16 +29,22 @@
     "sourceMap": true,
     "strict": true,
     "outDir": ".types",
-    "paths": {
-      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"],
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
-    }
+    "typeRoots": [
+      "./node_modules",
+      "./node_modules/@types",
+      // "./node_modules/@sveltejs/kit",
+      // "./node_modules/svelte",
+      // "./node_modules/vite/client",
+      "./node_modules/@vite-pwa/sveltekit/dist",
+      // "./node_modules/@vite-pwa/sveltekit/dist/index.d.ts",
+      "./node_modules/vite-plugin-pwa/client",
+      "./node_modules/vite-plugin-pwa/info"
+    ]
   },
   "exclude": [
     "./node_modules/**",
-    ".svelte-kit/[!ambient.d.ts]**",
-    ".types",
+    "./.svelte-kit/[!ambient.d.ts]**",
+    "./.types",
     "./src-tauri/target/**",
     "./android/**",
     "./ios/**"

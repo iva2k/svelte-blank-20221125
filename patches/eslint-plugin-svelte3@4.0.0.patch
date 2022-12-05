@@ -1,0 +1,14 @@
+diff --git a/index.js b/index.js
+index b3b56bd4a228efeb102b56e38ca330c65cb37209..b6cc2c40952b986b588168dd09a154b8bf597856 100644
+--- a/index.js
++++ b/index.js
+@@ -657,7 +657,8 @@ function compile_code(text, compiler, processor_options) {
+ 		const ts_options = {
+ 			reportDiagnostics: false,
+ 			compilerOptions: {
+-				target: ts.ScriptTarget.ESNext,
++				// target: ts.ScriptTarget.ESNext,
++				target: ts.ScriptTarget.ES2020,
+ 				importsNotUsedAsValues: ts.ImportsNotUsedAsValues.Preserve,
+ 				sourceMap: true
+ 			},

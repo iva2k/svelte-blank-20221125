@@ -10,6 +10,7 @@ node_modules
 .netlify
 .vercel
 .output
+/dev-dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .types
@@ -29,3 +30,4 @@ test-results.json
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+/patches

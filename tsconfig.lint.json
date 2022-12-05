@@ -1,15 +1,18 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "./src/**/*.d.ts",
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.svelte",
-    "./playwright.config.ts",
-    "./svelte.config.js",
-    "./assets.ts",
-    "./scripts/*.ts",
-    "./capacitor.config.ts",
-    "./tests/**/*.ts"
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.svelte",
+    "src/claims-sw.ts",
+    "src/prompt-sw.ts",
+    "scripts/*.ts",
+    "tests/**/*.ts",
+    "assets.ts",
+    "capacitor.config.ts",
+    "playwright.config.ts",
+    "pwa-configuration.js",
+    "svelte.config.js"
   ]
 }
