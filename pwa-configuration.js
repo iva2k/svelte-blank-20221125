@@ -3,15 +3,19 @@
 
 // import type { RollupReplaceOptions } from '@rollup/plugin-replace';
 
+const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/output/client';
+const srcDir = process.env.VERCEL ? './src' : './src';
+// ? const globDirectory = process.env.VERCEL ? './.vercel/output/static' : 'client';
+
 // /** @type {import('vite-plugin-pwa').VitePWAOptions} */
 // ? /** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions & import('vite-plugin-pwa').ResolvedVitePWAOptions} */
 // ? /** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions & Partial<import('vite-plugin-pwa').ResolvedVitePWAOptions>} */
 /** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions} */
 const pwaConfiguration = {
-  srcDir: './src',
+  srcDir: srcDir,
 
   // outDir: './.svelte-kit', // broken?
-  outDir: './.svelte-kit/output/client',
+  outDir: outDir,
 
   mode: 'development',
   // includeManifestIcons: false,
@@ -109,7 +113,8 @@ const workboxOrInjectManifestEntry = {
   // maximumFileSizeToCacheInBytes: 3000000, // Increase max size of assets in manifest
   // To exclue routes, see <https://vite-pwa-org.netlify.app/guide/faq.html#exclude-routes>
   // For background sync, see <https://vite-pwa-org.netlify.app/workbox/generate-sw.html#background-sync>
-  globPatterns: ['client/**/*.{js,css,html,ico,json,png,svg,webp,webmanifest,woff,woff2}'], // TODO: (now) Should remove .webmanifest?
+  // globDirectory: globDirectory,
+  globPatterns: ['client/**/*.{js,css,html,ico,json,jpg,jpeg,png,svg,webp,webmanifest,woff,woff2}'],
   // globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}'], // From @vite-pwa/sveltekit example
   // globIgnores: sw ? (claims ? ['**/claims-sw*'] : ['**/prompt-sw*']) : ['**/sw*', '**/workbox-*'], // Not needed, seems the  plugin takes care of that.
   // Before generating the service worker, manifestTransforms entry will allow us to transform the resulting precache manifest. See the manifestTransforms docs for mode details.
