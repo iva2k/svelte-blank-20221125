@@ -14,6 +14,10 @@ const config = {
   }),
 
   kit: {
+    // base: '',
+    // outDir: './.svelte-kit',
+    // ? adapterFallback: 'index.html',
+    // trailingSlash: false,
     adapter: process.env.VERCEL
       ? vercel()
       : process.env.NETLIFY
@@ -31,6 +35,12 @@ const config = {
       // Place to add all aliases. Run 'svelte-kit sync' (or npm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
       // $components: resolve('./src/lib/components')
     }
+  },
+
+  vitePlugin: {
+    // exclude: ['./node_modules/**']
+    // experimental options
+    // experimental: {}
   }
 };
 
