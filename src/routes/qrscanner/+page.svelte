@@ -66,7 +66,7 @@
 
   // Speed-up subsequent startScanner()
   const preloadScanner = () => {
-    console.log('DEBUG: in prepareScanner()');
+    console.log('DEBUG: in preloadScanner()');
     BarcodeScanner.prepare();
   };
 
@@ -113,8 +113,8 @@
   };
 
   const stopScanner = () => {
-    console.log('DEBUG: in stopScanner()');
     if (scanActive) {
+      console.log('DEBUG: in stopScanner()');
       showPreview(false);
       BarcodeScanner.stopScan();
       scanActive = false;
