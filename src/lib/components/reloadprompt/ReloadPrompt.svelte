@@ -45,13 +45,15 @@
       {#if $offlineReady}
         <span> App ready to work offline </span>
       {:else}
-        <span> New content available, click on reload button to update. </span>
+        <span> New app version available, click on "Reload" button to update. </span>
       {/if}
     </div>
     {#if $needRefresh}
       <button on:click={() => updateServiceWorker(true)}> Reload </button>
+      <button on:click={close}> Postpone </button>
+    {:else}
+      <button on:click={close}> Got It </button>
     {/if}
-    <button on:click={close}> Close </button>
   </div>
 {/if}
 
