@@ -1,4 +1,6 @@
-# Blank SvelteKit App
+# Total App | Blank SvelteKit App
+
+![Total App](static/logotype-hor.svg)
 
 ## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
 
@@ -167,3 +169,7 @@ This project has few of the top UI frameworks integrated in separate git branche
 | | [Svelte Material](https://sveltematerialui.com/) |   | |
 | | [Svelte Flat UI](https://svelteui.js.org/#/) |   | |
 | | [Attractions](https://github.com/illright/attractions) |   | |
+
+## Enjoy!
+
+![Total App](static/icon.svg)
