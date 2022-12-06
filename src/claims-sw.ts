@@ -13,7 +13,7 @@ import { NavigationRoute, registerRoute } from 'workbox-routing';
 
 declare let self: ServiceWorkerGlobalScope;
 
-// self.__WB_MANIFEST is default injection point
+// self:__WB_MANIFEST (replace colon with dot for actual replacement) is default injection point
 precacheAndRoute(self.__WB_MANIFEST);
 
 // clean old assets

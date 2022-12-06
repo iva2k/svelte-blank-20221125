@@ -7,10 +7,47 @@ const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/o
 const srcDir = process.env.VERCEL ? './src' : './src';
 // ? const globDirectory = process.env.VERCEL ? './.vercel/output/static' : 'client';
 
+const scope = '/';
+
+// For @sveltejs/adapter-static, @sveltejs/adapter-netlify, @sveltejs/adapter-vercel
+// /** @typedef {import('workbox-build').ManifestEntry} ManifestEntry */
+/** @type {import('workbox-build').ManifestTransform} */
+const manifestTransformStatic = async (manifestEntries) => {
+  console.info('Precache Manifest Entries:');
+  const manifest = manifestEntries
+    .filter(
+      ({ url }) =>
+        // Remove paths that should not be cached:
+        url !== 'client/vite-manifest.json' && url !== 'prerendered/fallback.html'
+      // && url !== 'client/manifest.webmanifest' && !url.endsWith('sw.js') && !url.startsWith('workbox-')
+    )
+    .map((e) => {
+      // Adjust paths to match what the adapter server understands:
+      const url1 = e.url;
+      let url = e.url;
+      if (url.startsWith('/')) url = url.slice(1);
+      if (url.startsWith('client/')) url = url.slice(7);
+      if (url.startsWith('prerendered/pages/')) url = url.slice(18);
+
+      // if (url === 'prerendered/fallback.html') url = 'sw';
+
+      // router paths
+      if (url && url.endsWith('.html')) {
+        url = url === 'index.html' ? '' : `${url.substring(0, url.lastIndexOf('.'))}`;
+      }
+      e.url = scope + url; // Canonical URL starts with base
+      console.info(`  ${url1.padEnd(100)} => ${JSON.stringify(e)}`);
+      return e;
+    });
+  return { manifest };
+};
+
+// adapter-netlify creates ./build directory, same contents as adapter-static
+// adapter-vercel creates ./vercel/output/static directory, same contents as adapter-static
+const manifestTransforms = [manifestTransformStatic];
+
 // /** @type {import('vite-plugin-pwa').VitePWAOptions} */
-// ? /** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions & import('vite-plugin-pwa').ResolvedVitePWAOptions} */
-// ? /** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions & Partial<import('vite-plugin-pwa').ResolvedVitePWAOptions>} */
-/** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions} */
+/** @type {import('@vite-pwa/sveltekit').SvelteKitPWAOptions & {swSrc?: string | undefined, swDest?: string | undefined}} */
 const pwaConfiguration = {
   srcDir: srcDir,
 
@@ -20,8 +57,8 @@ const pwaConfiguration = {
   mode: 'development',
   // includeManifestIcons: false,
   filename: '', // set programmatically, below
-  scope: '/',
-  base: '/',
+  scope: scope,
+  base: scope,
 
   // For ResolvedVitePWAOptions:
   // swSrc: '',
@@ -31,11 +68,11 @@ const pwaConfiguration = {
   // default: registerType: 'prompt', // safer option than 'autoUpdate', // set programmatically, below
 
   // default: strategies: 'generateSW', // set programmatically, below
-  // for strategies: 'injectManifest' need:
-  // injectManifest: {}, // set programmatically, below
-  // workbox: {}, // set programmatically, below
+  // for strategies='injectManifest' must include injectManifest: {}, // set programmatically, below
+  // for strategies='generateSW'     must include workbox: {}, // set programmatically, below
 
   // default: injectRegister: 'auto',
+  // injectRegister: 'script',
   // default: minify: true,
 
   devOptions: {
@@ -43,7 +80,7 @@ const pwaConfiguration = {
     enabled: true,
     /* when using generateSW the PWA plugin will switch to classic */
     type: 'module',
-    navigateFallback: '/'
+    navigateFallback: scope
     // deprecated: webManifestUrl: '/manifest.webmanifest'
   },
 
@@ -54,9 +91,9 @@ const pwaConfiguration = {
     short_name: 'MyApp', // set programmatically, below
     name: 'My Awesome App', // set programmatically, below
     description: 'My Awesome App description',
-    start_url: '/',
-    scope: '/',
-    id: '/', // TODO: (when needed, mid-2023?) It has to match server URL (domain, port, and path)
+    start_url: scope,
+    scope: scope,
+    id: scope, // TODO: (when needed, mid-2023?) It has to match server URL (domain, port, and path)
     // display: 'standalone',
     display: 'fullscreen',
     theme_color: '#000000',
@@ -101,7 +138,6 @@ const replaceOptions = {
   __SW_DEV__: process.env.SW_DEV === 'true' ? 'true' : 'false',
   preventAssignment: true
 };
-// console.log('DEBUG pwa-configuration.js replaceOptions=%o', replaceOptions);
 
 /** @typedef {import('workbox-build').InjectManifestOptions} InjectManifestOptions */
 /** @typedef {import('workbox-build').GeneratePartial} GeneratePartial */
@@ -119,22 +155,16 @@ const workboxOrInjectManifestEntry = {
   // globIgnores: sw ? (claims ? ['**/claims-sw*'] : ['**/prompt-sw*']) : ['**/sw*', '**/workbox-*'], // Not needed, seems the  plugin takes care of that.
   // Before generating the service worker, manifestTransforms entry will allow us to transform the resulting precache manifest. See the manifestTransforms docs for mode details.
   // Here we use it only to log the precache manifest.
-  manifestTransforms: [
-    // /** @typedef {import('workbox-build').ManifestEntry} ManifestEntry */
-    /** @type {import('workbox-build').ManifestTransform} */
-    async (manifestEntries) => {
-      console.info('Precache Manifest Entries:');
-      const manifest = manifestEntries.map((e) => {
-        console.info(`  ${JSON.stringify(e)}`);
-        return e;
-      });
-      return { manifest };
-    }
-  ]
+  manifestTransforms: manifestTransforms
 };
 
 if (sw) {
-  pwaConfiguration.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts'; // 'src/' is added by the plugin
+  // Option to use custom SW files (needs a patch to vite-plugin-pwa):
+  const swFile = claims ? 'claims-sw.ts' : 'prompt-sw.ts';
+  // pwaConfiguration.swSrc = swFile; // Must be relative to srcDir path. Define swSrc to use custom code. Leave undefined to let workbox generate one.
+  // pwaConfiguration.swDest = swFile; // Must be relative to srcDir path.
+  pwaConfiguration.filename = swFile;
+
   pwaConfiguration.strategies = 'injectManifest';
   if (pwaConfiguration.manifest) {
     pwaConfiguration.manifest.name = 'PWA Inject Manifest';
@@ -144,16 +174,20 @@ if (sw) {
 } else {
   workboxOrInjectManifestEntry.mode = 'development';
   workboxOrInjectManifestEntry.sourcemap = process.env.SW_DEV === 'true'; // Enable for service worker during development. No SW sourcemaps for production.
-  workboxOrInjectManifestEntry.navigateFallback = '/';
+  workboxOrInjectManifestEntry.navigateFallback = scope;
   pwaConfiguration.workbox = workboxOrInjectManifestEntry;
 }
 
-if (claims) pwaConfiguration.registerType = 'prompt'; // safer option than 'autoUpdate' (which can lose user data in forms if update happens);
+if (claims) pwaConfiguration.registerType = 'prompt'; // safer option than 'autoUpdate' (which can lose user data entered into a form if update happens);
 
 if (selfDestroying) {
   pwaConfiguration.selfDestroying = selfDestroying; // `true` will unregister the service worker.
+  pwaConfiguration.swSrc = undefined;
   // ? pwaConfiguration.swDest = 'dev-dist';
-  pwaConfiguration.filename = 'destroy-sw.ts'; // Undocumented feature, Must provide .filename - either existing, or to be created, for .selfDestroying = true.
+  pwaConfiguration.filename = 'destroy-sw.ts'; // Undocumented feature, Must provide .filename for .selfDestroying = true.
 }
+
+// console.log('DEBUG pwa-configuration.js: pwaConfiguration=%o', pwaConfiguration);
+// console.log('DEBUG pwa-configuration.js: replaceOptions=%o', replaceOptions);
 
 export { pwaConfiguration, replaceOptions };

@@ -18,7 +18,7 @@ self.addEventListener('message', (event) => {
   }
 });
 
-// self.__WB_MANIFEST is default injection point
+// self:__WB_MANIFEST (replace colon with dot for actual replacement) is default injection point
 precacheAndRoute(self.__WB_MANIFEST);
 
 // clean old assets
@@ -28,10 +28,5 @@ let allowlist: undefined | RegExp[];
 if (import.meta.env.DEV) allowlist = [/^\/$/];
 
 // to allow work offline
-registerRoute(
-  new NavigationRoute(
-    createHandlerBoundToURL('/'),
-    //? createHandlerBoundToURL('index.html'),
-    { allowlist }
-  )
-);
+const url = '/';
+registerRoute(new NavigationRoute(createHandlerBoundToURL(url), { allowlist }));
