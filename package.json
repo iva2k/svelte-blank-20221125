@@ -9,8 +9,8 @@
     "build":                                         "tauri build",
     "postinstall":                                   "echo RUN postinstall && svelte-kit sync && ts-node-esm scripts/assets-clean.ts",
     "postinstallEMPTY":                              "echo RUN postinstall && svelte-kit sync",
-    "svelte:prebuildNEXT":                           "echo RUN svelte:prebuild && rimraf .svelte-kit && rimraf build && svelte-kit sync && ts-node-esm scripts/assets-copy.ts",
-    "svelte:prebuild":                               "echo RUN svelte:prebuild                                       && svelte-kit sync && ts-node-esm scripts/assets-copy.ts",
+    "svelte:prebuild":                               "echo RUN svelte:prebuild && rimraf .svelte-kit && rimraf build && svelte-kit sync && ts-node-esm scripts/assets-copy.ts",
+    "svelte:prebuildOLD":                            "echo RUN svelte:prebuild                                       && svelte-kit sync && ts-node-esm scripts/assets-copy.ts",
     "svelte:predev":                                 "echo RUN svelte:predev   && rimraf dev-dist                    && svelte-kit sync && ts-node-esm scripts/assets-copy.ts",
     "svelte:dev":                                    " echo RUN svelte:dev                                    && pnpm svelte:predev     && cross-env SW_DEV=true DEBUG=vite-plugin-pwa:* vite dev --port 3000",
     "svelte:dev-claims":                             " echo RUN svelte:dev-claims                             && pnpm svelte:predev     && cross-env SW_DEV=true DEBUG=vite-plugin-pwa:* SW=true                 CLAIMS=true vite dev --port 3000",
@@ -165,13 +165,13 @@
     "vite-plugin-static-copy": "^0.12.0",
     "vitest": "^0.25.3",
     "webpack": "^5.73.0",
+    "workbox-build": "^6.5.4",
     "workbox-cacheable-response": "^6.5.4",
     "workbox-core": "^6.5.4",
-    "workbox-build": "^6.5.4",
-		"workbox-expiration": "^6.5.4",
+    "workbox-expiration": "^6.5.4",
     "workbox-precaching": "^6.5.4",
     "workbox-routing": "^6.5.4",
-		"workbox-strategies": "^6.5.4",
+    "workbox-strategies": "^6.5.4",
     "workbox-window": "^6.5.4"
   },
   "packageManager": "pnpm@7.1.9",
@@ -187,7 +187,7 @@
     "patchedDependencies": {
       "@vite-pwa/sveltekit@0.0.1": "patches/@vite-pwa__sveltekit@0.0.1.patch",
       "eslint-plugin-svelte3@4.0.0": "patches/eslint-plugin-svelte3@4.0.0.patch",
-      "@sveltejs/kit@1.0.0-next.571": "patches/@sveltejs__kit@1.0.0-next.571.patch"
+      "@sveltejs/kit@1.0.0-next.572": "patches/@sveltejs__kit@1.0.0-next.572.patch"
     }
   }
 }

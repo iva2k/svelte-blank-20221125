@@ -1,15 +1,15 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
-  '@sveltejs/kit@1.0.0-next.571':
-    hash: z2fju6b3mm6zq4awr26arcm3xu
-    path: patches/@sveltejs__kit@1.0.0-next.571.patch
-  eslint-plugin-svelte3@4.0.0:
-    hash: m6aufyxiy3by2n44zjagp5bamm
-    path: patches/eslint-plugin-svelte3@4.0.0.patch
   '@vite-pwa/sveltekit@0.0.1':
     hash: gdmfegqkspf4w5is45x6bpzkbq
     path: patches/@vite-pwa__sveltekit@0.0.1.patch
+  eslint-plugin-svelte3@4.0.0:
+    hash: m6aufyxiy3by2n44zjagp5bamm
+    path: patches/eslint-plugin-svelte3@4.0.0.patch
+  '@sveltejs/kit@1.0.0-next.572':
+    hash: 674vn6qiytaegyxtjndgt3b32m
+    path: patches/@sveltejs__kit@1.0.0-next.572.patch
 
 specifiers:
   '@babel/core': ^7.20.2
@@ -170,7 +170,7 @@ devDependencies:
   '@sveltejs/adapter-netlify': 1.0.0-next.84
   '@sveltejs/adapter-static': 1.0.0-next.48
   '@sveltejs/adapter-vercel': 1.0.0-next.84
-  '@sveltejs/kit': 1.0.0-next.571_z2fju6b3mm6zq4awr26arcm3xu_svelte@3.53.1+vite@3.2.4
+  '@sveltejs/kit': 1.0.0-next.572_674vn6qiytaegyxtjndgt3b32m_svelte@3.53.1+vite@3.2.4
   '@tauri-apps/api': 1.2.0
   '@tauri-apps/cli': 1.2.1
   '@types/cookie': 0.5.1
@@ -4143,8 +4143,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.571_z2fju6b3mm6zq4awr26arcm3xu_svelte@3.53.1+vite@3.2.4:
-    resolution: {integrity: sha512-J+J0UXBiAh569l4ZxKm6eIZJS4lbcP8MgF9fU+DbVplCJ8nqo9wUmirUHZkJoBoB0FUlZSgA0R7N471MnUNNBw==}
+  /@sveltejs/kit/1.0.0-next.572_674vn6qiytaegyxtjndgt3b32m_svelte@3.53.1+vite@3.2.4:
+    resolution: {integrity: sha512-PiKEr55L/uJyMKvDPdyoa5MlAYQwdgs8HLMbr28YcCBmhw/v6V7gutKOKdqeXc3YwKEFVS3z7TvW6c7eDokJdQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
@@ -4157,7 +4157,7 @@ packages:
       cookie: 0.5.0
       devalue: 4.2.0
       kleur: 4.1.5
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       mime: 3.0.0
       sade: 1.8.1
       set-cookie-parser: 2.5.1
@@ -10216,6 +10216,13 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /magic-string/0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
   /make-dir/2.1.0:

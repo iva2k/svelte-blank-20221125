@@ -1,8 +1,8 @@
 diff --git a/src/exports/vite/index.js b/src/exports/vite/index.js
-index 3c947f258e12c65b2e158941460148a8b46b7000..7ccb7f6f004aa7712e05285ef0dac6d487d0b95d 100644
+index 179104d8c19b44b432f414f61ed506beb8d65faa..37249d2e3342e367e6c0d0347406f3f0bca4fe6d 100644
 --- a/src/exports/vite/index.js
 +++ b/src/exports/vite/index.js
-@@ -443,6 +443,14 @@ function kit() {
+@@ -449,6 +449,14 @@ function kit() {
  						new URL('../../core/prerender/prerender.js', import.meta.url)
  					);
  
@@ -17,7 +17,7 @@ index 3c947f258e12c65b2e158941460148a8b46b7000..7ccb7f6f004aa7712e05285ef0dac6d4
  					const child = fork(
  						script,
  						[
-@@ -450,7 +458,8 @@ function kit() {
+@@ -456,7 +464,8 @@ function kit() {
  							manifest_path,
  							results_path,
  							'' + verbose,
