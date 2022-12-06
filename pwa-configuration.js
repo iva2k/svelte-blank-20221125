@@ -3,8 +3,10 @@
 
 // import type { RollupReplaceOptions } from '@rollup/plugin-replace';
 
-const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/output/client';
-const srcDir = process.env.VERCEL ? './src' : './src';
+// const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/output/client';
+// const srcDir = process.env.VERCEL ? './src' : './src';
+const outDir = './.svelte-kit/output/client';
+const srcDir = './src';
 // ? const globDirectory = process.env.VERCEL ? './.vercel/output/static' : 'client';
 
 const scope = '/';
