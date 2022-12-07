@@ -102,13 +102,13 @@ const pwaConfiguration = {
     background_color: '#ffffff',
     icons: [
       {
-        src: '/logo.png',
+        src: '/icon.png',
         type: 'image/png',
         sizes: '512x512',
         purpose: 'any'
       },
       {
-        src: '/logo.png',
+        src: '/icon.png',
         type: 'image/png',
         sizes: '512x512',
         purpose: 'maskable'

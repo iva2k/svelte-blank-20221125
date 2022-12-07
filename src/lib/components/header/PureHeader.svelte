@@ -1,13 +1,13 @@
 <script lang="ts">
-  import logo from '$lib/images/svelte-logo.svg';
+  import logo from '$lib/images/logo.svg';
 
   export let pathname = '/';
 </script>
 
 <header>
   <div class="corner corner-left">
-    <a href="https://kit.svelte.dev">
-      <img src={logo} alt="SvelteKit" />
+    <a href="https://https://svelte-blank-20221125.vercel.app">
+      <img src={logo} alt="Total App" />
     </a>
   </div>
 

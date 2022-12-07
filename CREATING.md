@@ -1,4 +1,4 @@
-# Creating: Blank SvelteKit App
+# Creating: Total App | Blank SvelteKit App
 
 ## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
 
