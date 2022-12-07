@@ -1136,6 +1136,8 @@ None to fix.
 
 ### Lighthouse metrics
 
+Run Lighthouse and other web tests at <https://www.webpagetest.org>
+
 TODO: (now) Improve Lighthouse: Does not set a theme color for the address bar.Failures: No `<meta name="theme-color">` tag found.
 The browser address bar can be themed to match your site.
 <https://developer.chrome.com/docs/lighthouse/pwa/splash-screen/?utm_source=lighthouse&utm_medium=wpt>

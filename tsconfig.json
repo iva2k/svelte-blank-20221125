@@ -3,13 +3,6 @@
   "compilerOptions": {
     // BEGIN copy from .svelte-kit/tsconfig.json, relatively adjust all paths
     "baseUrl": ".",
-    "paths": {
-      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"], // Added for (?)
-      "$lib": ["src/lib"],
-      "$lib/*": ["src/lib/*"],
-      "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"]
-      // "*": ["*", "./node_modules/@types/*", "./node_modules/@vite-pwa/sveltekit/*"]
-    },
     "rootDirs": [".", "./.svelte-kit/types"],
     "importsNotUsedAsValues": "error",
     "isolatedModules": true,
@@ -19,6 +12,16 @@
     "module": "es2020",
     "target": "es2020",
     // END copy from .svelte-kit/tsconfig.json
+
+    // BEGIN override .svelte-kit/tsconfig.json
+    "paths": {
+      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"], // Added for (?)
+      "$lib": ["src/lib"],
+      "$lib/*": ["src/lib/*"],
+      "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"]
+      // "*": ["*", "./node_modules/@types/*", "./node_modules/@vite-pwa/sveltekit/*"]
+    },
+    // END override .svelte-kit/tsconfig.json
 
     "allowJs": true,
     "checkJs": true,

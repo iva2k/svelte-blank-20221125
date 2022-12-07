@@ -1,7 +1,6 @@
 // There are errors in many online sources that give wrong information about prerender and ssr.
 
-// Let SvelteKit decide to prerender for each page by default:
-// export const prerender = 'auto';
+// Prerender each page by default:
 export const prerender = true;
 // As of @sveltejs/kit 1.0.0-next.563, pages with actions (e.g. sub-routes) throw error in `vite build`.
 // Each such route should set prerender = false if needed in `src/routes/**/+page.ts`.

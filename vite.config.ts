@@ -3,10 +3,7 @@ import type { UserConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import replace from '@rollup/plugin-replace';
 
-// import { VitePWA } from 'vite-plugin-pwa';
-// const SvelteKitPWA = VitePWA;
-import { SvelteKitPWA } from '@vite-pwa/sveltekit'; // TODO: (now) broken package, import does not work!
-// import { SvelteKitPWA } from './node_modules/@vite-pwa/sveltekit/dist';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
 import { pwaConfiguration, replaceOptions } from './pwa-configuration.js';
 import assets from './assets.js';
@@ -36,7 +33,5 @@ const config: UserConfig = {
     include: ['src/**/*.{test,spec}.{js,ts}']
   }
 };
-
-// console.log('DEBUG vite.config.ts config.define=%o', config.define);
 
 export default config;

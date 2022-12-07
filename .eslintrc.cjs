@@ -18,7 +18,6 @@ module.exports = {
     'svelte3/typescript': () => require('typescript')
   },
   parserOptions: {
-    // ?project: ['./tsconfig.json', './tsconfig.lint.json', './tsconfig.sw.json'],
     project: ['./tsconfig.json', './tsconfig.lint.json'],
     tsconfigRootDir: './',
     sourceType: 'module',

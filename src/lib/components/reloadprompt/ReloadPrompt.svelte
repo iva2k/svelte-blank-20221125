@@ -8,12 +8,12 @@
   // if used with literal it will be removed, since it is evaluated at build time by sveltekit
   const reloadSW = JSON.parse('__RELOAD_SW__');
   const intervalMS = JSON.parse('__UPDATE_CHECK_PERIOD_MS__');
-  console.log(
+  /* console.log(
     'DEBUG ReloadPrompt.svelte buildDate=%o reloadSW=%o intervalMS=%o',
     buildDate,
     reloadSW,
     intervalMS
-  );
+  ); /* */
 
   const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW({
     onRegistered(r) {

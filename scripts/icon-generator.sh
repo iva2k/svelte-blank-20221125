@@ -215,7 +215,7 @@ generateIco "${FAVICON_SRC}" "${OUTPUT_DIR}/favicon.ico"                16 32 48
 # iOS Safari - "touch icon", a 180x180 PNG image, no transparency, its corners will be automatically rounded.
 # (167x167 for iPad)
 # <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-# TODO: (now) Remove transparency (or use separate icon SVG file with background)
+# TODO: (when needed) Remove transparency (when separate APPICON_SRC_BG file is not given)
 generatePng "${APPICON_SRC_BG}" "${OUTPUT_DIR}/apple-icon-167x167.png" 167
 generatePng "${APPICON_SRC_BG}" "${OUTPUT_DIR}/apple-icon-180x180.png" 180
 

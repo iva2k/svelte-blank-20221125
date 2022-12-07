@@ -8,25 +8,22 @@
   const STORAGE_KEY = 'ag-color-scheme';
 
   class ColorSchemeManager {
-    // Note: If this throws an error, make sure lib in tsconfig.json is set to not "esnext", but either to "es2021" or "es2020".
+    // Note: If this throws an error, make sure lib/target in tsconfig.json is set to not "esnext", but either to "es2021" or "es2020".
     // @see related <https://github.com/sveltejs/svelte/issues/6900>
     // For ESLint ParseError issue filed: @see <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137>
-    // TODO: (when issue is fixed) Revert lib to "esnext" in tsconfig.json - <https://github.com/sveltejs/svelte/issues/6900>
+    // TODO: (when issue is fixed) Revert lib/target to "esnext" in tsconfig.json - <https://github.com/sveltejs/svelte/issues/6900>
     w: Window | undefined;
     d: Document | undefined;
     // w = undefined;
     // d = undefined;
     private constructor(_window: Window, _document: Document) {
-      // constructor(_window, _document) {
       this.w = _window;
       this.d = _document;
       this.setColorScheme(this.getSavedOrDefaultColorScheme());
     }
 
     static getInstance(_window: Window, _document: Document) {
-      // static getInstance(_window, _document) {
       const w = _window as unknown as { colorSchemeManager: ColorSchemeManager | undefined };
-      // const w = _window;
       if (w && _document) {
         if (!w.colorSchemeManager) {
           w.colorSchemeManager = new ColorSchemeManager(_window, _document);
@@ -44,7 +41,6 @@
     }
 
     setStoredColorScheme(colorScheme: string | undefined) {
-      // setStoredColorScheme(colorScheme) {
       if (colorScheme && this.d) {
         localStorage.setItem(STORAGE_KEY, colorScheme);
       }
@@ -57,7 +53,6 @@
     }
 
     setColorScheme(colorScheme: string | undefined) {
-      // setColorScheme(colorScheme) {
       if (colorScheme && this.d) {
         this.d.firstElementChild?.setAttribute('color-scheme', colorScheme);
       }
@@ -67,7 +62,6 @@
   import { onMount } from 'svelte';
 
   let colorSchemeManager: ColorSchemeManager | undefined;
-  // let colorSchemeManager = undefined;
   let isMounted = false; // Hide theme controls until fully mounted.
   onMount(async () => {
     colorSchemeManager = ColorSchemeManager.getInstance(window, document);
@@ -108,7 +102,6 @@
         );
       }
       function setColorScheme(colorScheme: string | undefined) {
-        // function setColorScheme(colorScheme) {
         if (colorScheme && document) {
           document.firstElementChild?.setAttribute('color-scheme', colorScheme);
         }
