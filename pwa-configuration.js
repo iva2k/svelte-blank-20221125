@@ -102,13 +102,20 @@ const pwaConfiguration = {
     background_color: '#ffffff',
     icons: [
       {
-        src: '/icon.png',
+        // Android
+        src: '/icon-192x192.png',
+        type: 'image/png',
+        sizes: '192x192',
+        purpose: 'any'
+      },
+      {
+        src: '/icon-512x512.png',
         type: 'image/png',
         sizes: '512x512',
         purpose: 'any'
       },
       {
-        src: '/icon.png',
+        src: '/icon-512x512.png',
         type: 'image/png',
         sizes: '512x512',
         purpose: 'maskable'

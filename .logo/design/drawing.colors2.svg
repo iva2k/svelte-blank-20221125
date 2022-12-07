@@ -10,7 +10,7 @@
    xml:space="preserve"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    sodipodi:docname="drawing.colors2.svg"
-   inkscape:export-filename="../icon.svg"
+   inkscape:export-filename="../icon.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -29,8 +29,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="1.3037281"
-     inkscape:cx="170.2809"
-     inkscape:cy="251.20269"
+     inkscape:cx="240.08073"
+     inkscape:cy="251.96972"
      inkscape:window-width="2019"
      inkscape:window-height="1225"
      inkscape:window-x="3030"
@@ -180,9 +180,9 @@
        transform="matrix(1.25,0,0,1.25,26.77888,-69.108273)"><tspan
          x="14.101562"
          y="363.05122"
-         id="tspan552"><tspan
+         id="tspan1162"><tspan
            style="font-weight:bold;font-size:76.6667px;font-family:'Galano Grotesque DEMO';-inkscape-font-specification:'Galano Grotesque DEMO, Bold'"
-           id="tspan550">total app</tspan></tspan></text><g
+           id="tspan1160">total app</tspan></tspan></text><g
        id="g5138"
        transform="matrix(1.25,0,0,1.25,-453.42858,-123.00782)"><g
          id="g5132"><path

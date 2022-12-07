@@ -59,7 +59,8 @@
     "android:open": "cap open android",
     "android:dev": "cap run android",
     "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm test:unit && pnpm test && pnpm check",
-    "chromatic": "npx chromatic --build-script-name=storybook:build"
+    "chromatic": "npx chromatic --build-script-name=storybook:build",
+    "icons:build": "bash -c \"./scripts/icon-generator.sh .logo/logo.svg .logo/icon.svg\""
   },
   "dependencies": {
     "@capacitor-community/barcode-scanner": "^3.0.1",
