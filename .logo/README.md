@@ -27,3 +27,15 @@ All app graphics assets (favicon, logo, app icons) can be automatically generate
 ```bash
 pnpm icons:build
 ```
+
+## Other
+
+To compress SVG files (e.g. remove editor metadata), use SVGO:
+
+```bash
+npm -g install svgo
+# Processing single files:
+svgo logo.svg -o logo.min.svg
+```
+
+TODO: (when needed): Update 'scripts/icon-generator.sh' to use SVGO.
