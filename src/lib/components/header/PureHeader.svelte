@@ -6,7 +6,7 @@
 
 <header>
   <div class="corner corner-left">
-    <a href="https://https://svelte-blank-20221125.vercel.app">
+    <a href="https://svelte-blank-20221125.vercel.app">
       <img src={logo} alt="Total App" />
     </a>
   </div>
