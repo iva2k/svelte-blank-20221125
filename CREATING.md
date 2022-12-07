@@ -1133,3 +1133,13 @@ Note: `svelte-check` throws error for no type definition in `import loader ...`.
 #### Fix Issues With Capacitor
 
 None to fix.
+
+### Lighthouse metrics
+
+TODO: (now) Improve Lighthouse: Does not set a theme color for the address bar.Failures: No `<meta name="theme-color">` tag found.
+The browser address bar can be themed to match your site.
+<https://developer.chrome.com/docs/lighthouse/pwa/splash-screen/?utm_source=lighthouse&utm_medium=wpt>
+
+TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewportThe viewport size of 541px does not match the window size of 360px.
+If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
+<https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
