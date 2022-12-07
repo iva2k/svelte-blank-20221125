@@ -1,6 +1,25 @@
 # Total App | Blank SvelteKit App
 
-![Total App](static/logotype-hor.svg)
+<!-- prettier-ignore -->
+<table>
+    <tbody>
+        <tr>
+            <td rowspan=2 style="vertical-align:bottom;">
+                <img src="static/logotype-hor.svg" alt="Total App" />
+            </td>
+            <td align=center>Storybook</td>
+            <td align=center><a href="https://app.netlify.com/sites/svelte-blank-20221125/deploys"><img src="https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status"/></a></td>
+            <td align=center><a href="https://vercel.com/iva2k/svelte-blank-20221125"><img src="https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel"/></a></td>
+        </tr>
+        <tr>
+            <td align=center><a href=https://www.chromatic.com/builds?appId=63839ed0e936a148379c5c65>Chromatic</a></td>
+            <td align=center><a href="https://svelte-blank-20221125.netlify.app">App Demo</a></td>
+            <td align=center><a href="https://svelte-blank-20221125.vercel.app">App Demo</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ![Total App](static/logotype-hor.svg) -->
 
 ## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
 
@@ -29,10 +48,11 @@ Out of the box features:
 - Prepared for Isolated Component Development (Storybook).
 - Instrumented for quick deployment - Netlify, Vercel, NGINX, etc.
 
-<!-- prettier-ignore -->
+<!-- prettier-ignore -- >
 |Storybook| [![Netlify Status](https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status)](https://app.netlify.com/sites/svelte-blank-20221125/deploys) |  [![Vercel Status](https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel)](https://vercel.com/iva2k/svelte-blank-20221125) |
 |:-:|:-:|:-:|
 |[Chromatic](https://www.chromatic.com/builds?appId=63839ed0e936a148379c5c65)| [App Demo](https://svelte-blank-20221125.netlify.app) | [App Demo](https://svelte-blank-20221125.vercel.app)  |
+<!-- -->
 
 Built with:
 
