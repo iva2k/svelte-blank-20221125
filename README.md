@@ -97,6 +97,8 @@ git clone https://github.com/iva2k/svelte-blank-20221125.git
 cd svelte-blank-20221125
 ```
 
+### Setup Configuration File
+
 Copy provided `.env.EXAMPLE` to `.env` (may also create `.env.production` and `.env.dev` as needed) and modify it for your site.
 
 `.env.*` files are listed in .gitignore to be never committed to the repo.
@@ -167,7 +169,7 @@ iOS platform is installed but not fully scripted in this repo, custom scripts ca
 
 ## Customizing
 
-Check file `src/lib/config/websiteAsync.js` for setting all information about the App / Website.
+Check file `src/lib/config/websiteFnc.js` for setting all information about the App / Website.
 
 Many variables are also set in `.env` file.
 
