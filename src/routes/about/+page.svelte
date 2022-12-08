@@ -1,14 +1,19 @@
+<script lang="ts">
+  import website from '$lib/config/website';
+  const { siteTitle } = website;
+</script>
+
 <svelte:head>
   <title>About</title>
-  <meta name="description" content="About this app" />
+  <meta name="description" content="About {siteTitle}" />
 </svelte:head>
 
 <div class="text-column">
   <h1>About this app</h1>
 
   <p>
-    This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-    following into your command line and following the prompts:
+    This is a {siteTitle} app built with <a href="https://kit.svelte.dev">SvelteKit</a>. You can
+    make your own by typing the following into your command line and following the prompts:
   </p>
 
   <pre>npm create svelte@latest</pre>

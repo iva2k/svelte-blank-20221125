@@ -15,10 +15,14 @@
 
     // BEGIN override .svelte-kit/tsconfig.json
     "paths": {
-      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"], // Added for (?)
+      "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"], // Added for $app ESLint
+      // "$env/*": ["./node_modules/@sveltejs/kit/src/runtime/env/*"], // Added for $env ESLint
+      "$env/*": ["./node_modules/@sveltejs/kit/src/runtime/env/*"], // Added for $env ESLint
       "$lib": ["src/lib"],
       "$lib/*": ["src/lib/*"],
-      "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"]
+      "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"],
+      "virtual:pwa-client": ["./node_modules/vite-plugin-pwa/client.d.ts"],
+      "virtual:pwa-info": ["./node_modules/vite-plugin-pwa/info.d.ts"]
       // "*": ["*", "./node_modules/@types/*", "./node_modules/@vite-pwa/sveltekit/*"]
     },
     // END override .svelte-kit/tsconfig.json
@@ -33,13 +37,8 @@
     "strict": true,
     "outDir": ".types",
     "typeRoots": [
-      "./node_modules",
       "./node_modules/@types",
-      // "./node_modules/@sveltejs/kit",
-      // "./node_modules/svelte",
-      // "./node_modules/vite/client",
       "./node_modules/@vite-pwa/sveltekit/dist",
-      // "./node_modules/@vite-pwa/sveltekit/dist/index.d.ts",
       "./node_modules/vite-plugin-pwa/client",
       "./node_modules/vite-plugin-pwa/info"
     ]

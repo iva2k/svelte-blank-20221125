@@ -97,6 +97,16 @@ git clone https://github.com/iva2k/svelte-blank-20221125.git
 cd svelte-blank-20221125
 ```
 
+Copy provided `.env.EXAMPLE` to `.env` (may also create `.env.production` and `.env.dev` as needed) and modify it for your site.
+
+`.env.*` files are listed in .gitignore to be never committed to the repo.
+
+```bash
+cp .env.EXAMPLE .env
+```
+
+When deploying your website to any provider (Netlify, Vercel), make sure to set all the variables listed in `.env.EXAMPLE` with the provider's UI to keep them secure.
+
 ## Developing Locally
 
 Please follow the [Tauri Getting Started Guide](https://tauri.studio/en/docs/getting-started/intro#steps) to setup your system with the required Rust toolchain.
@@ -154,6 +164,12 @@ cap open android
 ```
 
 iOS platform is installed but not fully scripted in this repo, custom scripts can easily be added. See [CREATING](./CREATING.md)
+
+## Customizing
+
+Check file `src/lib/config/websiteAsync.js` for setting all information about the App / Website.
+
+Many variables are also set in `.env` file.
 
 ## How This App Was Created
 

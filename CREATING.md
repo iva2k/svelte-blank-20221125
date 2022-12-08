@@ -222,7 +222,37 @@ const config: PlaywrightTestConfig = {
   ...
 ```
 
-### TODO: (now) Add SEO
+### Add Website Config Files
+
+Config files help to organize site-wide settings. SvelteKit and Vite use .env files underneath, and we will build a helper file `$lib/config/website.js` to collect the relevant settings into one abstraction, similar to <https://rodneylab.com/sveltekit-blog-starter/#src-lib>.
+
+Adding such a config would have been an easy task, if not for the Service Worker in the following section, which needs access to the config file from within `vite.config.js` which is loaded during build time, before vite builder and SvelteKit load `.env` files into the environment, because it first determines the settings that choose which environment files to load. Luckily, there is a mechanism in Vite to access the .env settings from `vite.config.js`.
+
+To achieve that, we will convert static config assignments to an async function in `vite.config.js`, so it could use [`loadEnv()`](https://vitejs.dev/config/#environment-variables) and [`defineConfig( async () /> {...})`](https://vitejs.dev/config/#async-config) (see the source of `vite.config.js`) and then make an async wrapper `$lib/src/websiteAsync.js` over sync function in `$lib/src/websiteFnc.js`. The async is needed for await of the import of `$lib/src/websiteFnc.js` inside the function. We will use the async wrapper in the next section for the Service Worker.
+
+This solution creates a small overhead for using `$lib/config/websiteFnc.js`, but we can wrap it in `$lib/config/website.js` which can be simply imported into all other files and desructured to get the needed setting variables:
+
+```js
+// `$lib/config/website.js`
+import website from '$lib/config/website.js';
+const { author, ... } = website;
+```
+
+See source file `src/routes/about/+page.svelte` that uses `siteTitle` from the config.
+
+This setup involves 4 files: `.env` (it is listed in .gitignore and is never committed to the repo, see `.env.EXAMPLE`, make a copy and modify it for your site), and 3 files in `$lib/config/`: `website.js`, `websiteFnc.js`, `websiteAsync.js`.
+
+The source of truth is spread between 2 files: `.env` and `$lib/config/websiteFnc.js`. The latter one can be made into a pass-through wrapper for all variables if desired, so all variables will be set in `.env`, but that choice is left for later. It also will determine how many variables will need to be configured on hosting provider, since all variables set in `.env` will need to be configured securely in provider UI.
+
+One more hurdle to overcome is fixing the ESLint rule 'import/no-unresolved' for `$env/static/public` used in `$lib/config/website.js`. But for now the ESLint is shut down with `// eslint-disable-next-line import/no-unresolved`.
+
+### Add SEO
+
+```bash
+pnpm i -D @types/object-hash object-hash
+```
+
+TODO
 
 ### Add Service Worker for Offline Operation
 
@@ -1110,7 +1140,7 @@ A typical installation involves importing the package and registering the elemen
 
 ```js
 // src/routes/+layout.svelte
-<script>
+<script lang="ts">
   ...
 +  import { onMount } from 'svelte';
 +  // import { defineCustomElements } from '@ionic/pwa-elements/loader'; // Broken -> Directory import '...' is not supported resolving ES modules
