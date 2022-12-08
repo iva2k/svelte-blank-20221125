@@ -15,9 +15,12 @@ declare const __UPDATE_CHECK_PERIOD_MS__: string;
 // for information about these interfaces
 // and what to do when importing types
 declare namespace App {
+  // interface Error {}
   interface Locals {
     userid: string;
-    buildDate: string;
-    periodicUpdates: boolean;
+    // buildDate: string;
+    // periodicUpdates: boolean;
   }
+  // interface PageData {}
+  // interface Platform {}
 }

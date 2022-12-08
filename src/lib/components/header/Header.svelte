@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
   import PureHeader from './PureHeader.svelte';
 </script>
