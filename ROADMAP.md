@@ -2,11 +2,12 @@
 
 ## Plan
 
-1. SEO
-2. UI framework branches - port from 2022-0525
-3. Make QR scan work in browser?
-4. Auth?
-5. Backend Server (non-SvelteKit)?
+1. Favicon component to organize all the mess
+2. SEO
+3. UI framework branches - port from 2022-0525
+4. Make QR scan work in browser?
+5. Auth?
+6. Backend Server (non-SvelteKit)?
 
 ## Ideas
 
