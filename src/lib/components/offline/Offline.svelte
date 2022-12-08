@@ -4,6 +4,9 @@
   import { onMount } from 'svelte';
   import type { ComponentType } from 'svelte';
 
+  import website from '$lib/config/website';
+  const { themeColor } = website;
+
   // replaced dynamically
   // const date = '__DATE__';
   // const enableSwDev = '__SW_DEV__';
@@ -18,6 +21,8 @@
 </script>
 
 <svelte:head>
+  <meta name="msapplication-TileColor" content={themeColor} />
+  <meta name="theme-color" content={themeColor} />
   {@html webManifest}
 </svelte:head>
 
