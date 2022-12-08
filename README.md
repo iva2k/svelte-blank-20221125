@@ -76,6 +76,20 @@ Continuous Integrations and Deployments:
 
 ## Install
 
+### Quick Start
+
+To start with this app as a template:
+
+```bash
+git clone https://github.com/iva2k/svelte-blank-20221125.git my-new-total-app
+cd my-new-total-app
+pnpm install
+cp .env.EXAMPLE .env
+pnpm run svelte:dev -- --open
+```
+
+... or do the steps in [Start Your App](#start-your-app)
+
 ### Start Your App
 
 To start your app from this project as a template:
