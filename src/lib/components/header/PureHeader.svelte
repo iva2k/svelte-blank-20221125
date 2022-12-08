@@ -2,6 +2,14 @@
   import logo from '$lib/images/logo.svg';
 
   export let pathname = '/';
+  $: path1st = '/' + (pathname ?? '').split('/')[1];
+  const pages = [
+    { path: '/', title: 'Home' },
+    { path: '/about', title: 'About' },
+    { path: '/sverdle', title: 'Sverdle' },
+    { path: '/geolocation', title: 'Geolocation' },
+    { path: '/qrscanner', title: 'QR Scanner' }
+  ];
 </script>
 
 <header>
@@ -16,21 +24,11 @@
       <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
     </svg>
     <ul>
-      <li aria-current={pathname === '/' ? 'page' : undefined}>
-        <a href="/">Home</a>
-      </li>
-      <li aria-current={pathname === '/about' ? 'page' : undefined}>
-        <a href="/about">About</a>
-      </li>
-      <li aria-current={pathname.startsWith('/sverdle') ? 'page' : undefined}>
-        <a href="/sverdle">Sverdle</a>
-      </li>
-      <li aria-current={pathname === '/geolocation' ? 'page' : undefined}>
-        <a href="/geolocation">Geolocation</a>
-      </li>
-      <li aria-current={pathname === '/qrscanner' ? 'page' : undefined}>
-        <a href="/qrscanner">QR Scanner</a>
-      </li>
+      {#each pages as page}
+        <li aria-current={path1st === page.path ? 'page' : undefined}>
+          <a href={page.path}>{page.title}</a>
+        </li>
+      {/each}
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
       <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />

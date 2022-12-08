@@ -17,7 +17,6 @@ const config = {
     // base: '',
     // outDir: './.svelte-kit',
     // ? adapterFallback: 'index.html',
-    // trailingSlash: false,
     adapter: process.env.VERCEL
       ? vercel()
       : process.env.NETLIFY
