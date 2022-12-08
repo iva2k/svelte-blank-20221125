@@ -252,6 +252,8 @@ One more hurdle to overcome is fixing the ESLint rule 'import/no-unresolved' for
 pnpm i -D @types/object-hash object-hash
 ```
 
+See <https://search.google.com/structured-data/testing-tool> for checking the structured data on deployed website.
+
 TODO
 
 ### Add Service Worker for Offline Operation
