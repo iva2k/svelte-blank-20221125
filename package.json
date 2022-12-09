@@ -60,7 +60,7 @@
     "android:dev": "cap run android",
     "all": "pnpm i && pnpm format && pnpm lint && pnpm tauri info && pnpm svelte:build && pnpm build && pnpm storybook:build && pnpm test:unit && pnpm test && pnpm check",
     "chromatic": "npx chromatic --build-script-name=storybook:build",
-    "icons:build": "bash -c \"./scripts/icon-generator.sh .logo/logo.svg .logo/icon.svg .logo/icon_bg.svg\""
+    "icons:build": "bash -c \"./scripts/icon-generator.sh .logo/logo.svg .logo/icon.svg .logo/icon_bg.svg .logo/icon+texture.svg \""
   },
   "dependencies": {
     "@capacitor-community/barcode-scanner": "^3.0.1",
@@ -160,6 +160,7 @@
     "svelte": "^3.53.1",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.6",
+    "svgo": "^3.0.2",
     "ts-node": "^10.9.1",
     "tslib": "^2.3.1",
     "typescript": "^4.9.3",
@@ -190,7 +191,7 @@
     "patchedDependencies": {
       "@vite-pwa/sveltekit@0.0.1": "patches/@vite-pwa__sveltekit@0.0.1.patch",
       "eslint-plugin-svelte3@4.0.0": "patches/eslint-plugin-svelte3@4.0.0.patch",
-      "@sveltejs/kit@1.0.0-next.572": "patches/@sveltejs__kit@1.0.0-next.572.patch"
+      "@sveltejs/kit@1.0.0-next.577": "patches/@sveltejs__kit@1.0.0-next.572.patch"
     }
   }
 }

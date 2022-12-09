@@ -222,6 +222,6 @@ This project has few of the top UI frameworks integrated in separate git branche
 | | [Svelte Flat UI](https://svelteui.js.org/#/) |   | |
 | | [Attractions](https://github.com/illright/attractions) |   | |
 
-## Enjoy!
+## Enjoy! \\\_/
 
-![Total App](static/icon.svg)
+![Total App](static/icon-txr-512x512.png)

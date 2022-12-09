@@ -28,7 +28,7 @@ SEP2="$(printf "%100s\r" "" | tr ' ' '=')"
 # Check and Decode args
 
 if [ $# -eq 0 ]; then
-    echo "Usage: $0 input_favicon.svg [input_app_icon.svg [input_app_icon_bg.svg]] "
+    echo "Usage: $0 input_favicon.svg [input_app_icon.svg [input_app_icon_bg.svg [input_app_icon_texture.svg]]] "
     exit 1;
 fi
 if [ ! -r "$1" ]; then
@@ -57,19 +57,40 @@ else
     APPICON_SRC_BG="${APPICON_SRC}"
 fi
 
+if [ $# -gt 3 ]; then
+    if [ ! -r "$4" ]; then
+        echo "Error, cannot read input_app_icon_texture file \"$4\"." 
+        exit 1;
+    fi
+    APPICON_SRC_TXR="$4"
+else
+    APPICON_SRC_TXR="${APPICON_SRC_BG}"
+fi
+
 # Find All Programs
 echo "${SEP1}FINDING PROGRAMS "
 
-# Scour
-SCOUR="$(which scour 2>/dev/null)"
-if [ ! -x "${SCOUR}" ]; then
-    SCOUR="C:/Program Files/..."
+# # Scour
+# SCOUR="$(which scour 2>/dev/null)"
+# if [ ! -x "${SCOUR}" ]; then
+#     SCOUR="C:/Program Files/..."
+# fi
+# if [ ! -x "${SCOUR}" ]; then
+#     echo "Error: Cannot find Scour. Visit <https://github.com/scour-project/scour> to install. Run 'pip install scour' (need Python 3). Did you enable python environment?"
+#     exit 1;
+# fi
+# echo "  Scour    : ${SCOUR}"
+
+# SVGO
+SVGO="$(which svgo 2>/dev/null)"
+if [ ! -x "${SVGO}" ]; then
+    SVGO="./node_modules/.bin/svgo"
 fi
-if [ ! -x "${SCOUR}" ]; then
-    echo "Error: Cannot find Scour. Visit <https://github.com/scour-project/scour> to install. Run 'pip install scour' (need Python 3)."
+if [ ! -x "${SVGO}" ]; then
+    echo "Error: Cannot find SVGO. Visit <https://www.npmjs.com/package/svgo> to install. Run 'pnpm install -g svgo'. Did you run 'pnpm i'?"
     exit 1;
 fi
-echo "  Scour    : ${SCOUR}"
+echo "  SVGO    : ${SVGO}"
 
 # Inkscape
 INKSCAPE="$(which inkscape 2>/dev/null)"
@@ -166,7 +187,8 @@ function optimizeSvg () {
     echo "\"${INFILE}\" -> scour() -> \"${OUTFILE}\"... "
     [ -f "${OUTFILE}" ] && rm "${OUTFILE}"
     # generate optimised SVG
-    "${SCOUR}" "${INFILE}" "${OUTFILE}" --enable-viewboxing --enable-id-stripping   --enable-comment-stripping --shorten-ids --indent=none
+    # "${SCOUR}" "${INFILE}" "${OUTFILE}" --enable-viewboxing --enable-id-stripping   --enable-comment-stripping --shorten-ids --indent=none
+    "${SVGO}" "${INFILE}" -o "${OUTFILE}"
     [ ! -r "${OUTFILE}" ] && echo "Error, result file ${OUTFILE} not found" && exit 1;
     created+=("${OUTFILE}")
     echo "GENERATED: ${OUTFILE}"
@@ -225,6 +247,9 @@ generatePng "${APPICON_SRC_BG}" "${OUTPUT_DIR}/apple-icon-180x180.png" 180
 # The manifest is also required for Service Worker / Offline support, so declare icons only there.
 generatePng "${APPICON_SRC}" "${OUTPUT_DIR}/icon-192x192.png"          192
 generatePng "${APPICON_SRC}" "${OUTPUT_DIR}/icon-512x512.png"          512
+
+# For Readme
+generatePng "${APPICON_SRC_TXR}" "${OUTPUT_DIR}/icon-txr-512x512.png"  512
 
 #echo "${created[@]}"
 echo "${SEP2}Created files: "
