@@ -248,13 +248,29 @@ One more hurdle to overcome is fixing the ESLint rule 'import/no-unresolved' for
 
 ### Add SEO
 
+If your app or website does not appear in the top search results, very few people will visit it, because 90% of users will not go beyond the first page of search results [[source]](https://www.forbes.com/sites/forbesagencycouncil/2017/10/30/the-value-of-search-results-rankings/). 33% of users will click the first result and 17% the second. You need Google to rank your website high for the users to click on it.
+
+Search Engine Optimisation (SEO) is all about getting your website to appear at the top of search engine results. This SEO component adds some metadata and makes optimizations to get higher search rankings.
+
+Other optimizations are getting higher speed / better UX. SvelteKit provides the fastest performance with PWA/SSR/SSG done right, and no slowdowns from virtual DOM of other popular frameworks. One thing is important for UX and fast loads are lazy loading, so we will add it as an example to the large images. TODO.
+
 ```bash
-pnpm i -D @types/object-hash object-hash
+pnpm i -D @types/object-hash object-hash vanilla-lazyload
 ```
 
-See <https://search.google.com/structured-data/testing-tool> for checking the structured data on deployed website.
+Create `src/lib/components/seo/SEO.svelte` component and few sub-components for generating meta-data for SEO (see sources).
 
-TODO
+Credits: [Rodnet Lab: SvelteKit SEO](https://rodneylab.com/sveltekit-seo/)
+
+To add more Schemas, lookup the types on <https://schema.org/docs/full.html> and check what types other sites use.
+
+See the following tools for checking the structured data on your deployed website:
+
+- <https://validator.schema.org>
+- <https://developers.google.com/search/docs/appearance/structured-data>
+- <https://search.google.com/test/rich-results>
+- <https://search.google.com/search-console/welcome>
+- <https://developers.facebook.com/tools/debug/>
 
 ### Add Service Worker for Offline Operation
 

@@ -1,8 +1,72 @@
 <script lang="ts">
+  import SEO from '$lib/components/seo/SEO.svelte';
+
+  import {
+    ogSquareImageSrc,
+    ogImageSrc,
+    twitterImageSrc,
+    featuredImageSrc,
+    altDescription
+  } from '$lib/assets/home/index';
+
   import Counter from '$lib/components/counter/Counter.svelte';
   import welcome from '$lib/images/svelte-welcome.webp';
   import welcome_fallback from '$lib/images/svelte-welcome.png';
+  import website from '$lib/config/website';
+
+  const { author, siteUrl, description } = website;
+
+  let title = 'Home';
+  const breadcrumbs = [
+    {
+      name: 'Home',
+      slug: ''
+    }
+  ];
+  let metadescription = description;
+  const featuredImageAlt = altDescription;
+  const featuredImage = {
+    url: featuredImageSrc,
+    alt: featuredImageAlt,
+    width: 672,
+    height: 448,
+    caption: 'Home page'
+  };
+  const ogImage = {
+    url: ogImageSrc,
+    alt: featuredImageAlt
+  };
+  const ogSquareImage = {
+    url: ogSquareImageSrc,
+    alt: featuredImageAlt
+  };
+
+  const twitterImage = {
+    url: twitterImageSrc,
+    alt: featuredImageAlt
+  };
+  const entityMeta = {
+    url: `${siteUrl}/`,
+    faviconWidth: 512,
+    faviconHeight: 512,
+    caption: author
+  };
+  const seoProps = {
+    title,
+    slug: '',
+    entityMeta,
+    datePublished: '2022-12-09T16:06:55.000Z', // ISO8601 (new Date()).toISOString()
+    lastUpdated: '2022-12-09T16:06:55.000Z', // ISO8601 (new Date()).toISOString()
+    breadcrumbs,
+    metadescription,
+    featuredImage,
+    ogImage,
+    ogSquareImage,
+    twitterImage
+  };
 </script>
+
+<SEO {...seoProps} />
 
 <svelte:head>
   <title>Home</title>
