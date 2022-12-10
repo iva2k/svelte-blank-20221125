@@ -9,9 +9,20 @@ const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
   preprocess: preprocess({
+    preserve: ['ld+json'], // For SEO header meta tags
     postcss: true,
     scss: { includePaths: ['src', 'node_modules'] }
   }),
+
+  prerender: {
+    default: true,
+    onError: 'continue',
+    origin: process.env.VERCEL
+      ? 'https://svelte-blank-20221125.vercel.app'
+      : process.env.NETLIFY
+      ? 'https://svelte-blank-20221125.netlify.app'
+      : 'https://svelte-blank-20221125.iva2k.com'
+  },
 
   kit: {
     // base: '',

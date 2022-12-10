@@ -34,8 +34,22 @@
   // siteUrlConfig can be empty if `website` pulls from a missing or misconfigured .env,
   // causing all sorts of troubles, including failing build (prerender stage crashing with "/undefined/").
   // Protect ourselves:
-  const siteUrl = siteUrlConfig ?? $page.url.host; // ? $page.url.pathname;
-  // console.log('DEBUG: siteUrlConfig=%o, siteUrl=%o', siteUrlConfig, siteUrl);
+  let siteUrl;
+  if ($page.url.origin === 'http://sveltekit-prerender') {
+    // We are in prerender on the server
+    siteUrl = siteUrlConfig;
+  } else {
+    siteUrl = siteUrlConfig || $page.url.origin || '/';
+  }
+  // console.log('DEBUG: origin=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o', origin, $page.url.origin, siteUrlConfig, siteUrl, $page.url.pathname);
+  console.log(
+    'DEBUG: process.env.PUBLIC_SITE_URL=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o',
+    process.env.PUBLIC_SITE_URL,
+    $page.url.origin,
+    siteUrlConfig,
+    siteUrl,
+    $page.url.pathname
+  );
 
   export let article = false;
   export let breadcrumbs: { name: string; slug: string }[] = [];
@@ -74,7 +88,7 @@
   };
 
   const pageTitle = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${title}`;
-  const url = siteUrl ? `${siteUrl}/${slug}` : '';
+  const canonicalUrl = siteUrl ? (slug ? `${siteUrl}/${slug}` : siteUrl) : '/';
   const openGraphProps = {
     article,
     datePublished,
@@ -85,7 +99,7 @@
     ogLanguage,
     pageTitle,
     siteTitle,
-    url,
+    url: canonicalUrl,
     ...(article ? { datePublished, lastUpdated, facebookPage, facebookAuthorPage } : {})
   };
   const schemaOrgProps = {
@@ -103,7 +117,7 @@
     siteTitleAlt: siteShortTitle,
     siteUrl,
     title: pageTitle,
-    url,
+    url: canonicalUrl,
     facebookPage,
     githubPage,
     linkedinProfile,
@@ -128,8 +142,8 @@
     name="robots"
     content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
   />
-  {#if url}
-    <link rel="canonical" href={url} />
+  {#if canonicalUrl}
+    <link rel="canonical" href={canonicalUrl} />
   {/if}
 </svelte:head>
 
