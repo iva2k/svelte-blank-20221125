@@ -30,13 +30,12 @@ const websiteFnc = (
   const facebookAuthorPageName = PUBLIC_FACEBOOK_AUTHOR_PAGE;
 
   const website = {
-    entity: 'IVA2K',
     author: 'iva2k',
     ogLanguage: 'en_US',
     siteLanguage: 'en-US',
-    siteTitle: 'Total App - SvelteKit template',
+    siteTitle: 'Total App SvelteKit',
     siteShortTitle: 'Total App',
-    description: 'Total App - starter application template built with SvelteKit.',
+    description: 'My Awesome App description',
     themeColor: '#000000',
     backgroundColor: '#ffffff',
 
