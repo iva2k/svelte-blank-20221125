@@ -34,8 +34,8 @@ const websiteFnc = (
   const twitterUserId = '1234567890';
   const wireUsername = '@iva2k';
 
-  const googleSiteVerificationNetlify = 'BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng';
-  const googleSiteVerificationVercel = '';
+  const googleSiteVerificationNetlify = '';
+  const googleSiteVerificationVercel = 'BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng';
 
   const website = {
     siteUrl: PUBLIC_SITE_URL,
