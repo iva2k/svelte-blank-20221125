@@ -1,5 +1,5 @@
 // Moved from `svelte.config.js`:
-export const trailingSlash = 'always';
+// export const trailingSlash = 'always';
 
 // There are errors in many online sources that give wrong information about prerender and ssr.
 
