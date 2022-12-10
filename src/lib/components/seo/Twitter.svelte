@@ -16,9 +16,9 @@
   export let doOgOverride = false;
 
   // The following tags will be added only if doOgOverride=true:
-  export let metadescription: string;
-  export let pageTitle: string;
-  export let url: string;
+  export let metadescription = '';
+  export let pageTitle = '';
+  export let url = '';
 </script>
 
 <svelte:head>
