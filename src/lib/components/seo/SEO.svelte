@@ -123,6 +123,6 @@
   />
   <link rel="canonical" href={url} />
 </svelte:head>
-<Twitter {...twitterProps} />
-<OpenGraph {...openGraphProps} />
+<!-- <Twitter {...twitterProps} />
+<OpenGraph {...openGraphProps} /> -->
 <SchemaOrg {...schemaOrgProps} />
