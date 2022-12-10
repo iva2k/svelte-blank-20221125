@@ -12,6 +12,7 @@
   import OpenGraph from './OpenGraph.svelte';
   import SchemaOrg from './SchemaOrg.svelte';
   import Twitter from './Twitter.svelte';
+  import { page } from '$app/stores';
 
   const {
     author,
@@ -22,13 +23,19 @@
     siteLanguage,
     siteShortTitle,
     siteTitle,
-    siteUrl,
+    siteUrl: siteUrlConfig,
     githubPage,
     linkedinProfile,
     telegramUsername,
     tiktokUsername,
     twitterUsername
   } = website;
+
+  // siteUrlConfig can be empty if `website` pulls from a missing or misconfigured .env,
+  // causing all sorts of troubles, including failing build (prerender stage crashing with "/undefined/").
+  // Protect ourselves:
+  const siteUrl = siteUrlConfig ?? $page.url.host; // ? $page.url.pathname;
+  // console.log('DEBUG: siteUrlConfig=%o, siteUrl=%o', siteUrlConfig, siteUrl);
 
   export let article = false;
   export let breadcrumbs: { name: string; slug: string }[] = [];
@@ -67,7 +74,7 @@
   };
 
   const pageTitle = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${title}`;
-  const url = `${siteUrl}/${slug}`;
+  const url = siteUrl ? `${siteUrl}/${slug}` : '';
   const openGraphProps = {
     article,
     datePublished,
