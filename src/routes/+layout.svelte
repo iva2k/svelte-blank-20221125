@@ -7,6 +7,26 @@
   import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
 
+  // BEGIN load 'vanilla-lazyload' lib
+  import type { ILazyLoadInstance } from 'vanilla-lazyload';
+  interface CustomDocument extends globalThis.Document {
+    lazyloadInstance: ILazyLoadInstance;
+  }
+  import lazyload from 'vanilla-lazyload';
+  import { browser } from '$app/environment';
+  const d = document as unknown as CustomDocument;
+  if (browser && !d.lazyloadInstance) {
+    d.lazyloadInstance = new lazyload();
+  }
+  onMount(() => {
+    if (browser) {
+      if (d.lazyloadInstance) {
+        d.lazyloadInstance.update();
+      }
+    }
+  });
+  // END load 'vanilla-lazyload' lib
+
   onMount(async () => {
     await loadIonicPWAElements(window);
   });
