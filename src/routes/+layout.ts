@@ -1,4 +1,5 @@
 // Moved from `svelte.config.js`:
+// Enable trailingSlash for favicon links in <head> to be absolute and not throw stray /about/favicon.ico requests
 export const trailingSlash = 'always';
 
 // There are errors in many online sources that give wrong information about prerender and ssr.
