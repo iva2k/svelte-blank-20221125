@@ -2,6 +2,7 @@
   import Counter from '$lib/components/counter/Counter.svelte';
   import welcome from '$lib/images/svelte-welcome.webp';
   import welcome_fallback from '$lib/images/svelte-welcome.png';
+  const welcomeSize = { width: 2048, height: 495 };
 </script>
 
 <svelte:head>
@@ -13,8 +14,20 @@
   <h1>
     <span class="welcome">
       <picture>
-        <source srcset={welcome} type="image/webp" />
-        <img src={welcome_fallback} alt="Welcome" />
+        <source
+          width={welcomeSize.width}
+          height={welcomeSize.height}
+          srcset={welcome}
+          type="image/webp"
+        />
+        <img
+          loading="lazy"
+          decoding="async"
+          width={welcomeSize.width}
+          height={welcomeSize.height}
+          src={welcome_fallback}
+          alt="Welcome"
+        />
       </picture>
     </span>
 
