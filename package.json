@@ -110,7 +110,7 @@
     "@sveltejs/adapter-netlify": "1.0.0-next.84",
     "@sveltejs/adapter-static": "1.0.0-next.48",
     "@sveltejs/adapter-vercel": "1.0.0-next.84",
-    "@sveltejs/kit": "1.0.0-next.572",
+    "@sveltejs/kit": "1.0.0-next.577",
     "@tauri-apps/api": "^1.2.0",
     "@tauri-apps/cli": "^1.2.1",
     "@types/cookie": "^0.5.1",
@@ -192,7 +192,7 @@
     "patchedDependencies": {
       "@vite-pwa/sveltekit@0.0.1": "patches/@vite-pwa__sveltekit@0.0.1.patch",
       "eslint-plugin-svelte3@4.0.0": "patches/eslint-plugin-svelte3@4.0.0.patch",
-      "@sveltejs/kit@1.0.0-next.572": "patches/@sveltejs__kit@1.0.0-next.572.patch"
+      "@sveltejs/kit@1.0.0-next.577": "patches/@sveltejs__kit@1.0.0-next.572.patch"
     }
   }
 }
