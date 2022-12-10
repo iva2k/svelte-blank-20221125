@@ -12,48 +12,57 @@ const websiteFnc = (
   /** @type {Record<string, string>} */
   env
 ) => {
-  const {
-    PUBLIC_CONTACT_EMAIL,
-    PUBLIC_FACEBOOK_AUTHOR_PAGE,
-    PUBLIC_FACEBOOK_PAGE,
-    PUBLIC_GITHUB_PAGE,
-    PUBLIC_LINKEDIN_PROFILE,
-    PUBLIC_SITE_URL,
-    PUBLIC_TELEGRAM_USERNAME,
-    PUBLIC_TIKTOK_USERNAME,
-    PUBLIC_TWITTER_USERNAME,
-    PUBLIC_TWITTER_USER_ID,
-    PUBLIC_WIRE_USERNAME
-  } = env ?? {};
+  const { PUBLIC_SITE_URL } = env ?? {};
 
-  const facebookPageName = PUBLIC_FACEBOOK_PAGE;
-  const facebookAuthorPageName = PUBLIC_FACEBOOK_AUTHOR_PAGE;
+  const entity = 'IVA2K';
+  const author = 'iva2k';
+  const ogLanguage = 'en_US';
+  const siteLanguage = 'en-US';
+  const siteTitle = 'Total App - SvelteKit template';
+  const siteShortTitle = 'Total App';
+  const description = 'Total App - starter application template built with SvelteKit.';
+  const themeColor = '#000000';
+  const backgroundColor = '#ffffff';
+  const contactEmail = 'iva2k@yahoo.com';
+  const facebookPageName = 'iva2k';
+  const facebookAuthorPageName = 'iva2k';
+  const githubPage = 'iva2k';
+  const linkedinProfile = 'iva2k';
+  const telegramUsername = 'iva2k';
+  const tiktokUsername = '@iva2k';
+  const twitterUsername = 'iva2k';
+  const twitterUserId = '1234567890';
+  const wireUsername = '@iva2k';
+
+  const googleSiteVerificationNetlify = 'BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng';
+  const googleSiteVerificationVercel = '';
 
   const website = {
-    entity: 'IVA2K',
-    author: 'iva2k',
-    ogLanguage: 'en_US',
-    siteLanguage: 'en-US',
-    siteTitle: 'Total App - SvelteKit template',
-    siteShortTitle: 'Total App',
-    description: 'Total App - starter application template built with SvelteKit.',
-    themeColor: '#000000',
-    backgroundColor: '#ffffff',
-
     siteUrl: PUBLIC_SITE_URL,
-    contactEmail: PUBLIC_CONTACT_EMAIL,
-    facebookAuthorPage: `https://www.facebook.com/${facebookAuthorPageName}`,
+
+    entity,
+    author,
+    ogLanguage,
+    siteLanguage,
+    siteTitle,
+    siteShortTitle,
+    description,
+    themeColor,
+    backgroundColor,
+    contactEmail,
     facebookAuthorPageName,
-    facebookPage: `https://www.facebook.com/${facebookPageName}`,
     facebookPageName,
-    githubPage: PUBLIC_GITHUB_PAGE,
-    linkedinProfile: PUBLIC_LINKEDIN_PROFILE,
-    telegramUsername: PUBLIC_TELEGRAM_USERNAME,
-    tiktokUsername: PUBLIC_TIKTOK_USERNAME,
-    twitterUsername: PUBLIC_TWITTER_USERNAME,
-    twitterUserId: PUBLIC_TWITTER_USER_ID,
-    wireUsername: PUBLIC_WIRE_USERNAME
+    githubPage,
+    linkedinProfile,
+    telegramUsername,
+    tiktokUsername,
+    twitterUsername,
+    twitterUserId,
+    wireUsername,
+    googleSiteVerificationNetlify,
+    googleSiteVerificationVercel
   };
+  console.log('DEBUG websiteFnc.js website=%o, env=%o', website, env);
   return website;
 };
 export { websiteFnc as default };

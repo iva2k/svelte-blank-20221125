@@ -17,8 +17,8 @@
   const {
     author,
     entity,
-    facebookAuthorPage,
-    facebookPage,
+    facebookAuthorPageName,
+    facebookPageName,
     ogLanguage,
     siteLanguage,
     siteShortTitle,
@@ -28,8 +28,13 @@
     linkedinProfile,
     telegramUsername,
     tiktokUsername,
-    twitterUsername
+    twitterUsername,
+    googleSiteVerificationNetlify,
+    googleSiteVerificationVercel
   } = website;
+
+  const facebookAuthorPage = `https://www.facebook.com/${facebookAuthorPageName}`;
+  const facebookPage = `https://www.facebook.com/${facebookPageName}`;
 
   // siteUrlConfig can be empty if `website` pulls from a missing or misconfigured .env,
   // causing all sorts of troubles, including failing build (prerender stage crashing with "/undefined/").
@@ -146,8 +151,11 @@
     <link rel="canonical" href={canonicalUrl} />
   {/if}
 
-  {#if process.env.VERCEL}
-    <meta name="google-site-verification" content="BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng" />
+  {#if process.env.NETLIFY && googleSiteVerificationNetlify}
+    <meta name="google-site-verification" content={googleSiteVerificationNetlify} />
+  {/if}
+  {#if process.env.VERCEL && googleSiteVerificationVercel}
+    <meta name="google-site-verification" content={googleSiteVerificationVercel} />
   {/if}
 </svelte:head>
 
