@@ -145,6 +145,10 @@
   {#if canonicalUrl}
     <link rel="canonical" href={canonicalUrl} />
   {/if}
+
+  {#if process.env.VERCEL}
+    <meta name="google-site-verification" content="BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng" />
+  {/if}
 </svelte:head>
 
 <Twitter {...twitterProps} />
