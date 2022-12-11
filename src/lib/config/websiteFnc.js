@@ -12,7 +12,7 @@ const websiteFnc = (
   /** @type {Record<string, string>} */
   env
 ) => {
-  const { PUBLIC_SITE_URL } = env ?? {};
+  const { PUBLIC_SITE_URL, VERCEL, NETLIFY } = env ?? {};
 
   const entity = 'IVA2K';
   const author = 'iva2k';
@@ -39,6 +39,8 @@ const websiteFnc = (
 
   const website = {
     siteUrl: PUBLIC_SITE_URL,
+    isNetlify: NETLIFY,
+    isVercel: VERCEL,
 
     entity,
     author,

@@ -24,6 +24,8 @@
     siteShortTitle,
     siteTitle,
     siteUrl: siteUrlConfig,
+    isNetlify,
+    isVercel,
     githubPage,
     linkedinProfile,
     telegramUsername,
@@ -48,8 +50,7 @@
   }
   // console.log('DEBUG: origin=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o', origin, $page.url.origin, siteUrlConfig, siteUrl, $page.url.pathname);
   console.log(
-    'DEBUG: process.env.PUBLIC_SITE_URL=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o',
-    process.env.PUBLIC_SITE_URL,
+    'DEBUG: $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o',
     $page.url.origin,
     siteUrlConfig,
     siteUrl,
@@ -151,10 +152,10 @@
     <link rel="canonical" href={canonicalUrl} />
   {/if}
 
-  {#if process.env.NETLIFY && googleSiteVerificationNetlify}
+  {#if isNetlify && googleSiteVerificationNetlify}
     <meta name="google-site-verification" content={googleSiteVerificationNetlify} />
   {/if}
-  {#if process.env.VERCEL && googleSiteVerificationVercel}
+  {#if isVercel && googleSiteVerificationVercel}
     <meta name="google-site-verification" content={googleSiteVerificationVercel} />
   {/if}
 </svelte:head>
