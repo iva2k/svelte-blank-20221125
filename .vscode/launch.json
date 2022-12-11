@@ -11,6 +11,18 @@
       "type": "node-terminal"
     },
     {
+      "command": "pnpm test:debug",
+      "name": "Run pnpm test:debug",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm svelte:build:vercel",
+      "name": "Run pnpm svelte:build:vercel",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "command": "pnpm svelte:build:only",
       "name": "Run pnpm svelte:build:only",
       "request": "launch",
