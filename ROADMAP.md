@@ -2,15 +2,13 @@
 
 ## Plan
 
-1. Favicon component to organize all the mess
-2. +error.svelte
-3. PWA - offline error handling ("page not available offline, please connect to Internet")
-4. hooks.server.js
-5. SEO
-6. UI framework branches - port from 2022-0525
-7. Make QR scan work in browser?
-8. Auth?
-9. Backend Server (non-SvelteKit)?
+1. +error.svelte
+2. PWA - offline error handling ("page not available offline, please connect to Internet")
+3. hooks.server.js
+4. UI framework branches - port from 2022-0525
+5. Make QR scan work in browser?
+6. Auth?
+7. Backend Server (non-SvelteKit)?
 
 ## Ideas
 

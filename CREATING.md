@@ -317,6 +317,14 @@ Use `pnpm patch @vite-pwa/sveltekit`, editing the file in directory created by `
 
 TODO: (now) Implement "no offline" fallback page - suggest to connect to Internet.
 
+### Create Favicon Component
+
+To encapsulate all favicon-related stuff (and keep the mess out of app.html), create ``$lib/components/favicon/Favicon.svelte` component. Use it from `src/routes/+layout.svelte` file.
+
+Add `badge.ts` to all png favicons.
+
+See source files.
+
 ### Add Tauri
 
 Add desktop support using Tauri (version 1.2 as of writing time).

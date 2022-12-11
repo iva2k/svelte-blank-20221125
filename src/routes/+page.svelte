@@ -84,7 +84,8 @@
           decoding="async"
           width={welcomeSize.width}
           height={welcomeSize.height}
-          src={welcome_fallback}
+          data-src={welcome_fallback}
+          src=""
           alt="Welcome"
         />
       </picture>
