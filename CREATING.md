@@ -276,6 +276,9 @@ See the following tools for checking the structured data on your deployed websit
 - <https://search.google.com/search-console/welcome>
 - <https://developers.facebook.com/tools/debug/> (Must login to use it)
 
+TODO: (soon) Fix FB issue:
+Missing Properties | The following required properties are missing: fb:app_id
+
 ### Add Service Worker for Offline Operation
 
 Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
