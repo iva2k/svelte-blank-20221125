@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "svelte.svelte-vscode",
-    "ardenivanov.svelte-intellisense",
     "fivethree.vscode-svelte-snippets",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
