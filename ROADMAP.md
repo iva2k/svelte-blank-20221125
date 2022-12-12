@@ -2,13 +2,14 @@
 
 ## Plan
 
-1. hooks.server.js
-2. PWA - offline error handling ("page not available offline, please connect to Internet"),
+1. UI framework branches - port from 2022-0525
+2. hooks.server.js
+3. PWA - offline error handling ("page not available offline, please connect to Internet"),
    need resolution of open issue <https://github.com/sveltejs/kit/issues/8080>
-3. UI framework branches - port from 2022-0525
 4. Make QR scan work in browser?
 5. Auth?
 6. Backend Server (non-SvelteKit)?
+7. Push Notifications?
 
 ## Ideas
 
