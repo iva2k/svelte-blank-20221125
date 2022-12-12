@@ -1,6 +1,11 @@
 <script lang="ts">
   import { Geolocation, type Position } from '@capacitor/geolocation';
 
+  import SEO from '$lib/components/seo/SEO.svelte';
+  const pageTitle = 'Geolocation';
+  const pageCaption = 'Geolocation page';
+  const seoProps = { pageTitle, pageCaption, slug: 'geolocation' };
+
   let loc: Position | null = null;
   async function getCurrentPosition() {
     const res = await Geolocation.getCurrentPosition();
@@ -19,8 +24,10 @@
   //   4. Turn Location on.
 </script>
 
+<SEO {...seoProps} />
+
 <div>
-  <h1>Geolocation</h1>
+  <h1>{pageTitle}</h1>
   <p>Your location is:</p>
   <p>Latitude: {loc?.coords.latitude}</p>
   <p>Longitude: {loc?.coords.longitude}</p>

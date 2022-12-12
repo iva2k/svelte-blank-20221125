@@ -1,5 +1,9 @@
 <script lang="ts">
   import SEO from '$lib/components/seo/SEO.svelte';
+  import website from '$lib/config/website';
+  const { author, siteUrl } = website;
+  const pageTitle = 'Home';
+  const pageCaption = 'Home page';
 
   import {
     ogSquareImageSrc,
@@ -13,25 +17,22 @@
   import welcome from '$lib/images/svelte-welcome.webp';
   import welcome_fallback from '$lib/images/svelte-welcome.png';
   const welcomeSize = { width: 2048, height: 495 };
-  import website from '$lib/config/website';
 
-  const { author, siteUrl, description } = website;
-
-  let title = 'Home';
   const breadcrumbs = [
     {
-      name: 'Home',
+      name: pageTitle,
       slug: ''
     }
   ];
-  let metadescription = description;
+  // let pageCaption = description;
+
   const featuredImageAlt = altDescription;
   const featuredImage = {
     url: featuredImageSrc,
     alt: featuredImageAlt,
     width: 672,
     height: 448,
-    caption: 'Home page'
+    caption: pageCaption
   };
   const ogImage = {
     url: ogImageSrc,
@@ -41,29 +42,37 @@
     url: ogSquareImageSrc,
     alt: featuredImageAlt
   };
-
   const twitterImage = {
     url: twitterImageSrc,
     alt: featuredImageAlt
   };
+
   const entityMeta = {
     url: `${siteUrl}/`,
     faviconWidth: 512,
     faviconHeight: 512,
     caption: author
   };
+
   const seoProps = {
-    title,
+    pageTitle,
+    pageCaption,
     slug: '',
     entityMeta,
     datePublished: '2022-12-09T16:06:55.000Z', // ISO8601 (new Date()).toISOString()
     lastUpdated: '2022-12-09T16:06:55.000Z', // ISO8601 (new Date()).toISOString()
     breadcrumbs,
-    metadescription,
+
+    // Change default images:
     featuredImage,
     ogImage,
     ogSquareImage,
-    twitterImage
+    twitterImage,
+
+    // since no `article: true`, we have to explicitly turn on meta objects:
+    useOpenGraph: true,
+    useTwitter: true,
+    useSchemaOrg: true
   };
 </script>
 

@@ -48,14 +48,16 @@
   } else {
     siteUrl = siteUrlConfig || $page.url.origin || '/';
   }
-  // console.log('DEBUG: origin=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o', origin, $page.url.origin, siteUrlConfig, siteUrl, $page.url.pathname);
-  console.log(
-    'DEBUG: $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o',
-    $page.url.origin,
-    siteUrlConfig,
-    siteUrl,
-    $page.url.pathname
-  );
+
+  // Mandatory properties
+  export let pageTitle: string;
+  export let pageCaption: string;
+  export let slug: string | false = false;
+
+  // Optional properties
+  export let useTwitter: boolean | undefined = undefined;
+  export let useOpenGraph: boolean | undefined = undefined;
+  export let useSchemaOrg: boolean | undefined = undefined;
 
   export let article = false;
   export let breadcrumbs: { name: string; slug: string }[] = [];
@@ -65,12 +67,9 @@
     faviconHeight: number;
     caption?: string;
   } | null = null;
-  export let lastUpdated: string;
-  export let datePublished: string;
-  export let metadescription: string;
-  export let slug: string;
+  export let lastUpdated = '';
+  export let datePublished = '';
   export let timeToRead = 0;
-  export let title: string;
 
   // imported props with fallback defaults
   export let featuredImage = {
@@ -93,21 +92,38 @@
     alt: altDescription
   };
 
-  const pageTitle = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${title}`;
-  const canonicalUrl = siteUrl ? (slug ? `${siteUrl}/${slug}` : siteUrl) : '/';
+  // const pageTitleVeryExtended = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${pageTitle}`;
+  const pageTitleExtended = `${siteShortTitle} ${VERTICAL_LINE_ENTITY} ${pageTitle}`;
+
+  // canonicalUrl tells search engine the "true" url where the page authoritatively reside.
+  // If we cannot determine it, better not set it:
+  const canonicalUrl = siteUrl ? (slug !== false ? `${siteUrl}/${slug}` : false) : false;
+  // For other meta data canonicalUrlMust should provide something:
+  const canonicalUrlMust = siteUrl ? (slug !== false ? `${siteUrl}/${slug}` : siteUrl) : '/';
+
+  // Autodetect which SEO blocks to insert
+  if (useOpenGraph === undefined) {
+    useOpenGraph = !!article;
+  }
+  if (useTwitter === undefined) {
+    useTwitter = !!article;
+  }
+  if (useSchemaOrg === undefined) {
+    useSchemaOrg = useTwitter || !!entityMeta || !!datePublished || !!breadcrumbs;
+  }
+
   const openGraphProps = {
     article,
-    datePublished,
-    lastUpdated,
     image: ogImage,
     squareImage: ogSquareImage,
-    metadescription,
+    metadescription: pageCaption,
     ogLanguage,
-    pageTitle,
+    pageTitle: pageTitleExtended,
     siteTitle,
-    url: canonicalUrl,
+    url: canonicalUrlMust,
     ...(article ? { datePublished, lastUpdated, facebookPage, facebookAuthorPage } : {})
   };
+
   const schemaOrgProps = {
     article,
     author,
@@ -117,13 +133,13 @@
     lastUpdated,
     entityMeta,
     featuredImage,
-    metadescription,
+    metadescription: pageCaption,
     siteLanguage,
     siteTitle,
     siteTitleAlt: siteShortTitle,
     siteUrl,
-    title: pageTitle,
-    url: canonicalUrl,
+    title: pageTitleExtended,
+    url: canonicalUrlMust,
     facebookPage,
     githubPage,
     linkedinProfile,
@@ -131,6 +147,7 @@
     tiktokUsername,
     twitterUsername
   };
+
   const twitterProps = {
     article,
     author,
@@ -139,11 +156,25 @@
     timeToRead,
     doOgOverride: false
   };
+
+  // console.log('DEBUG: <SEO> origin=%o, $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o', origin, $page.url.origin, siteUrlConfig, siteUrl, $page.url.pathname);
+  // console.log('DEBUG: <SEO> $page.url.origin=%o, siteUrlConfig=%o, siteUrl=%o, $page.url.pathname=%o', $page.url.origin, siteUrlConfig, siteUrl, $page.url.pathname);
+  console.log(
+    'DEBUG: <SEO> pageTitle=%o, pageTitleExtended=%o, pageCaption=%o, canonicalUrl=%o, canonicalUrlMust=%o, useOpenGraph=%o, useTwitter=%o, useSchemaOrg=%o',
+    pageTitle,
+    pageTitleExtended,
+    pageCaption,
+    canonicalUrl,
+    canonicalUrlMust,
+    useOpenGraph,
+    useTwitter,
+    useSchemaOrg
+  );
 </script>
 
 <svelte:head>
-  <title>{pageTitle}</title>
-  <meta name="description" content={metadescription} />
+  <title>{pageTitleExtended}</title>
+  <meta name="description" content={pageCaption} />
   <meta
     name="robots"
     content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
@@ -160,6 +191,14 @@
   {/if}
 </svelte:head>
 
-<Twitter {...twitterProps} />
-<OpenGraph {...openGraphProps} />
-<SchemaOrg {...schemaOrgProps} />
+{#if useTwitter}
+  <Twitter {...twitterProps} />
+{/if}
+
+{#if useOpenGraph}
+  <OpenGraph {...openGraphProps} />
+{/if}
+
+{#if useSchemaOrg}
+  <SchemaOrg {...schemaOrgProps} />
+{/if}

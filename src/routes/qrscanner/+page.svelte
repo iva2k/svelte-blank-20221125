@@ -2,6 +2,11 @@
   import { onDestroy, onMount } from 'svelte';
   import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-scanner';
 
+  import SEO from '$lib/components/seo/SEO.svelte';
+  const pageTitle = 'QR Scanner';
+  const pageCaption = 'QR Scanner page';
+  const seoProps = { pageTitle, pageCaption, slug: 'qrscanner' };
+
   const restrict = false;
   let scanActive = false;
   let scanResult: string | undefined;
@@ -141,8 +146,10 @@
   onDestroy(stopScanner);
 </script>
 
+<SEO {...seoProps} />
+
 <section>
-  <h1>QR Scanner</h1>
+  <h1>{pageTitle}</h1>
   {#if scanActive}
     <div class="scan-toolbar">
       <button class="stop-button" on:click={stopScanner}>Stop</button>

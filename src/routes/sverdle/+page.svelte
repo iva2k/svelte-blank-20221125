@@ -3,6 +3,11 @@
   import { enhance } from '$app/forms';
   import type { PageData, ActionData } from './$types';
 
+  import SEO from '$lib/components/seo/SEO.svelte';
+  const pageTitle = 'Sverdle';
+  const pageCaption = 'A Wordle clone written in SvelteKit';
+  const seoProps = { pageTitle, pageCaption, slug: 'sverdle' };
+
   export let data: PageData;
 
   export let form: ActionData;
@@ -71,10 +76,7 @@
 
 <svelte:window on:keydown={keydown} />
 
-<svelte:head>
-  <title>Sverdle</title>
-  <meta name="description" content="A Wordle clone written in SvelteKit" />
-</svelte:head>
+<SEO {...seoProps} />
 
 <form
   method="POST"

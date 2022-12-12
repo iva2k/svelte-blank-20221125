@@ -1,7 +1,7 @@
 <script lang="ts">
   export let article = false;
-  export let datePublished: string;
-  export let lastUpdated: string;
+  export let datePublished = '';
+  export let lastUpdated = '';
   export let facebookAuthorPage = '';
   export let facebookPage = '';
   export let image: {
