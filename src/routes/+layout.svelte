@@ -20,6 +20,7 @@
     }
   });
   // END load 'vanilla-lazyload' lib
+
   onMount(async () => {
     await loadIonicPWAElements(window);
   });
