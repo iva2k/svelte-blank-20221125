@@ -1029,19 +1029,16 @@ Create `src/routes/geolocation/+page.svelte`:
 </div>
 ```
 
-Add the page to the PureHeader links:
+Add the page to the PureHeader pages array:
 
 ```js
-<header>
+<script lang="ts">
   ...
-  <nav>
+  const pages = [
     ...
-    <ul>
-      ...
-+      <li aria-current={pathname === '/geolocation' ? 'page' : undefined}>
-+        <a href="/geolocation">Geolocation</a>
-+      </li>
-        ...
++    { path: '/geolocation', title: 'Geolocation' },
+  ];
+</script>
 ```
 
 Add option to PureHeader.stories.tsx:
@@ -1085,7 +1082,7 @@ For the QR Code scanner feature, we will use [@capacitor-community/barcode-scann
 
 Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
 
-There are also other plugins to try (sith web platform support):
+There are also other plugins to try (with web platform support):
 
 - see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>
 - see <https://www.npmjs.com/package/qr-scanner>
@@ -1106,18 +1103,16 @@ Create `src/routes/qrscanner.svelte`:
 // See src/routes/qrscanner.svelte file in repo
 ```
 
-Add the page to the PureHeader links:
+Add the page to the PureHeader pages array:
 
 ```js
-<header>
+<script lang="ts">
   ...
-  <nav>
+  const pages = [
     ...
-    <ul>
-      ...
-+      <li aria-current={pathname === '/qrscanner' ? 'page' : undefined}>
-+        <a href="/qrscanner">QR Scanner</a>
-+      </li>
++    { path: '/qrscanner', title: 'QR Scanner' }
+  ];
+</script>
 ```
 
 Add option to PureHeader.stories.tsx:
@@ -1208,4 +1203,3 @@ The browser address bar can be themed to match your site.
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewportThe viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
-
