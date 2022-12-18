@@ -41,15 +41,29 @@ This application is built like a typical Node.js application. However, instead o
 ### Start development server
 
 ```bash
-pnpm run dev
+pnpm run svelte::dev
 
 # or start the development server and open the app in a new browser tab
-pnpm run dev -- --open
+pnpm run svelte::dev -- --open
 ```
 
 ## Fix Issues That Might Come Up
 
 Run `pnpm run XXX` replacing XXX for each of the scripts in `package.json`. It's a good idea to fix all errors and warnings that might come up, and re-check after each major addition.
+
+### Add HTTPS
+
+```bash
+pnpm i -D @vitejs/plugin-basic-ssl
+```
+
+Add plugin to vite.config.ts (see source).
+
+Run the server with a self-signed cert:
+
+```bash
+pnpm run svelte:dev --host --https
+```
 
 ### Add Tooling
 
@@ -327,6 +341,26 @@ To encapsulate all favicon-related stuff (and keep the mess out of app.html), cr
 Add `badge.ts` to all png favicons.
 
 See source files.
+
+### Add Drawer Component
+
+A slide-out drawer is a must-have functionality for most modern apps and many websites.
+
+Let's create one, with animations, accessibility, SSR-friendly.
+
+See `/src/lib/components/drawer/Drawer.svelte` and `src/lib/actions/FocusTrap/focusTrap.ts` sources.
+
+Credits:
+
+- <https://github.com/rsdavis/svelte-drawer/blob/main/src/Drawer.svelte>
+- <https://github.com/skeletonlabs/skeleton/blob/master/src/lib/utilities/Drawer/Drawer.svelte>
+- <https://github.com/skeletonlabs/skeleton/blob/master/src/lib/actions/FocusTrap/focusTrap.ts>
+
+Modifications include:
+
+- Elements remain mounted (no `{#if ...} that remove elements from DOM).
+- Use CSS `visibility: hidden` so no interference with layout and other elements.
+- Keyboard handling of 'Escape' to close and 'Tab' to move focus between elements.
 
 ### Add Tauri
 

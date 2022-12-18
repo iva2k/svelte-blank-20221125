@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
 import type { UserConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import replace from '@rollup/plugin-replace';
 
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
@@ -24,6 +25,7 @@ export default defineConfig(async ({ mode }) => {
       __UPDATE_CHECK_PERIOD_MS__: JSON.stringify(20000) // in milli-seconds, 20s for testing purposes
     },
     plugins: [
+      basicSsl(),
       sveltekit(),
       SvelteKitPWA(pwaConfiguration),
       replace(replaceOptions),
