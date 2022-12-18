@@ -7,6 +7,7 @@
   import Header from '$lib/components/header/Header.svelte';
   import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
+  import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
 
   import website from '$lib/config/website';
   const { githubRepo } = website;
@@ -53,11 +54,11 @@
     <DarkMode bind:isDarkMode>
       <svelte:fragment let:data>
         <label>
-          {isDarkMode ? '🔆' : '🌙'}
+          {isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
           <input
             id="cb1"
             type="checkbox"
-            label={isDarkMode ? '🔆' : '🌙'}
+            label={isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
             checked={isDarkMode}
             on:change={data.onToggle}
           />
