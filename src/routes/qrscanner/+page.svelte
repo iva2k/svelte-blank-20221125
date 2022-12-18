@@ -14,10 +14,7 @@
   const pageCaption = 'QR Scanner page';
   const seoProps = { pageTitle, pageCaption, slug: 'qrscanner' };
 
-  let doAutoStart = true;
-  let doAutoStop = true;
-  const resultDisplayTime_ms = 5000; // Time to keep the scan result on page.
-  const drawerAnimation_s = 0.25; // Time to animate Drawer open/close.
+  const STORAGE_KEY = 'qr-scanner-serrings';
 
   const scannerStyles = [
     // Demo styles
@@ -25,7 +22,14 @@
     { className: 'example-style-1', name: 'Example custom style 1' },
     { className: 'example-style-2', name: 'Example custom style 2' }
   ];
-  let scannerStyle = scannerStyles[2].className;
+  const scanModes = [
+    { value: 'original', name: 'Scan original (dark QR code on bright background)' },
+    { value: 'invert', name: 'Scan with inverted colors (bright QR code on dark background)' },
+    { value: 'both', name: 'Scan both' }
+  ];
+  let settings = getDefaultSettings();
+  const resultDisplayTime_ms = 5000; // Time to keep the scan result on page.
+  const drawerAnimation_s = 0.25; // Time to animate Drawer open/close.
 
   let scanner: QrScanner | null = null;
 
@@ -46,6 +50,37 @@
   let camQrResultNew = false;
   let camQrResultNewTimer: ReturnType<typeof setTimeout> | null;
   let camQrResultTimestampMsg = '';
+
+  function getDefaultSettings() {
+    return {
+      doAutoStart: true,
+      doAutoStop: true,
+      scannerStyle: scannerStyles[2].className,
+      scanMode: scanModes[0].value // QrScanner.InversionMode
+    };
+  }
+  function getSavedOrDefaultSettings() {
+    const defaultSettings = getDefaultSettings();
+    let settings: ReturnType<typeof getDefaultSettings>;
+    try {
+      settings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
+    } catch (e) {
+      settings = defaultSettings;
+    }
+    settings = { ...defaultSettings, ...settings };
+    // console.log('DEBUG: getSavedOrDefaultSettings()', settings);
+    return settings;
+  }
+
+  function setStoredSettings(settings: ReturnType<typeof getDefaultSettings> | undefined) {
+    if (settings && document) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+      // console.log('DEBUG: setStoredSettings()', settings);
+    }
+  }
+  function onSettingsChange() {
+    setStoredSettings(settings);
+  }
 
   function setResultEx(timestamp: string, value: string, newResult: boolean) {
     camQrResultTimestampMsg = timestamp;
@@ -79,11 +114,11 @@
       } else {
         clearTimer(false);
         setResultEx(timestamp, result.data, true);
-        if (!doAutoStop) {
+        if (!settings.doAutoStop) {
           camQrResultNewTimer = setTimeout(clearTimer, resultDisplayTime_ms);
         }
       }
-      if (doAutoStop) {
+      if (settings.doAutoStop) {
         onStopClick();
       }
     }
@@ -91,6 +126,7 @@
 
   function preloadScanner() {
     // console.log('DEBUG: in preloadScanner()');
+    settings = getSavedOrDefaultSettings();
 
     // https://github.com/nimiq/qr-scanner
     if (videoElement) {
@@ -108,8 +144,10 @@
         // returnDetailedScanResult?: true;
       });
 
-      if (doAutoStart) {
-        onStart()?.then(() => onUpdateCameraList()); // Autostart
+      if (settings.doAutoStart) {
+        onStart()?.then(() => {
+          onUpdateCameraList();
+        });
       } else {
         onUpdateCameraList();
       }
@@ -152,7 +190,9 @@
           () => {
             // Camera Set
           },
-          (err) => console.log('Failed to set camera', err)
+          (err) => {
+            console.error('Failed to set camera', err); // TODO: (now) Pop a toast - permission error (and how to fix it) or no camera found.
+          }
         );
     });
   }
@@ -163,8 +203,8 @@
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function onStyleSelect(select: HTMLSelectElement) {
-    // scannerStyle = select.value;
+  function onStyleSelect() {
+    // settings.scannerStyle = select.value;
     // reposition the highlight for cases when style sets "position: relative"
     // scanner?._updateOverlay(); // Private method. TypeScript throws warnings.
     if (typeof window === 'object') {
@@ -180,6 +220,7 @@
       //   window.dispatchEvent(evt);
       // }
     }
+    setStoredSettings(settings);
   }
 
   function onRegionSelect(target: HTMLInputElement) {
@@ -192,11 +233,13 @@
     }
   }
 
-  function onModeSelect(target: HTMLSelectElement) {
-    scanner?.setInversionMode(target.value as QrScanner.InversionMode);
+  function onModeSelect() {
+    // settings.scanMode = target.value as QrScanner.InversionMode;
+    scanner?.setInversionMode(settings.scanMode as QrScanner.InversionMode);
+    setStoredSettings(settings);
   }
 
-  function onCamSelect(target: HTMLSelectElement) {
+  function onCamSelect() {
     // selectCamera = target.value;
     scanner?.setCamera(selectCamera).then(updateFlashAvailability);
   }
@@ -224,7 +267,7 @@
       })
       .catch((e) => {
         // handle error
-        console.error('Error %o in QrScanner.start()', e);
+        console.error('Error %o in QrScanner.start()', e); // TODO: (now) Pop a toast - permission error (and how to fix it) or no camera found.
       });
   }
   function onStartClick() {
@@ -255,8 +298,8 @@
           Highlight Style
           <select
             id="scan-region-highlight-style-select"
-            bind:value={scannerStyle}
-            on:change={(e) => onStyleSelect(e.currentTarget)}
+            bind:value={settings.scannerStyle}
+            on:change={onStyleSelect}
           >
             {#each scannerStyles as s}
               <option value={s.className}>{s.name}</option>
@@ -266,23 +309,17 @@
       </div>
 
       <div class="demo">
-        <select id="inversion-mode-select" on:change={(e) => onModeSelect(e.currentTarget)}>
-          <option value="original">Scan original (dark QR code on bright background)</option>
-          <option value="invert"
-            >Scan with inverted colors (bright QR code on dark background)</option
-          >
-          <option value="both">Scan both</option>
+        <select id="inversion-mode-select" bind:value={settings.scanMode} on:change={onModeSelect}>
+          {#each scanModes as mode}
+            <option value={mode.value}>{mode.name}</option>
+          {/each}
         </select>
       </div>
 
       <div class="demo">
         <span><b>Device has camera:</b> {haveCamera ? 'Has Camera' : 'Camera not found'}</span>
         <b>Preferred camera:</b>
-        <select
-          id="cam-list"
-          bind:value={selectCamera}
-          on:change={(e) => onCamSelect(e.currentTarget)}
-        >
+        <select id="cam-list" bind:value={selectCamera} on:change={onCamSelect}>
           {#each camList as camera}
             <option value={camera.value}>{camera.name}</option>
           {/each}
@@ -301,12 +338,22 @@
 
       <div class="demo">
         <label>
-          <input id="auto-start" type="checkbox" bind:checked={doAutoStart} />
+          <input
+            id="auto-start"
+            type="checkbox"
+            bind:checked={settings.doAutoStart}
+            on:change={onSettingsChange}
+          />
           AutoStart
         </label>
 
         <label>
-          <input id="auto-stop" type="checkbox" bind:checked={doAutoStop} />
+          <input
+            id="auto-stop"
+            type="checkbox"
+            bind:checked={settings.doAutoStop}
+            on:change={onSettingsChange}
+          />
           AutoStop
         </label>
       </div>
@@ -326,7 +373,7 @@
 {/if}
 
 <section id="container">
-  <div id="video-container" class={scannerStyle}>
+  <div id="video-container" class={settings.scannerStyle}>
     <div id="video-overlay" />
     <!-- TODO: (now) Use <video poster="..."></video> -->
     <!-- svelte-ignore a11y-media-has-caption -->
