@@ -978,7 +978,7 @@ Use of Capacitor \#1 native functionality (like Camera, GPS, etc.) can be very h
 
 Since Tauri has no iOS/Android build support (it's in development), we can use Capacitor \#2 to bridge that gap. Once Tauri implements iOS/Android build support, we can revisit \#2, and keep Capacitor just for \#1.
 
-We will target QR code scanning as a very usefull feature for \#1.
+We will target Geolocation example as a very usefull feature for \#1.
 
 #### Setup
 
@@ -1112,30 +1112,25 @@ For iOS, add usage description to "ios/App/App/Info.plist" file:
 
 #### Add QR Code Scanner
 
-For the QR Code scanner feature, we will use [@capacitor-community/barcode-scanner](https://github.com/capacitor-community/barcode-scanner) plugin.
+For the QR Code scanner feature, we could use [@capacitor-community/barcode-scanner](https://github.com/capacitor-community/barcode-scanner) plugin, but web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31).
 
-Note that web platform is not yet supported [#31](https://github.com/capacitor-community/barcode-scanner/issues/31) (it looks quite simple to implement - use some existing lib like zxing on top of web camera and submit a PR).
-
-There are also other plugins to try (with web platform support):
+Web browsers have good support for the camera, and there are few QR scanner plugins with web platform support:
 
 - see <https://github.com/xulihang/capacitor-plugin-dynamsoft-barcode-reader/tree/main/example>
 - see <https://www.npmjs.com/package/qr-scanner>
 - see <https://github.com/zxing-js/library>
+
+We will use <https://www.npmjs.com/package/qr-scanner> and create a multi-platform QR Code Scanner. note that it does not support formats other than QR.
 
 Because of the fact that the Scanner View will be rendered behind the WebView, we have to call `hideBackground()` to make the WebView and the \<html\> element transparent. Every other element that needs transparency, we will have to handle ourself.
 
 The elements are made transparent by adding `background: 'transparent';` in the \<style\> section.
 
 ```bash
-pnpm install @capacitor-community/barcode-scanner
-npx cap sync
+pnpm install qr-scanner
 ```
 
-Create `src/routes/qrscanner.svelte`:
-
-```js
-// See src/routes/qrscanner.svelte file in repo
-```
+Create `src/routes/qrscanner/+page.svelte` (see source file in repo).
 
 Add the page to the PureHeader pages array:
 
