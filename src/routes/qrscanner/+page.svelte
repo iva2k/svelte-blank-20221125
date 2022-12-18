@@ -150,6 +150,7 @@
 
 <section>
   <h1>{pageTitle}</h1>
+
   {#if scanActive}
     <div class="scan-toolbar">
       <button class="stop-button" on:click={stopScanner}>Stop</button>

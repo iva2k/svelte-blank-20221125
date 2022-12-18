@@ -33,6 +33,7 @@ const websiteFnc = (
   const twitterUsername = 'iva2k';
   const twitterUserId = '1234567890';
   const wireUsername = '@iva2k';
+  const githubRepo = 'https://github.com/iva2k/svelte-blank-20221125';
 
   const googleSiteVerificationNetlify = '';
   const googleSiteVerificationVercel = 'BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng';
@@ -62,7 +63,8 @@ const websiteFnc = (
     twitterUserId,
     wireUsername,
     googleSiteVerificationNetlify,
-    googleSiteVerificationVercel
+    googleSiteVerificationVercel,
+    githubRepo
   };
   console.log('DEBUG websiteFnc.js website=%o, env=%o', website, env);
   return website;

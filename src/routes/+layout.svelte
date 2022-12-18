@@ -8,6 +8,9 @@
   import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
 
+  import website from '$lib/config/website';
+  const { githubRepo } = website;
+
   // BEGIN load 'vanilla-lazyload' lib
   import type { ILazyLoadInstance } from 'vanilla-lazyload';
   let lazyloadInstance: ILazyLoadInstance;
@@ -70,7 +73,10 @@
   <Offline />
 
   <footer>
-    <p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+    <p>
+      visit <a href={githubRepo}>App GitHub Repo</a> for details | visit
+      <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+    </p>
   </footer>
 </div>
 

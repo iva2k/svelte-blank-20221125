@@ -1,7 +1,7 @@
 <script lang="ts">
   import SEO from '$lib/components/seo/SEO.svelte';
   import website from '$lib/config/website';
-  const { author, siteUrl } = website;
+  const { author, siteUrl, githubRepo } = website;
   const pageTitle = 'Home';
   const pageCaption = 'Home page';
 
