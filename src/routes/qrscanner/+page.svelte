@@ -2,6 +2,7 @@
   import QrScanner from 'qr-scanner';
 </script> -->
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { onDestroy, onMount } from 'svelte';
   import QrScanner from 'qr-scanner';
 
@@ -63,7 +64,7 @@
     const defaultSettings = getDefaultSettings();
     let settings: ReturnType<typeof getDefaultSettings>;
     try {
-      settings = JSON.parse(localStorage.getItem(STORAGE_KEY) || '');
+      settings = JSON.parse((browser && localStorage.getItem(STORAGE_KEY)) || '');
     } catch (e) {
       settings = defaultSettings;
     }
@@ -73,7 +74,7 @@
   }
 
   function setStoredSettings(settings: ReturnType<typeof getDefaultSettings> | undefined) {
-    if (settings && document) {
+    if (settings && browser) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
       // console.log('DEBUG: setStoredSettings()', settings);
     }

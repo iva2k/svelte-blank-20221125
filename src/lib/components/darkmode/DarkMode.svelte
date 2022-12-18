@@ -3,6 +3,8 @@
   /// <reference no-default-lib="true"/>
   /// <reference lib="es2020" />
 
+  import { browser } from '$app/environment';
+
   export let isDarkMode = false;
 
   const STORAGE_KEY = 'ag-color-scheme';
@@ -35,13 +37,13 @@
     getSavedOrDefaultColorScheme() {
       // First checks localStorage then system preferences
       return (
-        localStorage.getItem(STORAGE_KEY) ||
+        (browser && localStorage.getItem(STORAGE_KEY)) ||
         (this.w?.matchMedia('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light')
       );
     }
 
     setStoredColorScheme(colorScheme: string | undefined) {
-      if (colorScheme && this.d) {
+      if (colorScheme && browser) {
         localStorage.setItem(STORAGE_KEY, colorScheme);
       }
     }
