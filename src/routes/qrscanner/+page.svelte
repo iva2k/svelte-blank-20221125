@@ -231,13 +231,8 @@
 
 <SEO {...seoProps} />
 
-<div id="header">
-  <h1>{pageTitle}</h1>
-</div>
-
 {#if true}
   <div class="drawerContainer" class:open={drawerOpen}>
-    <button class="drawerBtn" on:click={() => (drawerOpen = true)}>{GEARS_ENTITY}</button>
     <Drawer
       open={drawerOpen}
       size="300px"
@@ -276,12 +271,6 @@
           <option value="environment" selected>Environment Facing (default)</option>
           <option value="user">User Facing</option>
         </select>
-      </div>
-      <div class="demo">
-        <span><b>Camera has flash:</b> {haveFlash ? 'Has Flash' : 'No Flash'}</span>
-        <button id="flash-toggle" disabled={!haveFlash} on:click={() => onFlash()}>
-          {CAMERA_FLASH_ENTITY} Flash: <span id="flash-state">{isFlashOn ? 'on' : 'off'}</span>
-        </button>
       </div>
       <div class="demo">
         <b>Detected QR code: </b>
@@ -323,20 +312,40 @@
   </div>
 </section>
 
-<div id="middle" />
+<div id="middle">
+  <div class="toolbar-left">
+    {#if scanActive}
+      <button disabled={!haveFlash} on:click={() => onFlash()}>
+        {CAMERA_FLASH_ENTITY}
+      </button>
+    {/if}
+  </div>
 
-<!-- <div id="masthead">masthead</div> -->
+  <div class="middle-space">
+    <div id="header">
+      <h1>{pageTitle}</h1>
+    </div>
+  </div>
+
+  <div class="toolbar-right">
+    <button class="drawerBtn" on:click={() => (drawerOpen = true)}>{GEARS_ENTITY}</button>
+  </div>
+</div>
 
 {#if true}
   <div id="footer">
     {#if scanner}
       {#if scanActive}
         <div class="scan-toolbar">
-          <button class="stop-button" on:click={onStopClick}>Stop</button>
+          <div class="stop-button">
+            <button class="stop-button" on:click={onStopClick}>Stop</button>
+          </div>
         </div>
       {:else}
         <div class="scan-button">
-          <button on:click={onStartClick}>Scan</button>
+          <div>
+            <button on:click={onStartClick}>Scan</button>
+          </div>
         </div>
         <!-- <div><p>{scanResult}</p></div> -->
       {/if}
@@ -347,8 +356,6 @@
 {/if}
 
 <style lang="scss">
-  /* BEGIN header / middle / footer  fluid layout */
-
   /* Set container to cover the whole window */
   #container {
     position: absolute;
@@ -361,41 +368,36 @@
     height: 100vh !important;
   }
 
-  // #masthead,
   #footer {
-    // position: absolute;
-    // width: 100vw;
   }
 
-  // #masthead {
-  //   top: 10px;
-  // }
-
-  #footer {
-    // bottom: 0;
-    /* Set fluid height for footer */
-    // height: 5%;
+  #header {
+    h1 {
+      margin: 0;
+    }
   }
-
-  /* Set padding for content header placeholder */
-  // #header {
-  //   padding-top: 2.17em; /* Match Nav height 3em - h1 margin 0.83em */
-  // }
 
   #middle {
     flex-grow: 1;
-    // height: 80%;
-    // display: table;
-    // padding-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+
+    div {
+      flex: 0;
+      min-width: 2.5em;
+      display: flex;
+      flex-direction: column;
+    }
+    // div.toolbar-left {}
+    div.middle-space {
+      text-align: center;
+      flex: 1;
+    }
+    // div.toolbar-right {}
   }
-  /* END header / middle / footer  fluid layout */
+
   .drawerContainer {
     width: 100vw;
-  }
-  .drawerBtn {
-    position: absolute;
-    top: 3em;
-    right: 1em;
   }
   #video-container {
     line-height: 0;
@@ -472,12 +474,19 @@
   }
   .scan-button,
   .scan-toolbar {
-    // margin: 0px;
-    // position: absolute;
-    // bottom: 100px;
-    // width: 100vw;
-    width: 100%;
-    // height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    div {
+      flex: 1;
+      button {
+        width: 100%;
+      }
+    }
+    div.flash-button {
+      flex: 0;
+    }
   }
 
   /* Drawer */
