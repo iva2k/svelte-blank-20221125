@@ -1,4 +1,7 @@
 // Action: Focus Trap
+// Allows you to contain focus within elements on-demand
+// From: https://github.com/skeletonlabs/skeleton/blob/master/src/lib/actions/FocusTrap/focusTrap.ts
+// On 2022-1217
 
 export function focusTrap(node: HTMLElement, enabled: boolean) {
   const elemWhitelist =
