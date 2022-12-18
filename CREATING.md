@@ -97,7 +97,7 @@ const config = {
 
 ### SvelteKit Prerender ENAMETOOLONG error
 
-// TODO: (now) File issue
+See <https://github.com/sveltejs/kit/issues/8081>.
 
 Build fails with ENAMETOOLONG in vite prerender. Root cause is if env.private is large (e.g. due to a bunch of "npm\_\*" variables added by pnpm or vite, e.g. contains a bunch of npm_package_devDependencies and other internal npm stuff), it is passed to fork(script, ...) as args, and it cannot handle such a large environment (more than 32kB size).
 
@@ -331,8 +331,6 @@ Create files and make some changes (see sources):
 Error importing from '@vite-pwa/sveltekit' - there is `export default {...}` in @vite-pwa/sveltekit/dist/index.mjs.
 Changing it to `export {...}` (removing `default`) fixes the problem.
 Use `pnpm patch @vite-pwa/sveltekit`, editing the file in directory created by `pnpm patch`, and creating a patch file with `pnpm patch-commit <path given by pnpm>`.
-
-TODO: (now) Implement "no offline" fallback page - suggest to connect to Internet.
 
 ### Create Favicon Component
 
@@ -1120,9 +1118,9 @@ Web browsers have good support for the camera, and there are few QR scanner plug
 - see <https://www.npmjs.com/package/qr-scanner>
 - see <https://github.com/zxing-js/library>
 
-We will use <https://www.npmjs.com/package/qr-scanner> and create a multi-platform QR Code Scanner. note that it does not support formats other than QR.
+We will use <https://www.npmjs.com/package/qr-scanner> and create a multi-platform QR Code Scanner. Note that it does not support formats other than QR (see [issue#63](https://github.com/nimiq/qr-scanner/issues/63#issuecomment-1029940019)), but it is a solid performer and feature-rich.
 
-Because of the fact that the Scanner View will be rendered behind the WebView, we have to call `hideBackground()` to make the WebView and the \<html\> element transparent. Every other element that needs transparency, we will have to handle ourself.
+If we used a capacitor / native plugin, then the Scanner View will be rendered behind the WebView, and we have to call `hideBackground()` to make the WebView and the \<html\> element transparent. Every other element that needs transparency, we will have to handle ourselves.
 
 The elements are made transparent by adding `background: 'transparent';` in the \<style\> section.
 
@@ -1224,10 +1222,6 @@ None to fix.
 ### Lighthouse metrics
 
 Run Lighthouse and other web tests at <https://www.webpagetest.org>
-
-TODO: (now) Improve Lighthouse: Does not set a theme color for the address bar.Failures: No `<meta name="theme-color">` tag found.
-The browser address bar can be themed to match your site.
-<https://developer.chrome.com/docs/lighthouse/pwa/splash-screen/?utm_source=lighthouse&utm_medium=wpt>
 
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewportThe viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.

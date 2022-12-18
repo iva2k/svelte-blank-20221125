@@ -63,7 +63,6 @@
     "icons:build": "bash -c \"./scripts/icon-generator.sh .logo/logo.svg .logo/icon.svg .logo/icon_bg.svg .logo/icon+texture.svg \""
   },
   "dependencies": {
-    "@capacitor-community/barcode-scanner": "^3.0.1",
     "@capacitor/android": "^4.5.0",
     "@capacitor/core": "^4.5.0",
     "@capacitor/geolocation": "^4.1.0",

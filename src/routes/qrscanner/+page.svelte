@@ -376,7 +376,7 @@
 <section id="container">
   <div id="video-container" class={settings.scannerStyle}>
     <div id="video-overlay" />
-    <!-- TODO: (now) Use <video poster="..."></video> -->
+    <!-- TODO: (when needed) Use <video poster="..."></video> -->
     <!-- svelte-ignore a11y-media-has-caption -->
     <video
       class:active={scanActive}

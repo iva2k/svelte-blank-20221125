@@ -3,10 +3,9 @@
 ## Plan
 
 1. UI framework branches - port from 2022-0525
-2. Make QR scan work in browser?
-3. Auth?
-4. Backend Server (non-SvelteKit)?
-5. Push Notifications?
+2. Auth?
+3. Backend Server (non-SvelteKit)?
+4. Push Notifications?
 
 ## Ideas
 
