@@ -4,7 +4,14 @@
   const { message } = $page.error || { message: 'Oops, $page.error is null' };
   const title = `${$page.status}: ${message}`;
 
-  const isOnline = navigator.onLine && $page?.status !== 500;
+  let nav;
+  try {
+    nav = navigator;
+  } catch (e) {
+    console.log();
+  }
+  const isNavOnline = nav && nav.onLine;
+  const isOnline = isNavOnline && $page?.status !== 500;
 
   function onRetry() {
     console.log('DEBUG: onRetry()');
@@ -28,7 +35,7 @@
 {/if}
 
 {#if true}
-  <p>Navigator online: {navigator.onLine}</p>
+  <p>Navigator online: {isNavOnline}</p>
 {/if}
 
 {#if true}
