@@ -212,6 +212,8 @@ This project has few of the top UI frameworks integrated in separate git branche
 | [ui-carbon](../../tree/ui-carbon)         | [Carbon](https://carbon-components-svelte.onrender.com/) | Y | |
 | [ui-framework7](../../tree/ui-framework7) | [Framework7](https://framework7.io/svelte/introduction.html) | N | Incomplete and currently broken |
 | [ui-shoelace](../../tree/ui-shoelace)     | [Shoelace](https://shoelace.style/) | Y | |
+| | [Skeleton](https://github.com/skeletonlabs/skeleton) | Y | |
+| | [Flowbite-Svelte](https://flowbite-svelte.com) |   | |
 |                                           | Smelte       |   | Material + TailwindCSS |
 |                                           | TailwindCSS  |   | May use components - [Flowbite](https://flowbite.com/docs/getting-started/introduction/) |
 |                                           | [Ionic](https://ionicframework.com) |   | See good [example](https://github.com/Tommertom/svelte-ionic-app) |
