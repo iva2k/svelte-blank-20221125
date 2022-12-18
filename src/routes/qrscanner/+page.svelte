@@ -14,21 +14,28 @@
   const pageCaption = 'QR Scanner page';
   const seoProps = { pageTitle, pageCaption, slug: 'qrscanner' };
 
-  const doAutostart = true;
+  let doAutoStart = true;
+  let doAutoStop = true;
   const resultDisplayTime_ms = 5000; // Time to keep the scan result on page.
   const drawerAnimation_s = 0.25; // Time to animate Drawer open/close.
 
-  const styles = [
+  const scannerStyles = [
+    // Demo styles
     { className: 'default-style', name: 'Default style' },
     { className: 'example-style-1', name: 'Example custom style 1' },
     { className: 'example-style-2', name: 'Example custom style 2' }
   ];
-  let style = styles[2].className;
+  let scannerStyle = scannerStyles[2].className;
 
   let scanner: QrScanner | null = null;
 
-  let video: HTMLVideoElement | undefined;
-  let camList: HTMLSelectElement | undefined;
+  let videoElement: HTMLVideoElement | undefined;
+  let camList: { value: string; name: string }[] = [];
+  let camListDefault = [
+    { value: 'environment', name: 'Environment Facing (default)' },
+    { value: 'user', name: 'User Facing' }
+  ];
+  let selectCamera = camListDefault[0].value;
 
   let scanActive = false;
   let scanResult: string | undefined;
@@ -72,22 +79,25 @@
       } else {
         clearTimer(false);
         setResultEx(timestamp, result.data, true);
-        camQrResultNewTimer = setTimeout(clearTimer, resultDisplayTime_ms);
+        if (!doAutoStop) {
+          camQrResultNewTimer = setTimeout(clearTimer, resultDisplayTime_ms);
+        }
+      }
+      if (doAutoStop) {
+        onStopClick();
       }
     }
   }
 
   function preloadScanner() {
-    console.log('DEBUG: in preloadScanner()');
-    // https://github.com/nimiq/qr-scanner
+    // console.log('DEBUG: in preloadScanner()');
 
-    // ####### Web Cam Scanning #######
-    if (video) {
+    // https://github.com/nimiq/qr-scanner
+    if (videoElement) {
       // See https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-disablepictureinpicture :
-      // (video as { disablePictureInPicture: boolean }).disablePictureInPicture = true;
-      video.setAttribute('disablepictureinpicture', 'true'); // Has no effect on Vivaldi (vivaldi://settings/webpages "Picture-In-Picture Button on Videos" has effect)
-      video.removeAttribute('controls'); // This removes "controls" boolean attribute
-      scanner = new QrScanner(video, (result) => setResult(result), {
+      videoElement.setAttribute('disablepictureinpicture', 'true'); // Has no effect on Vivaldi (vivaldi://settings/webpages "Picture-In-Picture Button on Videos" has effect)
+      videoElement.removeAttribute('controls'); // This removes "controls" boolean attribute
+      scanner = new QrScanner(videoElement, (result) => setResult(result), {
         onDecodeError: (error) => setResult(undefined, error),
         highlightScanRegion: true,
         highlightCodeOutline: true,
@@ -98,7 +108,7 @@
         // returnDetailedScanResult?: true;
       });
 
-      if (doAutostart) {
+      if (doAutoStart) {
         onStart()?.then(() => onUpdateCameraList()); // Autostart
       } else {
         onUpdateCameraList();
@@ -126,19 +136,15 @@
     });
     QrScanner?.listCameras(true).then((cameras) => {
       let pref: QrScanner.Camera | undefined;
-      // camList.clear(2); // TODO: clear list elements after # 2 when re-running
+      camList = [...camListDefault];
       cameras.forEach((camera) => {
-        const option = document.createElement('option');
-        option.value = camera.id;
-        option.text = camera.label;
-        if (camList) {
-          camList.add(option);
-        }
         // Example of how to select an heuristic preferred camera
         // TODO: (when needed) convert the code to check against a list, so can keep database of special devices - mostly ones with multi-cameras need that. Also maintain a mirror flag to fix user-facing autodetection.
         if (camera.label.startsWith('camera2 0')) {
           pref = camera; // {label: 'No camera2 0 found in list', list, id: 'environment'}
         }
+
+        camList = [...camList, { value: camera.id, name: camera.label }];
       });
       if (pref && scanner)
         // console.log('Using Camera: ', pref)
@@ -158,7 +164,7 @@
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function onStyleSelect(select: HTMLSelectElement) {
-    // style = select.value;
+    // scannerStyle = select.value;
     // reposition the highlight for cases when style sets "position: relative"
     // scanner?._updateOverlay(); // Private method. TypeScript throws warnings.
     if (typeof window === 'object') {
@@ -191,7 +197,8 @@
   }
 
   function onCamSelect(target: HTMLSelectElement) {
-    scanner?.setCamera(target.value).then(updateFlashAvailability);
+    // selectCamera = target.value;
+    scanner?.setCamera(selectCamera).then(updateFlashAvailability);
   }
 
   function getFlashState() {
@@ -208,6 +215,7 @@
   }
 
   function onStart() {
+    clearTimer();
     return scanner
       ?.start()
       .then(() => {
@@ -241,20 +249,22 @@
       placement="right"
     >
       <button on:click={() => (drawerOpen = false)}>Close ></button>
+
       <div class="demo">
         <label>
           Highlight Style
           <select
             id="scan-region-highlight-style-select"
-            bind:value={style}
+            bind:value={scannerStyle}
             on:change={(e) => onStyleSelect(e.currentTarget)}
           >
-            {#each styles as s}
+            {#each scannerStyles as s}
               <option value={s.className}>{s.name}</option>
             {/each}
           </select>
         </label>
       </div>
+
       <div class="demo">
         <select id="inversion-mode-select" on:change={(e) => onModeSelect(e.currentTarget)}>
           <option value="original">Scan original (dark QR code on bright background)</option>
@@ -264,14 +274,21 @@
           <option value="both">Scan both</option>
         </select>
       </div>
+
       <div class="demo">
         <span><b>Device has camera:</b> {haveCamera ? 'Has Camera' : 'Camera not found'}</span>
         <b>Preferred camera:</b>
-        <select bind:this={camList} id="cam-list" on:change={(e) => onCamSelect(e.currentTarget)}>
-          <option value="environment" selected>Environment Facing (default)</option>
-          <option value="user">User Facing</option>
+        <select
+          id="cam-list"
+          bind:value={selectCamera}
+          on:change={(e) => onCamSelect(e.currentTarget)}
+        >
+          {#each camList as camera}
+            <option value={camera.value}>{camera.name}</option>
+          {/each}
         </select>
       </div>
+
       <div class="demo">
         <b>Detected QR code: </b>
         <span id="cam-qr-result" class:new={camQrResultNew}>
@@ -281,6 +298,19 @@
         <b>Last detected at: </b>
         <span id="cam-qr-result-timestamp">{camQrResultTimestampMsg}</span>
       </div>
+
+      <div class="demo">
+        <label>
+          <input id="auto-start" type="checkbox" bind:checked={doAutoStart} />
+          AutoStart
+        </label>
+
+        <label>
+          <input id="auto-stop" type="checkbox" bind:checked={doAutoStop} />
+          AutoStop
+        </label>
+      </div>
+
       <div class="demo">
         <label>
           <input
@@ -291,20 +321,19 @@
           Show scan region canvas
         </label>
       </div>
-      <div class="demo" />
     </Drawer>
   </div>
 {/if}
 
 <section id="container">
-  <div id="video-container" class={style}>
+  <div id="video-container" class={scannerStyle}>
     <div id="video-overlay" />
     <!-- TODO: (now) Use <video poster="..."></video> -->
     <!-- svelte-ignore a11y-media-has-caption -->
     <video
       class:active={scanActive}
       class:inactive={!scanActive}
-      bind:this={video}
+      bind:this={videoElement}
       id="qr-video"
       muted
       on:contextmenu={() => false}
@@ -504,6 +533,7 @@
     background: rgba(255, 255, 255, 0.5);
   }
   :global(.app .drawerContainer .drawer .panel) {
+    padding: 0.5em;
     background: var(--color-bg-1);
     color: var(--color-text);
   }
