@@ -85,7 +85,7 @@
     if (video) {
       // See https://w3c.github.io/picture-in-picture/#dom-htmlvideoelement-disablepictureinpicture :
       // (video as { disablePictureInPicture: boolean }).disablePictureInPicture = true;
-      video.setAttribute('disablepictureinpicture', 'true'); // Has no effect on Vivaldi. Only vivaldi://settings/webpages "Picture-In-Picture Button on Videos" has effect
+      video.setAttribute('disablepictureinpicture', 'true'); // Has no effect on Vivaldi (vivaldi://settings/webpages "Picture-In-Picture Button on Videos" has effect)
       video.removeAttribute('controls'); // This removes "controls" boolean attribute
       scanner = new QrScanner(video, (result) => setResult(result), {
         onDecodeError: (error) => setResult(undefined, error),
@@ -274,9 +274,9 @@
       </div>
       <div class="demo">
         <b>Detected QR code: </b>
-        <span id="cam-qr-result" class:new={camQrResultNew}
-          >{camQrResultMsg} ({camQrResultNew})</span
-        >
+        <span id="cam-qr-result" class:new={camQrResultNew}>
+          {camQrResultMsg}
+        </span>
         <br />
         <b>Last detected at: </b>
         <span id="cam-qr-result-timestamp">{camQrResultTimestampMsg}</span>
@@ -324,6 +324,11 @@
   <div class="middle-space">
     <div id="header">
       <h1>{pageTitle}</h1>
+    </div>
+    <div class="div-qr-result">
+      <h2 class="qr-result" class:new={camQrResultNew}>
+        {camQrResultMsg}
+      </h2>
     </div>
   </div>
 
@@ -392,6 +397,14 @@
     div.middle-space {
       text-align: center;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      .qr-result {
+        color: var(--color-text-2);
+      }
+      .qr-result.new {
+        color: blue;
+      }
     }
     // div.toolbar-right {}
   }
@@ -448,13 +461,16 @@
     stroke-dasharray: none !important;
     stroke: rgba(255, 255, 255, 0.5) !important; // Light theme
   }
-  :global(html[color-scheme='dark']) {
-    // Dark theme
+  :global(:root[color-scheme='dark']) {
+    // Dark Theme
     :global(#video-container.example-style-2 .scan-region-highlight) {
       outline: rgba(0, 0, 0, 0.5) solid 50vmax;
     }
     :global(#video-container.example-style-2 .code-outline-highlight) {
       stroke: rgba(0, 0, 0, 0.5) !important;
+    }
+    #middle div.middle-space .qr-result.new {
+      color: #a0a0ff;
     }
   }
 
@@ -488,17 +504,13 @@
     background: rgba(255, 255, 255, 0.5);
   }
   :global(.app .drawerContainer .drawer .panel) {
-    background: white;
+    background: var(--color-bg-1);
     color: var(--color-text);
   }
-  :global(html[color-scheme='dark']) {
-    // Dark theme
+  :global(:root[color-scheme='dark']) {
+    // Dark Theme
     :global(.app .drawerContainer .drawer .overlay) {
       background: rgba(0, 0, 0, 0.5);
-    }
-    :global(.app .drawerContainer .drawer .panel) {
-      background: black;
-      color: white;
     }
   }
 
