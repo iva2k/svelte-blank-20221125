@@ -469,9 +469,6 @@
     margin-bottom: 16px;
   }
 
-  #flash-toggle {
-    display: inline-block;
-  }
   .scan-button,
   .scan-toolbar {
     display: flex;
@@ -483,9 +480,6 @@
       button {
         width: 100%;
       }
-    }
-    div.flash-button {
-      flex: 0;
     }
   }
 
