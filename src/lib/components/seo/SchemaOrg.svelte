@@ -1,5 +1,6 @@
 <script lang="ts">
   import hash from 'object-hash';
+  import type { ImageResource } from '$lib/types';
 
   export let article = false;
   export let author: string;
@@ -7,13 +8,7 @@
   export let datePublished: string;
   export let entity: string;
   export let lastUpdated: string;
-  export let featuredImage: {
-    url: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    caption?: string;
-  };
+  export let featuredImage: ImageResource;
   export let metadescription: string;
   export let siteLanguage: string;
   export let siteTitle: string;

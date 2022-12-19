@@ -1,14 +1,10 @@
 <script lang="ts">
+  import type { ImageResource } from '$lib/types';
+
   export let article = false;
   export let author: string;
   export let twitterUsername: string | undefined;
-  export let image: {
-    url: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    caption?: string;
-  }; // TODO: (now) DRY as Image type
+  export let image: ImageResource;
   export let timeToRead = 0;
 
   // When there is an equivalent og tag present, Twitter takes that.

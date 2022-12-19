@@ -1,23 +1,12 @@
 <script lang="ts">
+  import type { ImageResource } from '$lib/types';
   export let article = false;
   export let datePublished = '';
   export let lastUpdated = '';
   export let facebookAuthorPage = '';
   export let facebookPage = '';
-  export let image: {
-    url: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    caption?: string;
-  };
-  export let squareImage: {
-    url: string;
-    alt: string;
-    width?: number;
-    height?: number;
-    caption?: string;
-  };
+  export let image: ImageResource;
+  export let squareImage: ImageResource;
   export let metadescription: string;
   export let ogLanguage: string;
   export let pageTitle: string;

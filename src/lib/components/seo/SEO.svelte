@@ -7,6 +7,7 @@
     altDescription
   } from '$lib/assets/home/index';
 
+  import type { ImageResource } from '$lib/types';
   import website from '$lib/config/website';
   import { VERTICAL_LINE_ENTITY } from '$lib/constants/entities';
   import OpenGraph from './OpenGraph.svelte';
@@ -72,22 +73,22 @@
   export let timeToRead = 0;
 
   // imported props with fallback defaults
-  export let featuredImage = {
+  export let featuredImage: ImageResource = {
     url: featuredImageSrc,
     alt: altDescription,
     width: 672,
     height: 448,
     caption: 'Home page'
   };
-  export let ogImage = {
+  export let ogImage: ImageResource = {
     url: ogImageSrc,
     alt: altDescription
   };
-  export let ogSquareImage = {
+  export let ogSquareImage: ImageResource = {
     url: ogSquareImageSrc,
     alt: altDescription
   };
-  export let twitterImage = {
+  export let twitterImage: ImageResource = {
     url: twitterImageSrc,
     alt: altDescription
   };
