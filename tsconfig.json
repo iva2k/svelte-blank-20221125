@@ -48,7 +48,9 @@
     "./.types",
     "./src-tauri/target/**",
     "./android/**",
-    "./ios/**"
+    "./ios/**",
+    "./storybook-static/**",
+    "./dev-dist/**"
   ]
 
   // Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
