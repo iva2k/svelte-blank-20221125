@@ -63,7 +63,7 @@
       "type": "shell",
       "isBackground": true,
       "command": "pnpm",
-      "args": ["svelte:build"],
+      "args": ["build"],
       "group": "none",
       "problemMatcher": [],
       "detail": "svelte build"

@@ -149,7 +149,7 @@ pnpm run svelte:dev -- --open
 To create a production version of the web app (to be hosted on a server):
 
 ```bash
-pnpm run svelte:build
+pnpm run build
 ```
 
 To preview the production build of the web app, execute `pnpm run preview`.
@@ -175,7 +175,7 @@ pnpm run tauri:build
 To update mobile app project (Android):
 
 ```bash
-pnpm run svelte:build
+pnpm run build
 cap open android
 ```
 

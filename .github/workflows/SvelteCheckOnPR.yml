@@ -22,7 +22,7 @@ jobs:
         run: pnpm install
 
       - name: Build app
-        run: pnpm svelte:build:only
+        run: pnpm build:only
 
       - name: Run Svelte Check
         run: pnpm Check

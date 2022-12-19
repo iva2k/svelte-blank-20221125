@@ -17,26 +17,26 @@
       "type": "node-terminal"
     },
     {
-      "command": "pnpm svelte:build:vercel",
-      "name": "Run pnpm svelte:build:vercel",
+      "command": "pnpm build:vercel",
+      "name": "Run pnpm build:vercel",
       "request": "launch",
       "type": "node-terminal"
     },
     {
-      "command": "pnpm svelte:build:only",
-      "name": "Run pnpm svelte:build:only",
+      "command": "pnpm build:only",
+      "name": "Run pnpm build:only",
       "request": "launch",
       "type": "node-terminal"
     },
     {
-      "command": "pnpm svelte:build:only-sw",
-      "name": "Run pnpm svelte:build:only-sw",
+      "command": "pnpm build:only-sw",
+      "name": "Run pnpm build:only-sw",
       "request": "launch",
       "type": "node-terminal"
     },
     {
-      "command": "pnpm svelte:build:only-destroy",
-      "name": "Run pnpm svelte:build:only-destroy",
+      "command": "pnpm build:only-destroy",
+      "name": "Run pnpm build:only-destroy",
       "request": "launch",
       "type": "node-terminal"
     },
