@@ -20,7 +20,7 @@ export default defineConfig(async ({ mode }) => {
     SvelteKitPWA(pwaConfiguration),
     replace(replaceOptions),
 
-    // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
+    // copy is needed for vite to work in svelte:dev (especially under "tauri:dev")
     // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
     viteStaticCopy({
       targets: assets

@@ -161,13 +161,13 @@ To deploy the app, need to install an [adapter](https://kit.svelte.dev/docs/adap
 To run desktop app (using Tauri)
 
 ```bash
-pnpm run dev
+pnpm run tauri:dev
 ```
 
 To create desktop executable:
 
 ```bash
-pnpm run build
+pnpm run tauri:build
 ```
 
 ## Mobile App
