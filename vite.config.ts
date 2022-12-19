@@ -14,6 +14,21 @@ export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const { pwaConfiguration, replaceOptions } = await pwaConfigurationFnc(env);
 
+  const plugins = [
+    // basicSsl(),
+    sveltekit(),
+    SvelteKitPWA(pwaConfiguration),
+    replace(replaceOptions),
+
+    // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
+    // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
+    viteStaticCopy({
+      targets: assets
+    })
+  ];
+  // Playwright does not handle https, see https://github.com/microsoft/playwright/issues/16460
+  if (!process.env.PLAYWRIGHT_TEST) plugins.unshift(basicSsl());
+
   const config: UserConfig = {
     logLevel: 'info',
     build: {
@@ -24,18 +39,10 @@ export default defineConfig(async ({ mode }) => {
       __RELOAD_SW__: JSON.stringify(false),
       __UPDATE_CHECK_PERIOD_MS__: JSON.stringify(20000) // in milli-seconds, 20s for testing purposes
     },
-    plugins: [
-      basicSsl(),
-      sveltekit(),
-      SvelteKitPWA(pwaConfiguration),
-      replace(replaceOptions),
-
-      // copy is needed for vite to work in svelte:dev (especially under "tauri dev")
-      // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
-      viteStaticCopy({
-        targets: assets
-      })
-    ],
+    preview: {
+      https: !process.env.PLAYWRIGHT_TEST
+    },
+    plugins,
     test: {
       include: ['src/**/*.{test,spec}.{js,ts}']
     }
