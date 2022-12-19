@@ -2,7 +2,7 @@
 
 ## Plan
 
-1. Organize TypeScript types - Image, qrscanner/settings, etc.
+1. Organize TypeScript types - qrscanner/settings, etc.
 2. Organize app common stuff: settings manager (localStorage/cookis/server), toast interface, layout API - show/hide footer, global drawer(?)
 3. UI framework branches - port from 2022-0525
 4. Auth?
