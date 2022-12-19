@@ -50,7 +50,7 @@
   let camQrResultMsg = '';
   let camQrResultNew = false;
   let camQrResultNewTimer: ReturnType<typeof setTimeout> | null;
-  let camQrResultTimestampMsg = '';
+  let camQrResultTimestamp: Date | null;
 
   function getDefaultSettings() {
     return {
@@ -84,8 +84,8 @@
     setStoredSettings(settings);
   }
 
-  function setResultEx(timestamp: string, value: string, newResult: boolean) {
-    camQrResultTimestampMsg = timestamp;
+  function setResultEx(timestamp: Date, value: string, newResult: boolean) {
+    camQrResultTimestamp = timestamp;
     camQrResultMsg = value;
     camQrResultNew = newResult;
   }
@@ -103,8 +103,9 @@
     result: QrScanner.ScanResult | undefined,
     error: string | Error | undefined = undefined
   ) {
-    const timestamp = new Date().toString();
+    const timestamp = new Date();
     if (error) {
+      scanResult = undefined;
       if (!camQrResultNew && camQrResultMsg !== error.toString()) {
         setResultEx(timestamp, error.toString(), false);
       }
@@ -112,7 +113,7 @@
       console.log('QR Scanner: ', result.data, timestamp);
       scanResult = result.data;
       if (camQrResultMsg === result.data) {
-        camQrResultTimestampMsg = timestamp;
+        camQrResultTimestamp = timestamp;
       } else {
         clearTimer(false);
         setResultEx(timestamp, result.data, true);
@@ -302,7 +303,7 @@
 
       <div class="demo">
         <label>
-          Highlight Style
+          <span class="label">Highlight Style:</span>
           <select
             id="scan-region-highlight-style-select"
             bind:value={settings.scannerStyle}
@@ -316,31 +317,53 @@
       </div>
 
       <div class="demo">
-        <select id="inversion-mode-select" bind:value={settings.scanMode} on:change={onModeSelect}>
-          {#each scanModes as mode}
-            <option value={mode.value}>{mode.name}</option>
-          {/each}
-        </select>
+        <label>
+          <span class="label">Decoding Mode:</span>
+          <select
+            id="inversion-mode-select"
+            bind:value={settings.scanMode}
+            on:change={onModeSelect}
+          >
+            {#each scanModes as mode}
+              <option value={mode.value}>{mode.name}</option>
+            {/each}
+          </select>
+        </label>
       </div>
 
       <div class="demo">
-        <span><b>Device has camera:</b> {haveCamera ? 'Has Camera' : 'Camera not found'}</span>
-        <b>Preferred camera:</b>
-        <select id="cam-list" bind:value={selectCamera} on:change={onCamSelect}>
-          {#each camList as camera}
-            <option value={camera.value}>{camera.name}</option>
-          {/each}
-        </select>
+        <span class="label">Device has camera:</span>
+        <span>{haveCamera ? 'Yes' : 'Camera not found'}</span>
+      </div>
+      <div class="demo">
+        <label>
+          <span class="label">Preferred camera:</span>
+          <select id="cam-list" bind:value={selectCamera} on:change={onCamSelect}>
+            {#each camList as camera}
+              <option value={camera.value}>{camera.name}</option>
+            {/each}
+          </select>
+        </label>
+      </div>
+      <div class="demo">
+        <span class="label">Device has flash:</span>
+        <span>{haveFlash ? 'Yes' : settings.fakeFlash ? 'fakeFlash' : 'Flash not found'}</span>
       </div>
 
       <div class="demo">
-        <b>Detected QR code: </b>
+        <span class="label">Detected QR code:</span>
+        <br />
+        <span id="cam-qr-result-raw">
+          {scanResult ?? ''}
+        </span>
+        <br />
         <span id="cam-qr-result" class:new={camQrResultNew}>
           {camQrResultMsg}
         </span>
         <br />
-        <b>Last detected at: </b>
-        <span id="cam-qr-result-timestamp">{camQrResultTimestampMsg}</span>
+        <span class="label">When:</span>
+        <br />
+        <span id="cam-qr-result-timestamp">{(camQrResultTimestamp ?? '').toString()}</span>
       </div>
 
       <div class="demo">
@@ -351,7 +374,7 @@
             bind:checked={settings.doAutoStart}
             on:change={onSettingsChange}
           />
-          AutoStart
+          <span class="label">AutoStart</span>
         </label>
 
         <label>
@@ -361,7 +384,7 @@
             bind:checked={settings.doAutoStop}
             on:change={onSettingsChange}
           />
-          AutoStop
+          <span class="label">AutoStop</span>
         </label>
       </div>
 
@@ -372,7 +395,7 @@
             type="checkbox"
             on:change={(e) => onRegionSelect(e.currentTarget)}
           />
-          Show scan region canvas
+          <span class="label">Show scan region image</span>
         </label>
       </div>
     </Drawer>
@@ -441,7 +464,6 @@
             <button on:click={onStartClick}>Scan</button>
           </div>
         </div>
-        <!-- <div><p>{scanResult}</p></div> -->
       {/if}
     {:else}
       <div>Loading...</div>
@@ -549,24 +571,12 @@
     stroke-dasharray: none !important;
     stroke: rgba(255, 255, 255, 0.5) !important; // Light theme
   }
-  :global(:root[color-scheme='dark']) {
-    // Dark Theme
-    :global(#video-container.example-style-2 .scan-region-highlight) {
-      outline: rgba(0, 0, 0, 0.5) solid 50vmax;
-    }
-    :global(#video-container.example-style-2 .code-outline-highlight) {
-      stroke: rgba(0, 0, 0, 0.5) !important;
-    }
-    #middle div.middle-space .qr-result.new {
-      color: #a0a0ff;
-    }
-  }
 
   #cam-qr-result {
     color: var(--color-text);
   }
   #cam-qr-result.new {
-    color: blue;
+    color: blue; // Light theme
   }
 
   div.demo {
@@ -598,6 +608,16 @@
   }
   :global(:root[color-scheme='dark']) {
     // Dark Theme
+    :global(#video-container.example-style-2 .scan-region-highlight) {
+      outline: rgba(0, 0, 0, 0.5) solid 50vmax;
+    }
+    :global(#video-container.example-style-2 .code-outline-highlight) {
+      stroke: rgba(0, 0, 0, 0.5) !important;
+    }
+    #middle div.middle-space .qr-result.new,
+    #cam-qr-result.new {
+      color: #a0a0ff;
+    }
     :global(.app .drawerContainer .drawer .overlay) {
       background: rgba(0, 0, 0, 0.5);
     }
