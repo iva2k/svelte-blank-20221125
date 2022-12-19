@@ -9,7 +9,7 @@
   import Drawer from '$lib/components/drawer/Drawer.svelte';
   let drawerOpen = false;
 
-  import { GEARS_ENTITY, CAMERA_FLASH_ENTITY } from '$lib/constants/entities';
+  import { GEARS_ENTITY, CAMERA_FLASH_ENTITY, SUN_ENTITY } from '$lib/constants/entities';
   import SEO from '$lib/components/seo/SEO.svelte';
   const pageTitle = 'QR Scanner';
   const pageCaption = 'QR Scanner page';
@@ -56,6 +56,7 @@
     return {
       doAutoStart: true,
       doAutoStop: true,
+      fakeFlash: false,
       scannerStyle: scannerStyles[2].className,
       scanMode: scanModes[0].value // QrScanner.InversionMode
     };
@@ -246,15 +247,20 @@
   }
 
   function getFlashState() {
+    // if (!settings.fakeFlash || haveFlash) {
     isFlashOn = !!scanner?.isFlashOn();
+    // }
   }
   function onFlash(enable: boolean | undefined = undefined) {
+    if (settings.fakeFlash && !haveFlash) {
+      isFlashOn = !isFlashOn;
+      return;
+    }
     const fnc =
-      enable === undefined
-        ? scanner?.toggleFlash
-        : enable
-        ? scanner?.turnFlashOn
-        : scanner?.turnFlashOff;
+      /* prettier-ignore */
+      enable === undefined ? scanner?.toggleFlash :
+      enable ? scanner?.turnFlashOn :
+      scanner?.turnFlashOff;
     if (fnc) fnc().then(getFlashState);
   }
 
@@ -392,9 +398,15 @@
 <div id="middle">
   <div class="toolbar-left">
     {#if scanActive}
-      <button disabled={!haveFlash} on:click={() => onFlash()}>
-        {CAMERA_FLASH_ENTITY}
-      </button>
+      <div>
+        <button disabled={!haveFlash && !settings.fakeFlash} on:click={() => onFlash()}>
+          {#if isFlashOn}
+            {SUN_ENTITY}
+          {:else}
+            {CAMERA_FLASH_ENTITY}
+          {/if}
+        </button>
+      </div>
     {/if}
   </div>
 
