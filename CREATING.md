@@ -68,7 +68,7 @@ Add plugin to vite.config.ts (see source).
 Run the server with a self-signed cert:
 
 ```bash
-pnpm run svelte:dev --host --https
+pnpm run dev:https --host
 ```
 
 ### Add Tooling
@@ -89,8 +89,8 @@ const config = {
     ...
 +    vite: () => ({
 +      plugins: [
-+        // copy is needed for vite to work in svelte:dev (especially under "tauri:dev")
-+        // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for svelte:dev to work correctly.
++        // copy is needed for vite to work in dev (especially under "tauri:dev")
++        // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for dev to work correctly.
 +        viteStaticCopy({
 +          targets: assets,
 +          verbose: true
@@ -384,9 +384,8 @@ Add scripts to package.json:
    {
      scripts {
 -      "dev": "vite dev",
--      "build": "vite build",
-+      "svelte:dev": "vite dev --port 3000",
-+      "build": "vite build",
++      "dev": "vite dev --port 3000",
+       "build": "vite build",
 +      "tauri:dev": "tauri dev",
 +      "tauri:build": "tauri build",
 +      "tauri": "tauri",
@@ -400,7 +399,7 @@ pnpm run tauri init
 # What should the window title be? - svelte-blank-20221125
 # Where are your web assets (HTML/CSS/JS) located, relative to the "<current dir>/src-tauri/tauri.conf.json" file that will be created? - ../build
 # What is the url of your dev server? - http://localhost:3000
-# What is your frontend dev command? - pnpm run svelte:dev
+# What is your frontend dev command? - pnpm run dev
 # What is your frontend build command? - pnpm run build
 ```
 

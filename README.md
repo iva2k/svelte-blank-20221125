@@ -85,7 +85,7 @@ git clone https://github.com/iva2k/svelte-blank-20221125.git my-new-total-app
 cd my-new-total-app
 pnpm install
 cp .env.EXAMPLE .env
-pnpm run svelte:dev -- --open
+pnpm run dev -- --open
 ```
 
 ... or do the steps in [Start Your App](#start-your-app)
@@ -138,10 +138,10 @@ pnpm install # or npm install
 ### Start development server
 
 ```bash
-pnpm run svelte:dev
+pnpm run dev
 
 # or start the development server and open the app in a new browser tab
-pnpm run svelte:dev -- --open
+pnpm run dev -- --open
 ```
 
 ## Building

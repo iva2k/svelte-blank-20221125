@@ -12,7 +12,7 @@
       "type": "shell",
       "isBackground": true,
       "command": "pnpm",
-      "args": ["svelte:dev"],
+      "args": ["dev"],
       "group": "none",
       "detail": "svelte dev",
       "presentation": {
