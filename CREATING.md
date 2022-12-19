@@ -38,6 +38,10 @@ This application is built like a typical Node.js application. However, instead o
 
 > **Note:** You may use `yarn` or `npm`, but only a `pnpm` lockfile is included.
 
+### Developing in TypeScript
+
+Good collection of helpful tips: <https://github.com/ivanhofer/sveltekit-typescript-showcase>
+
 ### Start development server
 
 ```bash

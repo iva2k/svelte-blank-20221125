@@ -2,10 +2,12 @@
 
 ## Plan
 
-1. UI framework branches - port from 2022-0525
-2. Auth?
-3. Backend Server (non-SvelteKit)?
-4. Push Notifications?
+1. Organize TypeScript types - Image, qrscanner/settings, etc.
+2. Organize app common stuff: settings manager (localStorage/cookis/server), toast interface, layout API - show/hide footer, global drawer(?)
+3. UI framework branches - port from 2022-0525
+4. Auth?
+5. Backend Server (non-SvelteKit)?
+6. Push Notifications?
 
 ## Ideas
 
