@@ -14,6 +14,13 @@ declare const __UPDATE_CHECK_PERIOD_MS__: string;
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 // and what to do when importing types
+
+// `import` will change this file from ambient to module.
+// One way to overcome that is:
+// import { User } from '$lib/types';
+// declare global {
+//   namespace App { ...
+
 declare namespace App {
   // interface Error {}
   interface Locals {
