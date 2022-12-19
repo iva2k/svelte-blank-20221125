@@ -450,8 +450,7 @@
     height: 100vh !important;
   }
 
-  #footer {
-  }
+  // #footer {}
 
   #header {
     h1 {
@@ -597,15 +596,11 @@
   :global(.app .drawerContainer .drawer .panel) {
     z-index: 2000;
   }
-  :global(.app .drawerContainer .drawer) {
-    // display: none;
-  }
+  // :global(.app .drawerContainer .drawer) {}
   :global(.app .drawerContainer .drawer .overlay) {
     z-index: 100;
   }
-  :global(.app .drawerContainer.open .drawer) {
-    // display: block;
-  }
+  // :global(.app .drawerContainer.open .drawer) {}
 
   // #header,
   #footer,
