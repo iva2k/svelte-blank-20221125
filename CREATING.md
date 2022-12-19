@@ -47,10 +47,10 @@ And this article [Typing Components in Svelte](https://www.viget.com/articles/ty
 ### Start development server
 
 ```bash
-pnpm run svelte::dev
+pnpm run dev
 
 # or start the development server and open the app in a new browser tab
-pnpm run svelte::dev -- --open
+pnpm run dev -- --open
 ```
 
 ## Fix Issues That Might Come Up
