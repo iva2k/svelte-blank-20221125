@@ -42,6 +42,8 @@ This application is built like a typical Node.js application. However, instead o
 
 Good collection of helpful tips: <https://github.com/ivanhofer/sveltekit-typescript-showcase>
 
+And this article [Typing Components in Svelte](https://www.viget.com/articles/typing-components-in-svelte/) gives good overview on built-in tools for typing Svelte components.
+
 ### Start development server
 
 ```bash
