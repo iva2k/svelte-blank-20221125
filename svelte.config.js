@@ -41,6 +41,13 @@ const config = {
           fallback: 'index.html'
         }),
     // prerender: { entries: [] },
+
+    // Form submissions do not function in `vite preview` with https (due to cookie)
+    // @see https://github.com/sveltejs/kit/issues/7277
+    csrf: {
+      checkOrigin: !!process.env.VERCEL || !!process.env.NETLIFY
+    },
+
     alias: {
       // Place to add all aliases. Run 'svelte-kit sync' (or npm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
       // $components: resolve('./src/lib/components')
