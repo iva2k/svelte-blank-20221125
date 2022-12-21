@@ -1,6 +1,5 @@
 <script lang="ts">
   // For class ColorSchemeManager to resolve properties:
-  /// <reference no-default-lib="true"/>
   /// <reference lib="es2020" />
 
   import { browser } from '$app/environment';
