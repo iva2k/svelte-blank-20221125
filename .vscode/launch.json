@@ -60,6 +60,13 @@
       "name": "Launch Chrome against localhost:4173",
       "url": "http://localhost:4173",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against https://localhost:4173",
+      "url": "https://localhost:4173",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
