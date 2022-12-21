@@ -68,8 +68,12 @@
   function keydown(event: KeyboardEvent) {
     if (event.metaKey) return;
 
+    if (event.key === 'Backspace') {
+      event.preventDefault();
+    }
+
     document
-      .querySelector(`[data-key="${event.key}" i]`)
+      .querySelector(`[data-key="${event.key.toLowerCase()}" i]`)
       ?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
   }
 </script>
