@@ -16,18 +16,27 @@ declare const __UPDATE_CHECK_PERIOD_MS__: string;
 // and what to do when importing types
 
 // `import` will change this file from ambient to module.
-// One way to overcome that is:
 // import { User } from '$lib/types';
-// declare global {
-//   namespace App { ...
 
+// One way to overcome that is:
+// declare global {  namespace App {
 declare namespace App {
   // interface Error {}
   interface Locals {
-    userid: string;
+    // Another way is to use import() function:
+    //      user: import('$lib/types').User | null;
+    // userid: string;
     // buildDate: string;
     // periodicUpdates: boolean;
+
+    // user is populated from the session cookie
+    user: import('firebase-admin/auth').DecodedIdToken | null;
   }
-  // interface PageData {}
+  interface PageData {
+    // we're making user a property of session in case it needs to contain other things
+    // it would be possible, for instance, to have use preferences set even if not auth'd
+    session: import('$lib/types').Session;
+  }
   // interface Platform {}
 }
+// }

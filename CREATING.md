@@ -299,6 +299,27 @@ See the following tools for checking the structured data on your deployed websit
 TODO: (soon) Fix FB issue:
 Missing Properties | The following required properties are missing: fb:app_id
 
+### Add Store Services
+
+SvelteKit provides good server/client support for stores. They are easy to use, but have some mines to avoid (see <https://github.com/sveltejs/kit/discussions/4339>). Also it would be nice to have utility functions to avoid boilerplate code.
+
+#### Firebase
+
+```bash
+pnpm i -D @firebase/app-types firebase firebase-admin
+npm install -g firebase-tools
+firebase login
+firebase use --add [your firebase project name]
+firebase init emulators
+# Enable "Authentication Emulator"
+
+# ?
+# firebase serve --only hosting
+# firebase serve --only functions
+firebase emulators:start
+# i  emulators: Starting emulators: auth
+```
+
 ### Add Service Worker for Offline Operation
 
 Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.

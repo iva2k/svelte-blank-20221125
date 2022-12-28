@@ -1,10 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
+  const useLogin = true;
+
   import Favicon from '$lib/components/favicon/Favicon.svelte';
   import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
+  import Auth from '$lib/components/auth/Auth.svelte';
   import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
   import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
@@ -65,6 +68,9 @@
         </label>
       </svelte:fragment>
     </DarkMode>
+    {#if useLogin}
+      <Auth />
+    {/if}
   </Header>
 
   <main>

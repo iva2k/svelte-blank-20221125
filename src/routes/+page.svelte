@@ -13,6 +13,7 @@
     altDescription
   } from '$lib/assets/home/index';
 
+  import { session } from '$lib/session';
   import Counter from '$lib/components/counter/Counter.svelte';
   import welcome from '$lib/images/svelte-welcome.webp';
   import welcome_fallback from '$lib/images/svelte-welcome.png';
@@ -108,6 +109,9 @@
   </h2>
 
   <Counter />
+
+  <h2>Session</h2>
+  <pre>{JSON.stringify($session, null, 2)}</pre>
 </section>
 
 <style>
@@ -121,6 +125,10 @@
 
   h1 {
     width: 100%;
+  }
+
+  pre {
+    font-size: 12px;
   }
 
   .welcome {

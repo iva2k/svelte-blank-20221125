@@ -12,7 +12,17 @@ const websiteFnc = (
   /** @type {Record<string, string>} */
   env
 ) => {
-  const { PUBLIC_SITE_URL, VERCEL, NETLIFY } = env ?? {};
+  const {
+    PUBLIC_SITE_URL,
+    VERCEL,
+    NETLIFY,
+    PUBLIC_FIREBASE_API_KEY,
+    PUBLIC_FIREBASE_AUTH_DOMAIN,
+    PUBLIC_FIREBASE_PROJECT_ID,
+    PUBLIC_FIREBASE_STORAGE_BUCKET,
+    PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
+    PUBLIC_FIREBASE_APP_ID
+  } = env ?? {};
 
   const entity = 'IVA2K';
   const author = 'iva2k';
@@ -42,6 +52,13 @@ const websiteFnc = (
     siteUrl: PUBLIC_SITE_URL,
     isNetlify: NETLIFY,
     isVercel: VERCEL,
+
+    PUBLIC_FIREBASE_API_KEY,
+    PUBLIC_FIREBASE_AUTH_DOMAIN,
+    PUBLIC_FIREBASE_PROJECT_ID,
+    PUBLIC_FIREBASE_STORAGE_BUCKET,
+    PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
+    PUBLIC_FIREBASE_APP_ID,
 
     entity,
     author,
