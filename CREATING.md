@@ -107,7 +107,7 @@ See <https://github.com/sveltejs/kit/issues/8081>.
 
 Build fails with ENAMETOOLONG in vite prerender. Root cause is if env.private is large (e.g. due to a bunch of "npm\_\*" variables added by pnpm or vite, e.g. contains a bunch of npm_package_devDependencies and other internal npm stuff), it is passed to fork(script, ...) as args, and it cannot handle such a large environment (more than 32kB size).
 
-See "patches/@sveltejs__kit@1.0.0-next.571.patch"
+See the patch of process.env in vite.config.ts
 
 ### Issue with imports linting
 

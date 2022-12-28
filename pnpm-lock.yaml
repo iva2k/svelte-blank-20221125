@@ -1,15 +1,12 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
-  '@vite-pwa/sveltekit@0.0.1':
-    hash: gdmfegqkspf4w5is45x6bpzkbq
-    path: patches/@vite-pwa__sveltekit@0.0.1.patch
   eslint-plugin-svelte3@4.0.0:
     hash: m6aufyxiy3by2n44zjagp5bamm
     path: patches/eslint-plugin-svelte3@4.0.0.patch
-  '@sveltejs/kit@1.0.0-next.577':
-    hash: 674vn6qiytaegyxtjndgt3b32m
-    path: patches/@sveltejs__kit@1.0.0-next.572.patch
+  '@vite-pwa/sveltekit@0.0.1':
+    hash: gdmfegqkspf4w5is45x6bpzkbq
+    path: patches/@vite-pwa__sveltekit@0.0.1.patch
 
 specifiers:
   '@babel/core': ^7.20.2
@@ -175,7 +172,7 @@ devDependencies:
   '@sveltejs/adapter-netlify': 1.0.0-next.84
   '@sveltejs/adapter-static': 1.0.0-next.48
   '@sveltejs/adapter-vercel': 1.0.0-next.84
-  '@sveltejs/kit': 1.0.0-next.577_674vn6qiytaegyxtjndgt3b32m_svelte@3.54.0+vite@3.2.5
+  '@sveltejs/kit': 1.0.0-next.577_svelte@3.54.0+vite@3.2.5
   '@tauri-apps/api': 1.2.0
   '@tauri-apps/cli': 1.2.2
   '@types/cookie': 0.5.1
@@ -4122,7 +4119,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0-next.587
     dependencies:
-      '@sveltejs/kit': 1.0.0-next.577_674vn6qiytaegyxtjndgt3b32m_svelte@3.54.0+vite@3.2.5
+      '@sveltejs/kit': 1.0.0-next.577_svelte@3.54.0+vite@3.2.5
       import-meta-resolve: 2.2.0
     dev: true
 
@@ -4148,7 +4145,7 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.577_674vn6qiytaegyxtjndgt3b32m_svelte@3.54.0+vite@3.2.5:
+  /@sveltejs/kit/1.0.0-next.577_svelte@3.54.0+vite@3.2.5:
     resolution: {integrity: sha512-hQuSGiF87pNNdmIMDwOr8+nMOe/tgtOne4VBpCFb4k0YrFh/5qC/pgWvWXFWeJBRi9/UzmEjGH9gJeJkgtMLmw==}
     engines: {node: '>=16.14'}
     hasBin: true
@@ -4174,7 +4171,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-    patched: true
 
   /@sveltejs/vite-plugin-svelte/1.4.0_svelte@3.54.0+vite@3.2.5:
     resolution: {integrity: sha512-6QupI/jemMfK+yI2pMtJcu5iO2gtgTfcBdGwMZZt+lgbFELhszbDl6Qjh000HgAV8+XUA+8EY8DusOFk8WhOIg==}

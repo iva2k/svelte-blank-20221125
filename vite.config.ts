@@ -10,6 +10,15 @@ import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import { pwaConfigurationFnc } from './pwa-configuration.js';
 import assets from './assets.js';
 
+// [iva2k] pnpm adds a ton of environmental variables "npm_..." and fork() in @sveltejs/kit chokes with "spawn ENAMETOOLONG" error.
+// @see https://github.com/sveltejs/kit/issues/8081
+// Removing all "npm_*" variables solves the issue:
+// const pre_env = process.env;
+process.env = Object.fromEntries(
+  Object.entries(process.env).filter((x) => !x[0].startsWith('npm_'))
+);
+// console.log('DEBUG [spawn ENAMETOOLONG error] len(process.env)=%o, len(filtered)=%o, filtered=%o', JSON.stringify({ ...pre_env }).length, JSON.stringify({ ...process.env }).length, JSON.stringify({ ...process.env }));
+
 export default defineConfig(async ({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const { pwaConfiguration, replaceOptions } = await pwaConfigurationFnc(env);
