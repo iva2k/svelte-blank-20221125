@@ -2,13 +2,13 @@
 import netlify from '@sveltejs/adapter-netlify';
 import vercel from '@sveltejs/adapter-vercel';
 import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  preprocess: preprocess({
+  preprocess: vitePreprocess({
     preserve: ['ld+json'], // For SEO header meta tags
     postcss: true,
     scss: { includePaths: ['src', 'node_modules'] }

@@ -55,13 +55,7 @@
       <svelte:fragment let:data>
         <label>
           {isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
-          <input
-            id="cb1"
-            type="checkbox"
-            label={isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
-            checked={isDarkMode}
-            on:change={data.onToggle}
-          />
+          <input id="cb1" type="checkbox" checked={isDarkMode} on:change={data.onToggle} />
         </label>
       </svelte:fragment>
     </DarkMode>

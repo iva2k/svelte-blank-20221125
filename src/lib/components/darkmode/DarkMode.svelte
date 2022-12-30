@@ -118,13 +118,7 @@
     <!-- <Input id="c2" type="switch" label={isDarkMode ? '🔆' : '🌙'} checked={isDarkMode} on:change={onToggleDarkMode} /> -->
     <label>
       {isDarkMode ? '🔆' : '🌙'}
-      <input
-        id="c3"
-        type="checkbox"
-        label={isDarkMode ? '🔆' : '🌙'}
-        checked={isDarkMode}
-        on:change={onToggleDarkMode}
-      />
+      <input id="c3" type="checkbox" checked={isDarkMode} on:change={onToggleDarkMode} />
     </label>
   </slot>
 {/if}

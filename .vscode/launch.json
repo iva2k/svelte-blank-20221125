@@ -5,6 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "command": "pnpm storybook",
+      "name": "Run pnpm storybook",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm storybook:build",
+      "name": "Run pnpm storybook:build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "command": "pnpm test",
       "name": "Run pnpm test",
       "request": "launch",

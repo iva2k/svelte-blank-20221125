@@ -2,19 +2,15 @@
 
 ## Plan
 
-1. Organize TypeScript types - qrscanner/settings, etc.
-2. Organize app common stuff: settings manager (localStorage/cookis/server), toast interface, layout API - show/hide footer, global drawer(?)
-3. UI framework branches - port from 2022-0525
-4. Auth?
-5. Backend Server (non-SvelteKit)?
-6. Push Notifications?
-7. Explore turborepo <https://www.npmjs.com/package/turbo>
+1. UI framework branches - port from 2022-0525
+2. Organize app common stuff: settings manager (localStorage/cookie/session/db), toast interface, layout API - show/hide footer, global drawer(?)
+3. Auth?
+4. Backend Server (non-SvelteKit)?
+5. Push Notifications?
+6. Explore turborepo <https://www.npmjs.com/package/turbo>
+7. Explore Histoire <https://histoire.dev/guide/svelte3/getting-started.html> instead of Storybook
 
 ## Package Updates
-
-1. @sveltejs/kit 1.0.1 (first update to @sveltejs/kit@1.0.0-next.588)
-2. @storybook/svelte 6.5.x -> @storybook/sveltekit 7.0.0 <https://www.npmjs.com/package/@storybook/sveltekit>
-3. Migrate to Histoire? <https://histoire.dev/guide/svelte3/getting-started.html>
 
 ## Ideas
 

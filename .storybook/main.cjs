@@ -35,16 +35,15 @@ module.exports = {
     '@storybook/addon-a11y',
     'storybook-addon-themes'
   ],
-  framework: '@storybook/svelte',
+  framework: '@storybook/sveltekit',
   core: {
-    builder: '@storybook/builder-vite',
     disableTelemetry: true
-  },
-  svelteOptions: {
-    preprocess: preprocess()
   },
   features: {
     // storyStoreV7: false // Disable on-demand stories loading. Not loading any stories in storybook v6.5.3. Still broken in 6.5.13.
     storyStoreV7: true // Enable on-demand stories loading. Not loading .stories.svelte in storybook v6.5.3
+  },
+  docs: {
+    autodocs: true
   }
 };
