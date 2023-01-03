@@ -40,7 +40,7 @@ Is it Native? - No. It uses JavaScript / TypeScript and modern tooling to create
 
 Out of the box features:
 
-- SEO and integration with Social Networks (coming next)
+- SEO and integration with Social Networks
 - Offline mode / can work without Internet connection (after the user visits the app when connected, the app's service worker caches all files for offline operation).
 - Support native features (camera, GPS, etc.) - Capacitor included. Check Geolocation and QR Scanner tabs.
 - Support deep links, in online and in offline modes.
@@ -154,7 +154,7 @@ pnpm run build
 
 To preview the production build of the web app, execute `pnpm run preview`.
 
-To deploy the app, need to install an [adapter](https://kit.svelte.dev/docs/adapters) for the target environment.
+To deploy the app, need to install an [adapter](https://kit.svelte.dev/docs/adapters) for the target environment. Netlify and Vercel adapters are already installed and automatically selected when deploying to these providers.
 
 ## Desktop App
 
@@ -193,7 +193,7 @@ See [CREATING](./CREATING.md) for step-by-step instructions.
 
 ## Styling / UI Components
 
-This template has DarkMode component in the header to allow switching the color scheme between 'light' and 'dark'. It has no effect until there's a theme added that supports `<html color-scheme>`.
+This template has DarkMode component in the header to allow switching the color scheme between 'light' and 'dark'. It changes the theme using `<html color-scheme>` (see src/routes/styles.css).
 
 There are many UI frameworks that work with Svelte / SvelteKit, and choice can be daunting.
 
