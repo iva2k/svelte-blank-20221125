@@ -67,6 +67,7 @@ specifiers:
   '@vitest/coverage-c8': ^0.25.3
   autoprefixer: ^10.4.13
   babel-loader: ^8.3.0
+  bulma: ^0.9.4
   chromatic: ^6.11.4
   cpy: ^9.0.1
   cross-env: ^7.0.3
@@ -128,6 +129,7 @@ dependencies:
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
   '@ionic/pwa-elements': 3.1.1
+  bulma: 0.9.4
   qr-scanner: 1.4.2
 
 devDependencies:
@@ -2497,7 +2499,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.17
       '@storybook/csf-tools': 7.0.0-beta.17
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/postinstall': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -2867,7 +2869,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.17
       '@storybook/core-common': 7.0.0-beta.17
       '@storybook/csf-plugin': 7.0.0-beta.17
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/preview': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -3368,8 +3370,8 @@ packages:
     resolution: {integrity: sha512-fq0Vnfiz3Tkp1SItUxbZBJmNDdwl+yiLR5+Vs2ZhMCEQ/EFklcVmQF8MRizYBGaWuX5Pi01UTKF6k3mF3+L8dA==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.3:
-    resolution: {integrity: sha512-obodj5cDa943eAPNmawzwviiaheWLvI39/o36O+fwkW8jxxXgyEMgad0mLTiwKjlvitLVoHa4Znm5aIN6TW08A==}
+  /@storybook/mdx2-csf/1.0.0-next.4:
+    resolution: {integrity: sha512-nvRgYdpYvXsvSgCzKc4LQA1JxtJzmv47IsFAsh1rTz5FoHyK8watLU2WqX9T4w52fpFXBHx7RwGEsCRt0XgZlQ==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.17:
@@ -5282,6 +5284,10 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
     dev: true
+
+  /bulma/0.9.4:
+    resolution: {integrity: sha512-86FlT5+1GrsgKbPLRRY7cGDg8fsJiP/jzTqXXVqiUZZ2aZT8uemEOHlU1CDU+TxklPEZ11HZNNWclRBBecP4CQ==}
+    dev: false
 
   /busboy/1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}

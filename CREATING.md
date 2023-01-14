@@ -1231,3 +1231,17 @@ Run Lighthouse and other web tests at <https://www.webpagetest.org>
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewport The viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
+
+### Add UI : Bulma
+
+[Bulma](https://bulma.io/)
+
+```bash
+pnpm install bulma
+```
+
+Note: This implementation is not using [svelma](https://github.com/c0bra/svelma), which adds component wrappers over regular HTML elements. Bulma styles basic HTML directly without any help.
+
+Insert code that loads the framework into `src/routes/+layout.svelte` (see source).
+
+Add example page `src/routes/bulma/+page.svelte` (see code).
