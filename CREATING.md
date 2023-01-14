@@ -1231,3 +1231,23 @@ Run Lighthouse and other web tests at <https://www.webpagetest.org>
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewport The viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
+
+### Add UI : Bootstrap / Sveltestrap
+
+[Sveltestrap](https://sveltestrap.js.org/?path=/story/components--get-started)
+
+[Bootswatch](https://github.com/thomaspark/bootswatch)
+
+```bash
+pnpm install sveltestrap bootswatch bootstrap-icons
+```
+
+Note: When using SSR, import the components from sveltestrap/src:
+
+```js
+import { Card } from 'sveltestrap/src';
+```
+
+Insert code that loads the framework and adds dark theme toggle into `src/routes/+layout.svelte` (see source).
+
+Add example page `src/routes/bootstrap/+page.svelte` (see code).

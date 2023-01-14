@@ -67,6 +67,8 @@ specifiers:
   '@vitest/coverage-c8': ^0.25.3
   autoprefixer: ^10.4.13
   babel-loader: ^8.3.0
+  bootstrap-icons: ^1.10.3
+  bootswatch: ^5.2.3
   chromatic: ^6.11.4
   cpy: ^9.0.1
   cross-env: ^7.0.3
@@ -102,6 +104,7 @@ specifiers:
   stylelint-config-standard: ^29.0.0
   svelte: ^3.55.0
   svelte-check: ^3.0.1
+  sveltestrap: ^5.10.0
   svgo: ^3.0.2
   ts-node: ^10.9.1
   tslib: ^2.4.1
@@ -128,7 +131,10 @@ dependencies:
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
   '@ionic/pwa-elements': 3.1.1
+  bootstrap-icons: 1.10.3
+  bootswatch: 5.2.3
   qr-scanner: 1.4.2
+  sveltestrap: 5.10.0_svelte@3.55.0
 
 devDependencies:
   '@babel/core': 7.20.7
@@ -2182,6 +2188,10 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
+
   /@rollup/plugin-babel/5.3.1_quedi3p7womesqmjrcxptomfpa:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
@@ -2497,7 +2507,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.17
       '@storybook/csf-tools': 7.0.0-beta.17
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/postinstall': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -2867,7 +2877,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.17
       '@storybook/core-common': 7.0.0-beta.17
       '@storybook/csf-plugin': 7.0.0-beta.17
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/preview': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -3368,8 +3378,8 @@ packages:
     resolution: {integrity: sha512-fq0Vnfiz3Tkp1SItUxbZBJmNDdwl+yiLR5+Vs2ZhMCEQ/EFklcVmQF8MRizYBGaWuX5Pi01UTKF6k3mF3+L8dA==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.3:
-    resolution: {integrity: sha512-obodj5cDa943eAPNmawzwviiaheWLvI39/o36O+fwkW8jxxXgyEMgad0mLTiwKjlvitLVoHa4Znm5aIN6TW08A==}
+  /@storybook/mdx2-csf/1.0.0-next.4:
+    resolution: {integrity: sha512-nvRgYdpYvXsvSgCzKc4LQA1JxtJzmv47IsFAsh1rTz5FoHyK8watLU2WqX9T4w52fpFXBHx7RwGEsCRt0XgZlQ==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.17:
@@ -5175,6 +5185,14 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
+
+  /bootstrap-icons/1.10.3:
+    resolution: {integrity: sha512-7Qvj0j0idEm/DdX9Q0CpxAnJYqBCFCiUI6qzSPYfERMcokVuV9Mdm/AJiVZI8+Gawe4h/l6zFcOzvV7oXCZArw==}
+    dev: false
+
+  /bootswatch/5.2.3:
+    resolution: {integrity: sha512-tvnW15WoOY2sEp1uT1ITDQiJy2TekQa+K+Q28WDXibleIxsY0nAoC9IylbnUPD7Q5vkCIclOuBHLVBblJYYPSA==}
+    dev: false
 
   /boxen/5.1.2:
     resolution: {integrity: sha512-9gYgQKXx+1nP8mP7CzFyaUARhg7D3n1dF/FnErWmu9l6JvGpNUN278h0aSb+QjoiKSWG+iZ3uHrcqk0qrY9RQQ==}
@@ -11278,7 +11296,6 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /sveltedoc-parser/4.2.1:
     resolution: {integrity: sha512-sWJRa4qOfRdSORSVw9GhfDEwsbsYsegnDzBevUCF6k/Eis/QqCu9lJ6I0+d/E2wOWCjOhlcJ3+jl/Iur+5mmCw==}
@@ -11290,6 +11307,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /sveltestrap/5.10.0_svelte@3.55.0:
+    resolution: {integrity: sha512-k6Ob+6G2AMYvBidXHBKM9W28fJqFHbmosqCe/NC8pv6TV7K+v47Yw+zmnLWkjqCzzmjkSLkL48SrHZrlWc9mYQ==}
+    peerDependencies:
+      svelte: ^3.29.0
+    dependencies:
+      '@popperjs/core': 2.11.6
+      svelte: 3.55.0
+    dev: false
 
   /svg-tags/1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
