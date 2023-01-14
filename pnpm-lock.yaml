@@ -65,6 +65,7 @@ specifiers:
   '@vite-pwa/sveltekit': ^0.1.0
   '@vitejs/plugin-basic-ssl': ^1.0.1
   '@vitest/coverage-c8': ^0.25.3
+  agnostic-svelte: ^1.1.27
   autoprefixer: ^10.4.13
   babel-loader: ^8.3.0
   chromatic: ^6.11.4
@@ -128,6 +129,7 @@ dependencies:
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
   '@ionic/pwa-elements': 3.1.1
+  agnostic-svelte: 1.1.27_svelte@3.55.0
   qr-scanner: 1.4.2
 
 devDependencies:
@@ -2497,7 +2499,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.17
       '@storybook/csf-tools': 7.0.0-beta.17
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/postinstall': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -2867,7 +2869,7 @@ packages:
       '@storybook/client-logger': 7.0.0-beta.17
       '@storybook/core-common': 7.0.0-beta.17
       '@storybook/csf-plugin': 7.0.0-beta.17
-      '@storybook/mdx2-csf': 1.0.0-next.3
+      '@storybook/mdx2-csf': 1.0.0-next.4
       '@storybook/node-logger': 7.0.0-beta.17
       '@storybook/preview': 7.0.0-beta.17
       '@storybook/preview-api': 7.0.0-beta.17
@@ -3368,8 +3370,8 @@ packages:
     resolution: {integrity: sha512-fq0Vnfiz3Tkp1SItUxbZBJmNDdwl+yiLR5+Vs2ZhMCEQ/EFklcVmQF8MRizYBGaWuX5Pi01UTKF6k3mF3+L8dA==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.3:
-    resolution: {integrity: sha512-obodj5cDa943eAPNmawzwviiaheWLvI39/o36O+fwkW8jxxXgyEMgad0mLTiwKjlvitLVoHa4Znm5aIN6TW08A==}
+  /@storybook/mdx2-csf/1.0.0-next.4:
+    resolution: {integrity: sha512-nvRgYdpYvXsvSgCzKc4LQA1JxtJzmv47IsFAsh1rTz5FoHyK8watLU2WqX9T4w52fpFXBHx7RwGEsCRt0XgZlQ==}
     dev: true
 
   /@storybook/node-logger/7.0.0-beta.17:
@@ -4661,6 +4663,12 @@ packages:
       tslib: 1.14.1
     dev: true
 
+  /a11y-dialog/7.5.2:
+    resolution: {integrity: sha512-zfWtVvrbGbP3AFnEJ1aJFtu7GvedgjOEKbkyEUSeaNWDzmFJk9O5nuolDQrRDyRDE5fqSJRiBJtD5bUYKveoUg==}
+    dependencies:
+      focusable-selectors: 0.4.0
+    dev: false
+
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
     dev: true
@@ -4734,6 +4742,19 @@ packages:
       clean-stack: 4.2.0
       indent-string: 5.0.0
     dev: true
+
+  /agnostic-helpers/1.0.2:
+    resolution: {integrity: sha512-BizdxC9SYdd0kgY/3lcDeeiSTs4BwUsa0oc5Nsaz5j397rZgC0vO1Tlvj5XOk/1pqTtnBi0ptu0/6CQvdwnsww==}
+    dev: false
+
+  /agnostic-svelte/1.1.27_svelte@3.55.0:
+    resolution: {integrity: sha512-wV0JbTr1Jbkh8/YRWVvWsQ2aFY+std/rG0avADm7romk1Zptdyh8j2+507PvQHKSl3lqsCeDx7yLFq5SWfANIw==}
+    dependencies:
+      agnostic-helpers: 1.0.2
+      svelte-a11y-dialog: 0.2.0_svelte@3.55.0
+    transitivePeerDependencies:
+      - svelte
+    dev: false
 
   /ajv-formats/2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
@@ -7096,6 +7117,10 @@ packages:
     resolution: {integrity: sha512-R8wj12eHW6og+IBWeRS6aihkdac1Prh4zw1bfxtt/aeu8r5OFmQEZjnmINcjO/5Q+OKvI4Eg367ygz2SHvtH+w==}
     engines: {node: '>=0.4.0'}
     dev: true
+
+  /focusable-selectors/0.4.0:
+    resolution: {integrity: sha512-tc/236hUU3xemsRLu1RKhRQ5UWHjRM9iJTli1zdac43h7b1biRSgG0mILM0qrcsKaGCHcOPJ6NKbk12ouKHLpw==}
+    dev: false
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -11188,6 +11213,15 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
+  /svelte-a11y-dialog/0.2.0_svelte@3.55.0:
+    resolution: {integrity: sha512-sVJ6SbLABFfbeNNcsFpHA7VY4S1MXC8rZ9AzNtOMWjxwiwTc0Xl3ZSUYbz7ixbxLr4tDDVoZmb7xQTzLbTyZag==}
+    peerDependencies:
+      svelte: ^3.44.0
+    dependencies:
+      a11y-dialog: 7.5.2
+      svelte: 3.55.0
+    dev: false
+
   /svelte-check/3.0.1_eplwgok3sbn2littykb7h32vty:
     resolution: {integrity: sha512-7YpHYWv6V2qhcvVeAlXixUPAlpLCXB1nZEQK0EItB3PtuYmENhKclbc5uKSJTodTwWR1y+4stKGcbH30k6A3Yw==}
     hasBin: true
@@ -11278,7 +11312,6 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /sveltedoc-parser/4.2.1:
     resolution: {integrity: sha512-sWJRa4qOfRdSORSVw9GhfDEwsbsYsegnDzBevUCF6k/Eis/QqCu9lJ6I0+d/E2wOWCjOhlcJ3+jl/Iur+5mmCw==}

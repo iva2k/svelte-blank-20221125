@@ -69,6 +69,7 @@
     "@capacitor/ios": "^4.5.0",
     "@fontsource/fira-mono": "^4.5.10",
     "@ionic/pwa-elements": "^3.1.1",
+    "agnostic-svelte": "^1.1.27",
     "qr-scanner": "^1.4.2"
   },
   "devDependencies": {
