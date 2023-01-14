@@ -5,7 +5,7 @@
   import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
-  import './styles.css';
+  // import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
   import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
 
@@ -28,6 +28,17 @@
   onMount(async () => {
     await loadIonicPWAElements(window);
   });
+
+  import 'carbon-components-svelte/css/all.css';
+  // import '../white-theme.css';
+
+  let theme = 'white';
+  // let theme = 'g10';
+  // let theme = 'g80';
+  // let theme = 'g90';
+  // let theme = 'g100';
+
+  $: if (typeof document !== 'undefined') document.documentElement.setAttribute('theme', theme);
 
   let isDarkMode: boolean;
 
@@ -75,7 +86,9 @@
   </footer>
 </div>
 
-<style>
+<style lang="scss">
+  // @include theme--white();
+
   .app {
     display: flex;
     flex-direction: column;

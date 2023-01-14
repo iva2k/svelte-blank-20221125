@@ -1231,3 +1231,21 @@ Run Lighthouse and other web tests at <https://www.webpagetest.org>
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewport The viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
+
+### Add UI : Carbon
+
+[Carbon for Svelte](https://carbon-components-svelte.onrender.com)
+
+```bash
+pnpm install -D carbon-components-svelte carbon-icons-svelte carbon-pictograms-svelte carbon-preprocess-svelte
+```
+
+Add optimizeImports preprocessor from carbon-preprocess-svelte to `svelte.config.js` (see source in repo).
+
+To get started on custom themes, see <https://github.com/carbon-design-system/carbon-components-svelte/issues/713>.
+
+For dynamic theme with SSR, see <https://github.com/carbon-design-system/carbon-components-svelte/issues/651>.
+
+Insert code that loads the framework and adds dark theme toggle into `src/routes/+layout.svelte` (see source in repo).
+
+Add example page `src/routes/carbon/index.svelte` (see code in repo).
