@@ -6,7 +6,7 @@ module.exports = {
   ],
   pluginSearchDirs: ["."],
   printWidth: 100,
-  singleQuote true,
+  singleQuote: true,
   tabWidth: 2,
   trailingComma: "none",
   useTabs: false,
