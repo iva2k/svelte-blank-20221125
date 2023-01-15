@@ -51,6 +51,6 @@
 
 <style>
   :global(.page) {
-    position: static !important; /* Framework7 (v7.1.0) does not show its content without this hack*/
+    position: static !important; /* Framework7 (v7.1.1) does not show its content without this hack*/
   }
 </style>
