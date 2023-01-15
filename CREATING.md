@@ -1231,3 +1231,15 @@ Run Lighthouse and other web tests at <https://www.webpagetest.org>
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewport The viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
+
+### Add UI : Framework7
+
+[Framework7 for Svelte](https://framework7.io/svelte/introduction.html)
+
+```bash
+pnpm install framework7 framework7-svelte
+```
+
+Insert code that loads the framework into `src/routes/__layout.svelte` (see source in repo).
+
+Add example page `src/routes/framework7/index.svelte` (see code in repo).

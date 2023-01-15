@@ -1,0 +1,26 @@
+diff --git a/components/view/view-class.js b/components/view/view-class.js
+index 3297499281d527da66e1afb561c33eda1c6bab47..a03a03609e57b71d8827d32c9380c32ccc9c04ba 100644
+--- a/components/view/view-class.js
++++ b/components/view/view-class.js
+@@ -94,7 +94,7 @@ class View extends Framework7Class {
+   destroy() {
+     let view = this;
+     const app = view.app;
+-    view.$el.trigger('view:beforedestroy');
++    if (view && view.$el) { view.$el.trigger('view:beforedestroy'); }
+     view.emit('local::beforeDestroy viewBeforeDestroy', view);
+     app.off('resize', view.checkMasterDetailBreakpoint);
+ 
+@@ -106,8 +106,10 @@ class View extends Framework7Class {
+       delete app.views[view.name];
+     }
+ 
+-    view.$el[0].f7View = null;
+-    delete view.$el[0].f7View;
++    if (view && view.$el) {
++      delete view.$el[0].f7View;
++      view.$el[0].f7View = null;
++    }
+     app.views.splice(app.views.indexOf(view), 1); // Destroy Router
+ 
+     if (view.params.router && view.router) {
