@@ -192,7 +192,8 @@
   "_id": "svelte-blank-20221125@0.0.1",
   "pnpm": {
     "patchedDependencies": {
-      "eslint-plugin-svelte3@4.0.0": "patches/eslint-plugin-svelte3@4.0.0.patch"
+      "eslint-plugin-svelte3@4.0.0": "patches/eslint-plugin-svelte3@4.0.0.patch",
+      "@shoelace-style/shoelace@2.0.0-beta.88": "patches/@shoelace-style__shoelace@2.0.0-beta.88.patch"
     }
   }
 }

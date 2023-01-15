@@ -1,6 +1,9 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
+  '@shoelace-style/shoelace@2.0.0-beta.88':
+    hash: wo5pkno6zulqgoepnzngz6jiai
+    path: patches/@shoelace-style__shoelace@2.0.0-beta.88.patch
   eslint-plugin-svelte3@4.0.0:
     hash: m6aufyxiy3by2n44zjagp5bamm
     path: patches/eslint-plugin-svelte3@4.0.0.patch
@@ -129,7 +132,7 @@ dependencies:
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
   '@ionic/pwa-elements': 3.1.1
-  '@shoelace-style/shoelace': 2.0.0-beta.88
+  '@shoelace-style/shoelace': 2.0.0-beta.88_wo5pkno6zulqgoepnzngz6jiai
   qr-scanner: 1.4.2
 
 devDependencies:
@@ -2348,7 +2351,7 @@ packages:
     resolution: {integrity: sha512-HFY90KD+b1Td2otSBryCOpQjBEArIwlV6Tv4J4rC/E/D5wof2eLF6JUVrbiRNn8GRmwATe4YDAEK7NUD08xO1w==}
     dev: false
 
-  /@shoelace-style/shoelace/2.0.0-beta.88:
+  /@shoelace-style/shoelace/2.0.0-beta.88_wo5pkno6zulqgoepnzngz6jiai:
     resolution: {integrity: sha512-AoT3jtD7Gh5jgEtvbyqgOL+VDmxlcW0UYpKBZ0FzfF7bV38UeZqosnfeXZzQXaP/U/s4BpgkSS0+ZpPuepjDtw==}
     engines: {node: '>=14.17.0'}
     dependencies:
@@ -2360,6 +2363,7 @@ packages:
       lit: 2.6.1
       qr-creator: 1.0.0
     dev: false
+    patched: true
 
   /@sinclair/typebox/0.24.51:
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}
