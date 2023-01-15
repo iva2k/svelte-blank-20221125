@@ -13,6 +13,7 @@
     "assets.ts",
     "capacitor.config.ts",
     "playwright.config.ts",
+    "prettier.config.ts",
     "pwa-configuration.js",
     "svelte.config.js"
   ]

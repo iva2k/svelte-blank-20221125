@@ -1231,3 +1231,18 @@ Run Lighthouse and other web tests at <https://www.webpagetest.org>
 TODO: (now) Improve Lighthouse: Content is not sized correctly for the viewport The viewport size of 541px does not match the window size of 360px.
 If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
 <https://developer.chrome.com/docs/lighthouse/pwa/content-width/?utm_source=lighthouse&utm_medium=wpt>
+
+### Add UI : Tailwind CSS
+
+Tailwind CSS is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+
+It is a terrible idea for production websites and accessibility (see Jason Knight's [Tailwind: The New King](https://medium.com/codex/tailwind-the-new-king-6a9908097da8)), but developers love it for quick results. There are a number of UI frameworks on top of Tailwind CSS. For those that require it, we will add Tailwind CSS, and cross fingers hoping that it will only be used for development.
+
+See <https://tailwindcss.com/docs/guides/sveltekit>
+
+```bash
+pnpm install -D tailwindcss postcss autoprefixer prettier-plugin-tailwindcss
+pnpx tailwindcss init tailwind.config.cjs -p
+```
+
+Rename ".prettierrc" to "prettier.config.ts" and modify contents to employ `module.exports = {...};` symntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]`.
