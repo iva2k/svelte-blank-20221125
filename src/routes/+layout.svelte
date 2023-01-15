@@ -5,7 +5,11 @@
   import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
-  import './styles.css';
+  //import './styles.css';
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  import * as _ from '@shoelace-style/shoelace';
+  // import type { SlSwitch } from '@shoelace-style/shoelace';
+
   import { loadIonicPWAElements } from '$lib/utils.cjs';
   import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
 
@@ -45,7 +49,16 @@
     { sizes: '167x167', href: '/apple-icon-167x167.png', imgSize: 167 }, // For iPad
     { sizes: '180x180', href: '/apple-icon-180x180.png', imgSize: 180 } // For iPhone
   ];
+
+  /* for SlSwitch */
+  // const onChange = (e: Event) => {
+  //   dark = (e.target as SlSwitch).checked;
+  // };
 </script>
+
+<svelte:head>
+  <link rel="stylesheet" href="vendor/shoelace/themes/{isDarkMode ? 'dark' : 'light'}.css" />
+</svelte:head>
 
 <div class="app">
   <Favicon {pngFavicons} {svgFavicon} {icoFavicon} {touchFavicons} />
@@ -53,10 +66,9 @@
   <Header --corner-right-width="8em">
     <DarkMode bind:isDarkMode>
       <svelte:fragment let:data>
-        <label>
+        <sl-switch checked={isDarkMode} on:sl-change={data.onToggle}>
           {isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
-          <input id="cb1" type="checkbox" checked={isDarkMode} on:change={data.onToggle} />
-        </label>
+        </sl-switch>
       </svelte:fragment>
     </DarkMode>
   </Header>
