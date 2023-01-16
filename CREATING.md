@@ -1246,6 +1246,7 @@ pnpx tailwindcss init tailwind.config.cjs -p
 ```
 
 Rename ".prettierrc" to "prettier.config.ts" and modify contents to employ `module.exports = {...};` symntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]`.
+
 ### Add UI : Konsta
 
 Install Tailwind CSS (see [Add UI : Tailwind CSS](#add-ui--tailwind-css))
@@ -1253,4 +1254,3 @@ Install Tailwind CSS (see [Add UI : Tailwind CSS](#add-ui--tailwind-css))
 ```bash
 pnpm i konsta @fontsource/roboto
 ```
-
