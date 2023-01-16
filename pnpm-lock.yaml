@@ -13,6 +13,7 @@ specifiers:
   '@capacitor/geolocation': ^4.1.0
   '@capacitor/ios': ^4.5.0
   '@fontsource/fira-mono': ^4.5.10
+  '@fontsource/roboto': ^4.5.8
   '@ionic/pwa-elements': ^3.1.1
   '@mdx-js/react': ^2.1.5
   '@neoconfetti/svelte': ^1.0.0
@@ -77,6 +78,7 @@ specifiers:
   eslint-plugin-storybook: ^0.6.8
   eslint-plugin-svelte3: ^4.0.0
   glob: ^8.0.3
+  konsta: ^1.0.2
   minimist: ^1.2.7
   object-hash: ^3.0.0
   pnpm: ^7.4.1
@@ -129,7 +131,9 @@ dependencies:
   '@capacitor/geolocation': 4.1.0_@capacitor+core@4.6.1
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
+  '@fontsource/roboto': 4.5.8
   '@ionic/pwa-elements': 3.1.1
+  konsta: 1.0.2
   qr-scanner: 1.4.2
 
 devDependencies:
@@ -1846,6 +1850,10 @@ packages:
 
   /@fontsource/fira-mono/4.5.10:
     resolution: {integrity: sha512-bxUnRP8xptGRo8YXeY073DSpfK74XpSb0ZyRNpHV9WvLnJ7TwPOjZll8hTMin7zLC6iOp59pDZ8EQDj1gzgAQQ==}
+    dev: false
+
+  /@fontsource/roboto/4.5.8:
+    resolution: {integrity: sha512-CnD7zLItIzt86q4Sj3kZUiLcBk1dSk81qcqgMGaZe7SQ1P8hFNxhMl5AZthK1zrDM5m74VVhaOpuMGIL4gagaA==}
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -8541,6 +8549,11 @@ packages:
   /known-css-properties/0.26.0:
     resolution: {integrity: sha512-5FZRzrZzNTBruuurWpvZnvP9pum+fe0HcK8z/ooo+U+Hmp4vtbyp1/QDsqmufirXy4egGzbaH/y2uCZf+6W5Kg==}
     dev: true
+
+  /konsta/1.0.2:
+    resolution: {integrity: sha512-EIi/u6HDgGy9Vbi0a2AUtsQo4qN8l1ZZWyJs/D18MjVUnVxqX7Od9O8odO+XCIzZd1djeUmxfH6frDW71UvyhQ==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /lazy-universal-dotenv/3.0.1:
     resolution: {integrity: sha512-prXSYk799h3GY3iOWnC6ZigYzMPjxN2svgjJ9shk7oMadSNX3wXy0B6F32PMJv7qtMnrIbUxoEHzbutvxR2LBQ==}
