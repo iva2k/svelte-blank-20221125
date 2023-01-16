@@ -212,10 +212,11 @@ This project has few of the top UI frameworks integrated in separate git branche
 | [ui-carbon](../../tree/ui-carbon)         | [Carbon](https://carbon-components-svelte.onrender.com/) | Y | |
 | [ui-framework7](../../tree/ui-framework7) | [Framework7](https://framework7.io/svelte/introduction.html) | N | Incomplete and currently broken |
 | [ui-shoelace](../../tree/ui-shoelace)     | [Shoelace](https://shoelace.style/) | Y | |
-| | [Skeleton](https://github.com/skeletonlabs/skeleton) | Y | |
-| | [Flowbite-Svelte](https://flowbite-svelte.com) |   | |
-|                                           | Smelte       |   | Material + TailwindCSS |
-|                                           | TailwindCSS  |   | May use components - [Flowbite](https://flowbite.com/docs/getting-started/introduction/) |
+| [ui-tailwindcss](../../tree/ui-tailwindcss) | [TailwindCSS](https://tailwindcss.com)  |   | May use components, e.g. [Flowbite](https://flowbite.com/docs/getting-started/introduction/) |
+| [ui-konsta](../../tree/ui-konsta)     | [Konsta](https://konstaui.com/svelte) | Y | (Requires TailwindCSS) |
+| | [Skeleton](https://github.com/skeletonlabs/skeleton) | Y | (Requires TailwindCSS) |
+| | [Flowbite-Svelte](https://flowbite-svelte.com) |   | (Requires TailwindCSS) |
+|                                           | Smelte       |   | (Requires TailwindCSS) Material + TailwindCSS |
 |                                           | [Ionic](https://ionicframework.com) |   | See good [example](https://github.com/Tommertom/svelte-ionic-app) |
 |                                           | [Chota](https://jenil.github.io/chota/) |   | [SvelteChota](https://alexxnb.github.io/svelte-chota/why_chota) |
 | | [Svelterial](https://github.com/svelterialjs/svelterial) |   | [Svelte Materialify](https://github.com/TheComputerM/svelte-materialify) is on a deprecation path. |
