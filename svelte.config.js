@@ -8,11 +8,13 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  preprocess: vitePreprocess({
-    preserve: ['ld+json'], // For SEO header meta tags
-    postcss: true,
-    scss: { includePaths: ['src', 'node_modules'] }
-  }),
+  preprocess: [
+    vitePreprocess({
+      preserve: ['ld+json'], // For SEO header meta tags
+      postcss: true,
+      scss: { includePaths: ['src', 'node_modules'] }
+    })
+  ],
 
   prerender: {
     default: true,

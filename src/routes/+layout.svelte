@@ -87,7 +87,8 @@
   </footer>
 </div>
 
-<style>
+<style lang="scss">
+
   .app {
     display: flex;
     flex-direction: column;
