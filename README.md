@@ -217,7 +217,7 @@ This project has few of the top UI frameworks integrated in separate git branche
 | | [Skeleton](https://github.com/skeletonlabs/skeleton) | Y | (Requires TailwindCSS) |
 | | [Flowbite-Svelte](https://flowbite-svelte.com) |   | (Requires TailwindCSS) |
 |                                           | Smelte       |   | (Requires TailwindCSS) Material + TailwindCSS |
-|                                           | [Ionic](https://ionicframework.com) |   | See good [example](https://github.com/Tommertom/svelte-ionic-app) |
+|                                           | [Ionic](https://ionicframework.com) |   | See good [example](https://github.com/Tommertom/svelte-ionic-app). Note: No SSR! |
 |                                           | [Chota](https://jenil.github.io/chota/) |   | [SvelteChota](https://alexxnb.github.io/svelte-chota/why_chota) |
 | | [Svelterial](https://github.com/svelterialjs/svelterial) |   | [Svelte Materialify](https://github.com/TheComputerM/svelte-materialify) is on a deprecation path. |
 | | [Tachyons](https://tachyons.io) |   | |
