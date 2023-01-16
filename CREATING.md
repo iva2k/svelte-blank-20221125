@@ -1249,7 +1249,9 @@ Rename ".prettierrc" to "prettier.config.ts" and modify contents to employ `modu
 
 ### Add UI : Konsta
 
-Install Tailwind CSS (see [Add UI : Tailwind CSS](#add-ui--tailwind-css))
+[Konsta](https://konstaui.com/svelte)
+
+First, install required Tailwind CSS (see [Add UI : Tailwind CSS](#add-ui--tailwind-css)).
 
 ```bash
 pnpm i konsta @fontsource/roboto
