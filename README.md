@@ -213,7 +213,7 @@ This project has few of the top UI frameworks integrated in separate git branche
 | [ui-framework7](../../tree/ui-framework7) | [Framework7](https://framework7.io/svelte/introduction.html) | N | Incomplete and currently broken |
 | [ui-shoelace](../../tree/ui-shoelace)     | [Shoelace](https://shoelace.style/) | Y | |
 | [ui-tailwindcss](../../tree/ui-tailwindcss) | [TailwindCSS](https://tailwindcss.com)  |   | May use components, e.g. [Flowbite](https://flowbite.com/docs/getting-started/introduction/) |
-| [ui-konsta](../../tree/ui-konsta)     | [Konsta](https://konstaui.com/) | Y | |
+| [ui-konsta](../../tree/ui-konsta)     | [Konsta](https://konstaui.com/svelte) | Y | (Requires TailwindCSS) |
 | | [Skeleton](https://github.com/skeletonlabs/skeleton) | Y | (Requires TailwindCSS) |
 | | [Flowbite-Svelte](https://flowbite-svelte.com) |   | (Requires TailwindCSS) |
 |                                           | Smelte       |   | (Requires TailwindCSS) Material + TailwindCSS |
