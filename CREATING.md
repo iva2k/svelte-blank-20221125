@@ -284,7 +284,7 @@ Create `src/lib/components/seo/SEO.svelte` component and few sub-components for 
 
 It is worth stressing that there's no way to determine hosting website URL during build / prerendering phase. PUBLIC_SITE_URL variable must be configured so the SEO canonical URL is generated correctly. Site URL's for Netlify and Vercel can be also set in `prerender.origin` in `svelte.config.js`, but they seem to not work as expected (SEO.svelte does not receive `$page.url.origin` other than `http://sveltekit-prerender`).
 
-Credits: [Rodnet Lab: SvelteKit SEO](https://rodneylab.com/sveltekit-seo/)
+Credits: [Rodney Lab: SvelteKit SEO](https://rodneylab.com/sveltekit-seo/)
 
 To add more Schemas, lookup the types on <https://schema.org/docs/full.html> and check what types other sites use.
 
