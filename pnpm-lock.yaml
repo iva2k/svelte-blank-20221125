@@ -51,6 +51,12 @@ specifiers:
   '@sveltejs/adapter-static': ^1.0.0
   '@sveltejs/adapter-vercel': ^1.0.0
   '@sveltejs/kit': ^1.0.0
+  '@svelteuidev/composables': ^0.7.7
+  '@svelteuidev/core': ^0.7.7
+  '@svelteuidev/dates': ^0.7.7
+  '@svelteuidev/motion': ^0.7.7
+  '@svelteuidev/preprocessors': ^0.7.7
+  '@svelteuidev/prism': ^0.7.7
   '@tauri-apps/api': ^1.2.0
   '@tauri-apps/cli': ^1.2.1
   '@types/cookie': ^0.5.1
@@ -70,6 +76,7 @@ specifiers:
   chromatic: ^6.11.4
   cpy: ^9.0.1
   cross-env: ^7.0.3
+  dayjs: ^1.11.7
   eslint: ^8.28.0
   eslint-config-prettier: ^8.5.0
   eslint-import-resolver-typescript: ^3.5.2
@@ -128,6 +135,13 @@ dependencies:
   '@capacitor/ios': 4.6.1_@capacitor+core@4.6.1
   '@fontsource/fira-mono': 4.5.10
   '@ionic/pwa-elements': 3.1.1
+  '@svelteuidev/composables': 0.7.7
+  '@svelteuidev/core': 0.7.7_khnq6f6biuveqn4hvhjveiokue
+  '@svelteuidev/dates': 0.7.7_lc7exc36p633p65fw5gwn7cctq
+  '@svelteuidev/motion': 0.7.7_svelte@3.55.0
+  '@svelteuidev/preprocessors': 0.7.7_svelte@3.55.0
+  '@svelteuidev/prism': 0.7.7_lc7exc36p633p65fw5gwn7cctq
+  dayjs: 1.11.7
   qr-scanner: 1.4.2
 
 devDependencies:
@@ -1840,6 +1854,16 @@ packages:
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
     dev: true
 
+  /@floating-ui/core/0.7.3:
+    resolution: {integrity: sha512-buc8BXHmG9l82+OQXOFU3Kr2XQx9ys01U/Q9HMIrZ300iLc8HLMgh7dcCqgYzAzf4BkoQvDcXf5Y+CuEZ5JBYg==}
+    dev: false
+
+  /@floating-ui/dom/0.5.2:
+    resolution: {integrity: sha512-z1DnEa7F3d8Fm/eXSbii8UEGpcjZGkQaYYUI0WpEVgD3vBfebDW8j/3ysusxonuMexoigA+A3b/fYH7sEqiwyg==}
+    dependencies:
+      '@floating-ui/core': 0.7.3
+    dev: false
+
   /@fontsource/fira-mono/4.5.10:
     resolution: {integrity: sha512-bxUnRP8xptGRo8YXeY073DSpfK74XpSb0ZyRNpHV9WvLnJ7TwPOjZll8hTMin7zLC6iOp59pDZ8EQDj1gzgAQQ==}
     dev: false
@@ -2362,6 +2386,10 @@ packages:
       lodash.union: 4.6.0
       lodash.values: 4.3.0
     dev: true
+
+  /@stitches/core/1.2.8:
+    resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
+    dev: false
 
   /@storybook/addon-a11y/7.0.0-beta.17_q3ro2d4tisdm4fljj6b5phevaq:
     resolution: {integrity: sha512-wY9uhskzkeOLHZHcuSEcoivQae1jh1YvoZ8qob5GloY+8kie+aSytxpXuB2U+Q9IHkkC/rFN1AsL4s+iwHHsKw==}
@@ -3739,6 +3767,65 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@svelteuidev/composables/0.7.7:
+    resolution: {integrity: sha512-pl7OSIOuez57LUQW+Eu4+NuZCqa6Ee0vhYp1WrHJjI3ICGosmv4RifF43NEuJSFjTw+Z7gTrGDIf9Znu21oTRA==}
+    dev: false
+
+  /@svelteuidev/core/0.7.7_khnq6f6biuveqn4hvhjveiokue:
+    resolution: {integrity: sha512-SUt8y8v1OyHaku2wvqywZrqry4WhXtAY1RK4rvq3iZhmstE6G3yTJ5biJjmz46uvQYLFIDTv7Ecag6ooF2rJig==}
+    peerDependencies:
+      '@svelteuidev/composables': 0.7.7
+      svelte: '>=3.47.0'
+    dependencies:
+      '@floating-ui/dom': 0.5.2
+      '@stitches/core': 1.2.8
+      '@svelteuidev/composables': 0.7.7
+      svelte: 3.55.0
+    dev: false
+
+  /@svelteuidev/dates/0.7.7_lc7exc36p633p65fw5gwn7cctq:
+    resolution: {integrity: sha512-aleNxvivfVeT/00PdnJ7zZu5zr2KYFKOUKDW7Eyl3iRtBvIOlzLLtwgc0RnEmQFbGrD9L/e/TUpoAzHdQV+PvA==}
+    peerDependencies:
+      '@svelteuidev/composables': 0.7.7
+      '@svelteuidev/core': 0.7.7
+      svelte: '>=3.47.0'
+    dependencies:
+      '@svelteuidev/composables': 0.7.7
+      '@svelteuidev/core': 0.7.7_khnq6f6biuveqn4hvhjveiokue
+      dayjs: 1.11.1
+      svelte: 3.55.0
+    dev: false
+
+  /@svelteuidev/motion/0.7.7_svelte@3.55.0:
+    resolution: {integrity: sha512-9za82aV0ylId6Aiuw/yQCvmKTW+3RPNAbMy05S6me+qdywkPvoMoFlm+uFaPsD4D9no1pcQMAyIP41CRLbgWwA==}
+    peerDependencies:
+      svelte: '>=3.47.0'
+    dependencies:
+      svelte: 3.55.0
+    dev: false
+
+  /@svelteuidev/preprocessors/0.7.7_svelte@3.55.0:
+    resolution: {integrity: sha512-Zf85p34TWRgnDaTWsDcdCVwEz7GG4lPG0tNqN+7/mesMCXlKMpOpBGnzY9+DRCdFiSN4Tzzgk5biidVEL7m7Ag==}
+    peerDependencies:
+      svelte: '>=3.47.0'
+    dependencies:
+      svelte: 3.55.0
+    dev: false
+
+  /@svelteuidev/prism/0.7.7_lc7exc36p633p65fw5gwn7cctq:
+    resolution: {integrity: sha512-pz5Rm+tUM80H4B66dHkZNJa89EMQXYmu7HKhHRmnhHBUB69j4XHUtgOTABptbNXzh2g5ROwYSiyqg7aTZSdebw==}
+    peerDependencies:
+      '@svelteuidev/composables': 0.7.7
+      '@svelteuidev/core': 0.7.7
+      svelte: '>=3.47.0'
+    dependencies:
+      '@svelteuidev/composables': 0.7.7
+      '@svelteuidev/core': 0.7.7_khnq6f6biuveqn4hvhjveiokue
+      prism-svelte: 0.5.0
+      prismjs: 1.28.0
+      svelte: 3.55.0
+    dev: false
 
   /@szmarczak/http-timer/4.0.6:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -5884,6 +5971,14 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
+
+  /dayjs/1.11.1:
+    resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
+    dev: false
+
+  /dayjs/1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -9882,6 +9977,15 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  /prism-svelte/0.5.0:
+    resolution: {integrity: sha512-db91Bf3pRGKDPz1lAqLFSJXeW13mulUJxhycysFpfXV5MIK7RgWWK2E5aPAa71s8TCzQUXxF5JOV42/iOs6QkA==}
+    dev: false
+
+  /prismjs/1.28.0:
+    resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
+    engines: {node: '>=6'}
+    dev: false
+
   /private/0.1.8:
     resolution: {integrity: sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==}
     engines: {node: '>= 0.6'}
@@ -11278,7 +11382,6 @@ packages:
   /svelte/3.55.0:
     resolution: {integrity: sha512-uGu2FVMlOuey4JoKHKrpZFkoYyj0VLjJdz47zX5+gVK5odxHM40RVhar9/iK2YFRVxvfg9FkhfVlR0sjeIrOiA==}
     engines: {node: '>= 8'}
-    dev: true
 
   /sveltedoc-parser/4.2.1:
     resolution: {integrity: sha512-sWJRa4qOfRdSORSVw9GhfDEwsbsYsegnDzBevUCF6k/Eis/QqCu9lJ6I0+d/E2wOWCjOhlcJ3+jl/Iur+5mmCw==}

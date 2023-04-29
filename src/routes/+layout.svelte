@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { SvelteUIProvider } from '@svelteuidev/core';
+  import type { SvelteUIProviderProps } from '@svelteuidev/core';
 
   import Favicon from '$lib/components/favicon/Favicon.svelte';
   import Offline from '$lib/components/offline/Offline.svelte';
@@ -31,6 +33,11 @@
 
   let isDarkMode: boolean;
 
+  let config: SvelteUIProviderProps = {
+    // light: { bg: 'White', color: 'Black' },
+    // dark: { bg: '#1A1B1E', color: '#C1C2C5' }
+  };
+
   // Favicon params:
   const pngFavicons = [
     { sizes: '32x32', href: '/favicon-32x32.png', imgSize: 32 },
@@ -47,36 +54,43 @@
   ];
 </script>
 
-<div class="app">
-  <Favicon {pngFavicons} {svgFavicon} {icoFavicon} {touchFavicons} />
+<SvelteUIProvider
+  {config}
+  themeObserver={isDarkMode ? 'dark' : 'light'}
+  ssr
+  withNormalizeCSS
+  withGlobalStyles
+>
+  <div class="app">
+    <Favicon {pngFavicons} {svgFavicon} {icoFavicon} {touchFavicons} />
 
-  <Header --corner-right-width="8em">
-    <DarkMode bind:isDarkMode>
-      <svelte:fragment let:data>
-        <label>
-          {isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
-          <input id="cb1" type="checkbox" checked={isDarkMode} on:change={data.onToggle} />
-        </label>
-      </svelte:fragment>
-    </DarkMode>
-  </Header>
+    <Header --corner-right-width="8em">
+      <DarkMode bind:isDarkMode>
+        <svelte:fragment let:data>
+          <label>
+            {isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
+            <input id="cb1" type="checkbox" checked={isDarkMode} on:change={data.onToggle} />
+          </label>
+        </svelte:fragment>
+      </DarkMode>
+    </Header>
 
-  <main>
-    <slot />
-  </main>
+    <main>
+      <slot />
+    </main>
 
-  <Offline />
+    <Offline />
 
-  <footer>
-    <p>
-      visit <a href={githubRepo}>App GitHub Repo</a> for details | visit
-      <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
-    </p>
-  </footer>
-</div>
+    <footer>
+      <p>
+        visit <a href={githubRepo}>App GitHub Repo</a> for details | visit
+        <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+      </p>
+    </footer>
+  </div>
+</SvelteUIProvider>
 
 <style lang="scss">
-
   .app {
     display: flex;
     flex-direction: column;

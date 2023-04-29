@@ -69,6 +69,13 @@
     "@capacitor/ios": "^4.5.0",
     "@fontsource/fira-mono": "^4.5.10",
     "@ionic/pwa-elements": "^3.1.1",
+    "@svelteuidev/composables": "^0.7.7",
+    "@svelteuidev/core": "^0.7.7",
+    "@svelteuidev/dates": "^0.7.7",
+    "@svelteuidev/motion": "^0.7.7",
+    "@svelteuidev/preprocessors": "^0.7.7",
+    "@svelteuidev/prism": "^0.7.7",
+    "dayjs": "^1.11.7",
     "qr-scanner": "^1.4.2"
   },
   "devDependencies": {
