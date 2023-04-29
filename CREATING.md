@@ -299,6 +299,18 @@ See the following tools for checking the structured data on your deployed websit
 TODO: (soon) Fix FB issue:
 Missing Properties | The following required properties are missing: fb:app_id
 
+### Add Store Services
+
+SvelteKit provides good server/client support for stores. They are easy to use, but have some mines to avoid (see <https://github.com/sveltejs/kit/discussions/4339>).
+
+See package addressing the issue in most simple to use way: <https://github.com/svelte-kits/store>
+
+```bash
+pnpm install -D @svelte-kits/store
+```
+
+Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses.
+
 ### Add Service Worker for Offline Operation
 
 Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
