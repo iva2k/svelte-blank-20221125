@@ -31,7 +31,7 @@ git pull origin "$SOURCE_BRANCH"
 for TARGET_BRANCH in "${TARGET_BRANCHES[@]}"; do
     echo "BEGIN Merging branch \"$SOURCE_BRANCH\" into branch \"$TARGET_BRANCH\"..."
     # Switch to the target branch, Merge changes from the source branch
-    git checkout "$TARGET_BRANCH" && git merge "$SOURCE_BRANCH"
+    git checkout "$TARGET_BRANCH" && git merge "$SOURCE_BRANCH" --no-edit
 
     # Check for merge conflicts
     if [ $? -ne 0 ]; then
