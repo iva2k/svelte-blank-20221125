@@ -284,7 +284,7 @@ Create `src/lib/components/seo/SEO.svelte` component and few sub-components for 
 
 It is worth stressing that there's no way to determine hosting website URL during build / prerendering phase. PUBLIC_SITE_URL variable must be configured so the SEO canonical URL is generated correctly. Site URL's for Netlify and Vercel can be also set in `prerender.origin` in `svelte.config.js`, but they seem to not work as expected (SEO.svelte does not receive `$page.url.origin` other than `http://sveltekit-prerender`).
 
-Credits: [Rodnet Lab: SvelteKit SEO](https://rodneylab.com/sveltekit-seo/)
+Credits: [Rodney Lab: SvelteKit SEO](https://rodneylab.com/sveltekit-seo/)
 
 To add more Schemas, lookup the types on <https://schema.org/docs/full.html> and check what types other sites use.
 
@@ -298,6 +298,22 @@ See the following tools for checking the structured data on your deployed websit
 
 TODO: (soon) Fix FB issue:
 Missing Properties | The following required properties are missing: fb:app_id
+
+### Add Store Services
+
+SvelteKit provides good server/client support for stores. They are easy to use, but have some mines to avoid (see <https://github.com/sveltejs/kit/discussions/4339>).
+
+See package addressing the issue in most simple to use way: <https://github.com/svelte-kits/store>
+
+See <https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i>.
+
+For upcoming v5.0 Svelte runes, see <https://dev.to/jdgamble555/create-the-perfect-sharable-rune-in-svelte-ij8>.
+
+```bash
+pnpm install -D @svelte-kits/store
+```
+
+Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses.
 
 ### Add Service Worker for Offline Operation
 
