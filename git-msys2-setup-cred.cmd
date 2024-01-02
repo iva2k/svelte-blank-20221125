@@ -8,7 +8,7 @@ set "gcm_path=opt/git-for-windows-mingw64-bin"
 
 set "git=%gitbase%/git.exe"
 set "link_dir=C:/msys64/%gcm_path%"
-set "link_target=C:/Program Files/Git/mingw64/bin"
+set "link_target=%gcm_source%"
 
 set "gcm=/%gcm_path%/git-credential-manager"
 set "gcmc=/%gcm_path%/git-credential-manager-core"
@@ -19,26 +19,17 @@ mklink /D "%link_dir%" "%link_target%"
 
 echo.  + Changing git global config credential.helper...
 "%git%" config --global --replace-all credential.helper "%gcm%"
-@REM "%git%" config --global --replace-all "credential.https://github.com.helper" "%gcm%"
-@REM "%git%" config --global --replace-all "credential.https://gist.github.com.helper" "%gcm%"
+"%git%" config --global --unset-all "credential.https://github.com.helper"
+"%git%" config --global --unset-all "credential.https://gist.github.com.helper"
 @REM "%git%" config --global --list
 
-@REM [credential]
-@REM 	helper = /%gcm_path%/git-credential-manager
-@REM [credential "https://github.com"]
-@REM 	helper = /%gcm_path%/git-credential-manager
-@REM 	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
-@REM [credential "https://gist.github.com"]
-@REM 	helper = /%gcm_path%/git-credential-manager
-@REM 	helper = !'C:\\Program Files\\GitHub CLI\\gh.exe' auth git-credential
-
 set "FILE=%gitbase%/git-credential-manager"
-echo.  + Creating "%FILE%"
+echo.  + Creating "%FILE%" proxy
 echo #!/usr/bin/env bash > %FILE%
 echo %gcm% "$@" >> %FILE%
 
 set "FILE=%gitbase%/git-credential-manager-core"
-echo.  + Creating "%FILE%"
+echo.  + Creating "%FILE%" proxy
 echo #!/usr/bin/env bash > %FILE%
 echo %gcmc% "$@" >> %FILE%
 
@@ -48,11 +39,13 @@ echo.
 echo.git-credential-manager version:
 "%git%" credential-manager --version
 
-echo.
-echo.git-credential-manager-core version:
-"%git%" credential-manager-core --version
 @REM echo.
-@REM echo.git credential.helper:
-@REM "%git%" config --show-origin --get-all credential.helper
+@REM echo.git-credential-manager-core version:
+@REM "%git%" credential-manager-core --version
 
-echo.DONE
+echo.
+echo.git credential.helper:
+"%git%" config --show-origin --get-all credential.helper
+
+echo.
+echo.DONE Installing symlink to 'Git Credential Manager' from 'Git For Windows' into MSYS2.
