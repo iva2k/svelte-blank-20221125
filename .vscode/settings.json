@@ -7,8 +7,8 @@
   "editor.formatOnPaste": true,
   "editor.formatOnType": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.html": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.html": "explicit"
   },
   "eslint.validate": ["svelte"],
   "editor.tokenColorCustomizations": {
