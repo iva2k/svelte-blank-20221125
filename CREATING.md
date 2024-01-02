@@ -305,6 +305,10 @@ SvelteKit provides good server/client support for stores. They are easy to use, 
 
 See package addressing the issue in most simple to use way: <https://github.com/svelte-kits/store>
 
+See <https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i>.
+
+For upcoming v5.0 Svelte runes, see <https://dev.to/jdgamble555/create-the-perfect-sharable-rune-in-svelte-ij8>.
+
 ```bash
 pnpm install -D @svelte-kits/store
 ```
