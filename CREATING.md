@@ -1,10 +1,30 @@
 # Creating: Total App | Blank SvelteKit App
 
-## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
-
 This file describes how this app was created.
 
-It is not a tutorial per se, and uses a dense step-by-step language without too much explanation and expects the reader to dive deeper on their own. Making it into a tutorial will yield a thik book, which is not the goal here.
+It is not a tutorial per se, and uses a dense step-by-step language without too much explanation and expects the reader to dive deeper on their own. Making it into a tutorial will yield a thick book, which is not the goal here.
+
+## Technology Stack
+
+Built with:
+
+- [Svelte](https://svelte.dev) - Truly reactive Javascript/TypeScript App UI framework
+- [Svelte Kit](https://kit.svelte.dev) - Javascript/TypeScript App build system
+- [Tauri](https://tauri.studio) - Desktop Application framework
+- [Capacitor](https://capacitorjs.com) - Building crossplatform apps
+- [Storybook](https://storybook.js.org) - Tool for building UI components and pages in isolation
+- [Prettier](https://prettier.io/) - Opinionated Code Formatter
+- [ESLint](https://eslint.org) - Pluggable JavaScript linter
+- [Stylelint](https://stylelint.io/) - A mighty, modern CSS linter
+- [Postcss](https://postcss.org/) - Transforming styles with JS plugins
+- [Playwright](https://playwright.dev) - Fast and reliable end-to-end testing for modern web apps
+- [Vitest](https://vitest.dev) - A blazing fast unit test framework powered by Vite
+
+Continuous Integrations and Deployments:
+
+- [Chromatic](https://www.chromatic.com) - Storybook Github CI
+- [Netlify](https://svelte-blank-20221125.netlify.app) - App Demo
+- [Vercel](https://svelte-blank-20221125.vercel.app) - App Demo
 
 ## Software Mantra
 
@@ -27,7 +47,7 @@ Svelte scaffolding is set up by [`create-svelte`](https://github.com/sveltejs/ki
 ```bash
 # create a new project in my-app, use demo app, TypeScript syntax, ESLint, Prettier, Playwright, Vitest
 npm create svelte@latest my-app
-cd my-sync
+cd my-app
 pnpm install
 git init && git add -A && git commit -m "Initial commit" # (optional)
 ```
