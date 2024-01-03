@@ -73,7 +73,7 @@ pnpm run dev
 pnpm run dev -- --open
 ```
 
-## Fix Issues That Might Come Up
+## Add Tooling and Fix Issues That Might Come Up
 
 Run `pnpm run XXX` replacing XXX for each of the scripts in `package.json`. It's a good idea to fix all errors and warnings that might come up, and re-check after each major addition.
 
