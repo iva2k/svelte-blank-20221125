@@ -21,8 +21,6 @@
 
 <!-- ![Total App](static/logotype-hor.svg) -->
 
-## + Tauri + Capacitor + Storybook + Prettier + ESLint + Stylelint + Postcss + Playwright + Vitest + Netlify + Vercel
-
 A cross-platform Desktop / Mobile / Web application starter.
 
 License: Mozilla Public License Version 2.0
@@ -53,6 +51,8 @@ Out of the box features:
 |:-:|:-:|:-:|
 |[Chromatic](https://www.chromatic.com/builds?appId=63839ed0e936a148379c5c65)| [App Demo](https://svelte-blank-20221125.netlify.app) | [App Demo](https://svelte-blank-20221125.vercel.app)  |
 <!-- -->
+
+## Technology Stack
 
 Built with:
 
