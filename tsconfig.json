@@ -4,9 +4,8 @@
     // BEGIN copy from .svelte-kit/tsconfig.json, relatively adjust all paths
     "baseUrl": ".",
     "rootDirs": [".", "./.svelte-kit/types"],
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    "preserveValueImports": true,
     "lib": ["es2020", "DOM", "DOM.Iterable"],
     "moduleResolution": "node",
     "module": "es2020",
