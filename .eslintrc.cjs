@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -8,6 +7,7 @@ module.exports = {
     'plugin:storybook/recommended',
     'prettier'
   ],
+  parser: '@typescript-eslint/parser',
   plugins: ['svelte3', '@typescript-eslint', 'import'],
   ignorePatterns: ['*.cjs'],
   overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
