@@ -36,7 +36,7 @@ export default defineConfig(async ({ mode }) => {
     })
   ];
   // Playwright does not handle https, see https://github.com/microsoft/playwright/issues/16460
-  if (!process.env.NO_HTTPS) plugins.unshift(basicSsl());
+  if (!process.env.NO_HTTPS) plugins.unshift([basicSsl()]);
 
   const config: UserConfig = {
     logLevel: 'info',
