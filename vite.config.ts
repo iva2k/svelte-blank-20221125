@@ -1,6 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig, loadEnv } from 'vite';
-import type { UserConfig } from 'vite';
+import type { UserConfig, Plugin } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import replace from '@rollup/plugin-replace';
@@ -27,7 +27,7 @@ export default defineConfig(async ({ mode }) => {
     // basicSsl(),
     sveltekit(),
     SvelteKitPWA(pwaConfiguration),
-    replace(replaceOptions),
+    replace(replaceOptions) as Plugin, // Convert rollup.Plugin into vite.Plugin
 
     // copy is needed for vite to work in dev (especially under "tauri:dev")
     // All copy commands are duplicated in package.json:scripts.svelte:prebuild, for dev to work correctly.
@@ -47,9 +47,6 @@ export default defineConfig(async ({ mode }) => {
       __DATE__: JSON.stringify(new Date().toISOString()),
       __RELOAD_SW__: JSON.stringify(false),
       __UPDATE_CHECK_PERIOD_MS__: JSON.stringify(20000) // in milli-seconds, 20s for testing purposes
-    },
-    preview: {
-      https: !process.env.NO_HTTPS
     },
     plugins,
     test: {

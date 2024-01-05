@@ -78,7 +78,7 @@
     "@mdx-js/react": "^2.1.5",
     "@neoconfetti/svelte": "^1.0.0",
     "@playwright/test": "^1.28.1",
-    "@rollup/plugin-replace": "^5.0.1",
+    "@rollup/plugin-replace": "^5.0.5",
     "@ronilaukkarinen/stylelint-a11y": "^1.2.4",
     "@storybook/addon-a11y": "7.0.0-beta.17",
     "@storybook/addon-actions": "7.0.0-beta.17",
