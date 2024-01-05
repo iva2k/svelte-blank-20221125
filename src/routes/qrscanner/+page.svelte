@@ -406,7 +406,6 @@
   <div id="video-container" class={settings.scannerStyle}>
     <div id="video-overlay" />
     <!-- TODO: (when needed) Use <video poster="..."></video> -->
-    <!-- svelte-ignore a11y-media-has-caption -->
     <video
       class:active={scanActive}
       class:inactive={!scanActive}
@@ -474,6 +473,7 @@
 <style lang="scss">
   /* Set container to cover the whole window */
   #container {
+    z-index: -300; /* Make sure to draw everything below Layout's Nav and Foot */
     position: absolute;
     left: 0;
     top: 0;
@@ -527,6 +527,7 @@
   }
 
   #video-overlay {
+    z-index: 100;
     position: absolute;
     min-width: 100vw;
     width: 100vw !important;
@@ -534,6 +535,7 @@
     display: none; /* TODO: (when needed) Use the overlay to show custom info over the video */
   }
   #qr-video {
+    z-index: -200; /* Below all other elements */
     /* Set video to fill the window, no scrollbars. */
     position: absolute;
     top: 0;
@@ -599,6 +601,7 @@
 
   /* Drawer */
   :global(.app .drawerContainer .drawer .overlay) {
+    z-index: 100;
     background: rgba(255, 255, 255, 0.5);
   }
   :global(.app .drawerContainer .drawer .panel) {
@@ -629,9 +632,6 @@
     z-index: 2000;
   }
   // :global(.app .drawerContainer .drawer) {}
-  :global(.app .drawerContainer .drawer .overlay) {
-    z-index: 100;
-  }
   // :global(.app .drawerContainer.open .drawer) {}
 
   // #header,
@@ -643,20 +643,10 @@
   #footer .scan-toolbar * {
     z-index: 1000;
   }
-  #video-overlay {
-    z-index: 100;
-  }
   #video-container,
   :global(#video-container .scan-region-highlight) {
     z-index: -100;
   }
-  #qr-video {
-    z-index: -200; /* Below all other elements */
-  }
-  #container {
-    z-index: -300; /* Make sure to draw everything below Layout's Nav and Foot */
-  }
-
   /* Hide controls if they somehow show */
   #video-container :global(video::-webkit-media-controls) {
     display: none !important;

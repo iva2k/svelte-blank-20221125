@@ -8,8 +8,8 @@
                 <img src="static/logotype-hor.svg" alt="Total App" />
             </td>
             <td align=center>Storybook</td>
-            <td align=center><a href="https://app.netlify.com/sites/svelte-blank-20221125/deploys"><img src="https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status"/></a></td>
-            <td align=center><a href="https://vercel.com/iva2k/svelte-blank-20221125"><img src="https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel"/></a></td>
+            <td align=center><a href="https://app.netlify.com/sites/svelte-blank-20221125/deploys"><img src="https://api.netlify.com/api/v1/badges/90e9b7ab-f139-4ad9-a84b-3501d18d98cb/deploy-status" alt="Netlify shield"/></a></td>
+            <td align=center><a href="https://vercel.com/iva2k/svelte-blank-20221125"><img src="https://shields.io/github/deployments/iva2k/svelte-blank-20221125/production?style=flat&label=vercel&logo=vercel" alt="Vercel shield"/></a></td>
         </tr>
         <tr>
             <td align=center><a href=https://www.chromatic.com/builds?appId=63839ed0e936a148379c5c65>Chromatic</a></td>

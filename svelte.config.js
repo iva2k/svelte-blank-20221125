@@ -22,8 +22,8 @@ const config = {
     origin: process.env.VERCEL
       ? 'https://svelte-blank-20221125.vercel.app'
       : process.env.NETLIFY
-      ? 'https://svelte-blank-20221125.netlify.app'
-      : 'https://svelte-blank-20221125.iva2k.com'
+        ? 'https://svelte-blank-20221125.netlify.app'
+        : 'https://svelte-blank-20221125.iva2k.com'
   },
 
   kit: {
@@ -33,15 +33,15 @@ const config = {
     adapter: process.env.VERCEL
       ? vercel()
       : process.env.NETLIFY
-      ? netlify()
-      : adapter({
-          // default options are shown:
-          // pages: 'build',
-          // assets: 'build',
-          // fallback: null,
-          // precompress: false
-          fallback: 'index.html'
-        }),
+        ? netlify()
+        : adapter({
+            // default options are shown:
+            // pages: 'build',
+            // assets: 'build',
+            // fallback: null,
+            // precompress: false
+            fallback: 'index.html'
+          }),
     // prerender: { entries: [] },
 
     // Form submissions do not function in `vite preview` with https (due to cookie)
