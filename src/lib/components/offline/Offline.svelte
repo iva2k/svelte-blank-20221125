@@ -23,6 +23,7 @@
 <svelte:head>
   <meta name="msapplication-TileColor" content={themeColor} />
   <meta name="theme-color" content={themeColor} />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html webManifest}
 </svelte:head>
 
