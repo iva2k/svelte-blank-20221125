@@ -4,5 +4,6 @@
 </script>
 
 <div>
+  <!-- eslint-disable-next-line svelte/valid-compile -->
   <PureHeader pathname={$page.url.pathname}><slot /></PureHeader>
 </div>

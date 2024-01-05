@@ -2,7 +2,7 @@
   // eslint-disable-next-line import/no-unresolved
   import { pwaInfo } from 'virtual:pwa-info';
   import { onMount } from 'svelte';
-  import type { ComponentType } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
 
   import website from '$lib/config/website';
   const { themeColor } = website;
@@ -11,7 +11,7 @@
   // const date = '__DATE__';
   // const enableSwDev = '__SW_DEV__';
 
-  let ReloadPrompt: ComponentType | undefined;
+  let ReloadPrompt: ComponentType<SvelteComponent> | undefined;
   onMount(async () => {
     pwaInfo &&
       (ReloadPrompt = (await import('$lib/components/reloadprompt/ReloadPrompt.svelte')).default);
@@ -23,6 +23,7 @@
 <svelte:head>
   <meta name="msapplication-TileColor" content={themeColor} />
   <meta name="theme-color" content={themeColor} />
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html webManifest}
 </svelte:head>
 

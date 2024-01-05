@@ -11,7 +11,8 @@ const config: PlaywrightTestConfig = {
     port: 4173,
     timeout: 120 * 1000
   },
-  testDir: 'tests'
+  testDir: 'tests',
+  testMatch: /(.+\.)?(test|spec)\.[jt]s/
   // TODO: (when needed) How to use Vite config? see https://github.com/microsoft/playwright/issues/14295#issuecomment-1132258917
   // use: {
   //   ctViteConfig: { }
