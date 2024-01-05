@@ -349,7 +349,7 @@ pnpm add -D @vite-pwa/sveltekit @types/workbox-build@^5.0.1 vite-plugin-pwa@^0.1
 Create files and make some changes (see sources):
 
 - Add /dev-dist to .gitignore, .eslintignore, .prettierignore
-- Patch @vite-pwa/sveltekit to fix problem with import in TypeScript, see file "patches/@vite-pwa__sveltekit@0.0.1.patch" for a hot-fix.
+- Patch @vite-pwa/sveltekit to fix problem with import in TypeScript, see file `patches/@vite-pwa__sveltekit@0.0.1.patch` for a hot-fix.
 - Add SvelteKitPWA to "vite.config.ts"
 - Create "src/lib/components/offline/Offline.svelte"
 - Create "src/lib/components/reloadprompt/ReloadPrompt.svelte"
