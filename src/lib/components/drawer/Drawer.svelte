@@ -43,6 +43,8 @@
   <div
     class="overlay"
     on:click={handleClickAway}
+    role="button"
+    tabindex="0"
     on:keydown
     on:keyup
     on:keypress
@@ -67,13 +69,17 @@
     height: 100%;
     width: 100%;
     z-index: -1;
-    transition: visibility 0s, z-index var(--duration) step-end;
+    transition:
+      visibility 0s,
+      z-index var(--duration) step-end;
   }
 
   .drawer.open {
     visibility: visible;
     z-index: 99;
-    transition: visibility 0s, z-index var(--duration) step-start;
+    transition:
+      visibility 0s,
+      z-index var(--duration) step-start;
   }
 
   .overlay {
@@ -86,7 +92,9 @@
     background: rgba(100, 100, 100, 0.5);
     opacity: 0;
     z-index: 2;
-    transition: visibility 0s, opacity var(--duration) ease;
+    transition:
+      visibility 0s,
+      opacity var(--duration) ease;
   }
 
   .drawer.open .overlay {
