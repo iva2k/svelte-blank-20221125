@@ -326,7 +326,7 @@ See package addressing the issue in the most simple to use way: `@svelte-kits/st
 pnpm install -D @svelte-kits/store
 ```
 
-Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses (though only `writable` store is affected).
+Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses (though only `writable` store is affected by SSR).
 
 Also see <https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i>.
 
