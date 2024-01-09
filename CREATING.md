@@ -297,7 +297,7 @@ Other optimizations are getting higher speed / better UX. SvelteKit provides the
 pnpm i -D @types/object-hash object-hash vanilla-lazyload
 ```
 
-Create `src/lib/components/seo/SEO.svelte` component and few sub-components for generating meta-data for SEO (see sources). SEO component is used on each page, and relies on the configuration information from `$lib/config/website.js`.
+Create `src/lib/components/seo/SEO.svelte` component and few sub-components for generating meta-data for SEO (see sources). SEO component is used on each page, and relies on the configuration information from `src/lib/config/website.js`.
 
 It is worth stressing that there's no way to determine hosting website URL during build / prerendering phase. PUBLIC_SITE_URL variable must be configured so the SEO canonical URL is generated correctly. Site URL's for Netlify and Vercel can be also set in `prerender.origin` in `svelte.config.js`, but they seem to not work as expected (SEO.svelte does not receive `$page.url.origin` other than `http://sveltekit-prerender`).
 
@@ -334,7 +334,7 @@ For upcoming v5.0 Svelte runes, see <https://dev.to/jdgamble555/create-the-perfe
 
 ### Add Service Worker for Offline Operation
 
-Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
+Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/sveltekit.html> / <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
 
 In order for the application to work offline, `csr` should NOT be set to false on any of the pages since it will prevent injecting JavaScript into the layout for offline support.
 
@@ -343,7 +343,7 @@ The app has to satisfy PWA Minimal Requirements, see <https://vite-pwa-org.netli
 If your application has forms, we recommend you to change the behavior of automatic reload to use default `prompt` option to allow the user decide when to update the content of the application, otherwise automatic update may clear form data if it decides to update when the user is filling the form.
 
 ```bash
-pnpm add -D @vite-pwa/sveltekit @types/workbox-build@^5.0.1 vite-plugin-pwa@^0.13.3 workbox-core workbox-build workbox-window workbox-precaching workbox-routing @rollup/plugin-replace
+pnpm i -D @vite-pwa/sveltekit vite-plugin-pwa@^0.13.3 workbox-core workbox-build workbox-window workbox-precaching workbox-routing @rollup/plugin-replace
 ```
 
 Create files and make some changes (see sources):
@@ -360,6 +360,7 @@ Create files and make some changes (see sources):
 - Add Offline component to "src/routes/+layout.svelte"
 - Make `prerender = true` the default in "src/routes/+layout.svelte" - offline precaching needs all routes prerenderd. Dynamic routes won't work offline.
 - Remove `csr = false` and `csr = dev` from all "src/routes/\*\*/+page.ts" files
+- Add service worker scripts to `package.json`
 - Add few settings to "netlify.toml"
 - Add few settings to "vercel.json", // TODO: (when available) see <https://vite-pwa-org.netlify.app/deployment/vercel.html>
 
@@ -371,11 +372,11 @@ Error importing from '@vite-pwa/sveltekit' - there is `export default {...}` in 
 Changing it to `export {...}` (removing `default`) fixes the problem.
 Use `pnpm patch @vite-pwa/sveltekit`, editing the file in directory created by `pnpm patch`, and creating a patch file with `pnpm patch-commit <path given by pnpm>`.
 
-### Create Favicon Component
+### Add Favicon Component
 
-To encapsulate all favicon-related stuff (and keep the mess out of app.html), create ``$lib/components/favicon/Favicon.svelte` component. Use it from `src/routes/+layout.svelte` file.
+To encapsulate all favicon-related stuff (and keep the mess out of app.html), create `src/lib/components/favicon/Favicon.svelte` component. Use it from `src/routes/+layout.svelte` file.
 
-Add `badge.ts` to all png favicons.
+Add `badge.ts` to all png favicons so they dynamically display number of new notifications.
 
 See source files.
 
@@ -385,7 +386,7 @@ A slide-out drawer is a must-have functionality for most modern apps and many we
 
 Let's create one, with animations, accessibility, SSR-friendly.
 
-See `/src/lib/components/drawer/Drawer.svelte` and `src/lib/actions/FocusTrap/focusTrap.ts` sources.
+See `src/lib/components/drawer/Drawer.svelte` and `src/lib/actions/FocusTrap/focusTrap.ts` sources.
 
 Credits:
 
@@ -399,6 +400,8 @@ Modifications include:
 - Use CSS `visibility: hidden` so no interference with layout and other elements.
 - Keyboard handling of 'Escape' to close and 'Tab' to move focus between elements.
 
+The Drawer component is not used yet, but will be needed later.
+
 ### Add Tauri
 
 Add desktop support using Tauri (version 1.2 as of writing time).
@@ -411,7 +414,7 @@ Note: iOS and Android support is promised in Tauri discussions, but not implemen
 pnpm i -D @tauri-apps/api @tauri-apps/cli
 ```
 
-Add scripts to package.json:
+Add scripts to package.json (see source for exact changes, these are the essence):
 
 ```json
    {
@@ -435,6 +438,8 @@ pnpm run tauri init
 # What is your frontend dev command? - pnpm run dev
 # What is your frontend build command? - pnpm run build
 ```
+
+Add some .gitignore/.eslintignore/.prettierignore patterns (see source files).
 
 #### Change bundle identifier
 

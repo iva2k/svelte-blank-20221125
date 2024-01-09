@@ -81,8 +81,9 @@ Enhancements not found in the foundational packages and templates:
 - Vitest coverage
 - Playwright reports
 - ESLint imports
-- Consolidated website configuration
 - SSR-safe Svelte stores
+- Consolidated website configuration
+- Organized Favicon resolutions with notification badges support
 
 ## Install
 
@@ -135,7 +136,7 @@ When deploying your website to any provider (Netlify, Vercel), make sure to set 
 
 ## Developing Locally
 
-Please follow the [Tauri Getting Started Guide](https://tauri.studio/en/docs/getting-started/intro#steps) to setup your system with the required Rust toolchain.
+Please follow the [Tauri Getting Started Guide](https://tauri.app/v1/guides/getting-started/prerequisites) to setup your system with the required [Rust](https://www.rust-lang.org/) toolchain.
 
 This application is built like a typical Node.js application. However, instead of `npm`, [`pnpm`](https://pnpm.io/) is used for package management.
 
@@ -172,6 +173,7 @@ To run desktop app (using Tauri)
 
 ```bash
 pnpm run tauri:dev
+# The app window will open
 ```
 
 To create desktop executable:

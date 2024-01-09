@@ -51,7 +51,7 @@ const config = {
     },
 
     alias: {
-      // Place to add all aliases. Run 'svelte-kit sync' (or npm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
+      // Place to add all aliases. Run 'svelte-kit sync' (or pnpm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
       // $components: resolve('./src/lib/components')
     }
   },
