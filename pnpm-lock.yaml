@@ -137,13 +137,13 @@ devDependencies:
     specifier: ^3.0.0
     version: 3.1.0(@sveltejs/kit@2.0.6)
   '@sveltejs/adapter-netlify':
-    specifier: ^3.0.0
+    specifier: ^3.0.1
     version: 3.0.1(@sveltejs/kit@2.0.6)
   '@sveltejs/adapter-static':
-    specifier: ^3.0.0
+    specifier: ^3.0.1
     version: 3.0.1(@sveltejs/kit@2.0.6)
   '@sveltejs/adapter-vercel':
-    specifier: ^4.0.0
+    specifier: ^4.0.4
     version: 4.0.4(@sveltejs/kit@2.0.6)
   '@sveltejs/kit':
     specifier: ^2.0.0

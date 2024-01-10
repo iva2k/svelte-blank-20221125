@@ -412,6 +412,9 @@ Note: iOS and Android support is promised in Tauri discussions, but not implemen
 
 ```bash
 pnpm i -D @tauri-apps/api @tauri-apps/cli
+rustc --version
+# If needed, update to rustc 1.60 or newer:
+rustup update
 ```
 
 Add scripts to package.json (see source for exact changes, these are the essence):
@@ -462,9 +465,18 @@ Edit file `src-tauri/tauri.conf.json`:
       ...
 ```
 
+#### Fix Tauri Issues
+
+TODO: (soon):
+
+```bash
+pnpm tauri:dev
+Warn Invalid target triple: x86_64-pc-windows-msvc
+```
+
 ### Set Svelte SPA mode
 
-For using Tauri and Capacitor (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit\'s assumption needing a server.
+For using Tauri and Capacitor (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit's assumption needing a server.
 
 SPA mode is set by using adapter-static and setting `fallback` option, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
 
@@ -507,7 +519,7 @@ Create `src/routes/+layout.ts` to set `prerender` and `ssr`:
 // src/routes/+layout.ts
 
 // Let SvelteKit decide to prerender for each page by default:
-export const prerender = 'auto';
+export const prerender = true;
 // As of @sveltejs/kit 1.0.0-next.563, pages with actions (e.g. sub-routes) throw error in `vite build`.
 // Each such route should set prerender = false if needed in `src/routes/**/+page.ts`.
 
