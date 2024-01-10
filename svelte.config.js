@@ -1,8 +1,15 @@
+import path from 'path';
 // import adapter from '@sveltejs/adapter-auto';
 import netlify from '@sveltejs/adapter-netlify';
 import vercel from '@sveltejs/adapter-vercel';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { loadEnv } from 'vite';
+import { pwaConfigurationFnc } from './pwa-configuration.js';
+
+const mode = process.env.NODE_ENV || 'development';
+const env = loadEnv(mode, process.cwd());
+const { pwaConfiguration } = await pwaConfigurationFnc(env);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -51,8 +58,14 @@ const config = {
     },
 
     alias: {
-      // Place to add all aliases. Run 'svelte-kit sync' (or npm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
+      // Place to add all aliases. Run 'svelte-kit sync' (or pnpm run postinstall) to update paths in '.svelte-kit/tsconfig.json'.
       // $components: resolve('./src/lib/components')
+    },
+    files: {
+      serviceWorker: path.join(
+        pwaConfiguration.srcDir || 'src',
+        pwaConfiguration.filename || 'sw.js'
+      )
     }
   },
 
