@@ -17,14 +17,14 @@
       (ReloadPrompt = (await import('$lib/components/reloadprompt/ReloadPrompt.svelte')).default);
   });
 
-  $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
 
 <svelte:head>
   <meta name="msapplication-TileColor" content={themeColor} />
   <meta name="theme-color" content={themeColor} />
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html webManifest}
+  {@html webManifestLink}
 </svelte:head>
 
 {#if ReloadPrompt}

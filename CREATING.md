@@ -297,7 +297,7 @@ Other optimizations are getting higher speed / better UX. SvelteKit provides the
 pnpm i -D @types/object-hash object-hash vanilla-lazyload
 ```
 
-Create `src/lib/components/seo/SEO.svelte` component and few sub-components for generating meta-data for SEO (see sources). SEO component is used on each page, and relies on the configuration information from `$lib/config/website.js`.
+Create `src/lib/components/seo/SEO.svelte` component and few sub-components for generating meta-data for SEO (see sources). SEO component is used on each page, and relies on the configuration information from `src/lib/config/website.js`.
 
 It is worth stressing that there's no way to determine hosting website URL during build / prerendering phase. PUBLIC_SITE_URL variable must be configured so the SEO canonical URL is generated correctly. Site URL's for Netlify and Vercel can be also set in `prerender.origin` in `svelte.config.js`, but they seem to not work as expected (SEO.svelte does not receive `$page.url.origin` other than `http://sveltekit-prerender`).
 
@@ -316,25 +316,25 @@ See the following tools for checking the structured data on your deployed websit
 TODO: (soon) Fix FB issue:
 Missing Properties | The following required properties are missing: fb:app_id
 
-### Add Store Services
+### Add SSR-Safe Store Services
 
-SvelteKit provides good server/client support for stores. They are easy to use, but have some mines to avoid (see <https://github.com/sveltejs/kit/discussions/4339>).
+SvelteKit provides good server/client support for stores. They are easy to use, but have some mines to avoid when using SSR (see <https://kit.svelte.dev/docs/state-management#avoid-shared-state-on-the-server> and <https://github.com/sveltejs/kit/discussions/4339>).
 
-See package addressing the issue in most simple to use way: <https://github.com/svelte-kits/store>
-
-See <https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i>.
-
-For upcoming v5.0 Svelte runes, see <https://dev.to/jdgamble555/create-the-perfect-sharable-rune-in-svelte-ij8>.
+See package addressing the issue in the most simple to use way: `@svelte-kits/store` <https://github.com/svelte-kits/store>
 
 ```bash
 pnpm install -D @svelte-kits/store
 ```
 
-Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses.
+Then just replace `svelte/store` with `@svelte-kits/store`, for all store uses (though only `writable` store is affected by SSR).
+
+Also see <https://dev.to/jdgamble555/the-correct-way-to-use-stores-in-sveltekit-3h6i>.
+
+For upcoming v5.0 Svelte runes, see <https://dev.to/jdgamble555/create-the-perfect-sharable-rune-in-svelte-ij8>.
 
 ### Add Service Worker for Offline Operation
 
-Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
+Service Worker will allow the app to work in offline mode. See <https://kit.svelte.dev/docs/service-workers> and <https://vite-pwa-org.netlify.app/frameworks/sveltekit.html> / <https://vite-pwa-org.netlify.app/frameworks/svelte.html>.
 
 In order for the application to work offline, `csr` should NOT be set to false on any of the pages since it will prevent injecting JavaScript into the layout for offline support.
 
@@ -343,13 +343,12 @@ The app has to satisfy PWA Minimal Requirements, see <https://vite-pwa-org.netli
 If your application has forms, we recommend you to change the behavior of automatic reload to use default `prompt` option to allow the user decide when to update the content of the application, otherwise automatic update may clear form data if it decides to update when the user is filling the form.
 
 ```bash
-pnpm add -D @vite-pwa/sveltekit @types/workbox-build@^5.0.1 vite-plugin-pwa@^0.13.3 workbox-core workbox-build workbox-window workbox-precaching workbox-routing @rollup/plugin-replace
+pnpm i -D @vite-pwa/sveltekit vite-plugin-pwa@^0.13.3 workbox-core workbox-build workbox-window workbox-precaching workbox-routing @rollup/plugin-replace
 ```
 
 Create files and make some changes (see sources):
 
 - Add /dev-dist to .gitignore, .eslintignore, .prettierignore
-- Patch @vite-pwa/sveltekit to fix problem with import in TypeScript, see file `patches/@vite-pwa__sveltekit@0.0.1.patch` for a hot-fix.
 - Add SvelteKitPWA to "vite.config.ts"
 - Create "src/lib/components/offline/Offline.svelte"
 - Create "src/lib/components/reloadprompt/ReloadPrompt.svelte"
@@ -360,22 +359,15 @@ Create files and make some changes (see sources):
 - Add Offline component to "src/routes/+layout.svelte"
 - Make `prerender = true` the default in "src/routes/+layout.svelte" - offline precaching needs all routes prerenderd. Dynamic routes won't work offline.
 - Remove `csr = false` and `csr = dev` from all "src/routes/\*\*/+page.ts" files
+- Add service worker scripts to `package.json`
 - Add few settings to "netlify.toml"
 - Add few settings to "vercel.json", // TODO: (when available) see <https://vite-pwa-org.netlify.app/deployment/vercel.html>
 
-#### Fix Issues
+### Add Favicon Component
 
-// TODO: (now) File issue:
+To encapsulate all favicon-related stuff (and keep the mess out of app.html), create `src/lib/components/favicon/Favicon.svelte` component. Use it from `src/routes/+layout.svelte` file.
 
-Error importing from '@vite-pwa/sveltekit' - there is `export default {...}` in @vite-pwa/sveltekit/dist/index.mjs.
-Changing it to `export {...}` (removing `default`) fixes the problem.
-Use `pnpm patch @vite-pwa/sveltekit`, editing the file in directory created by `pnpm patch`, and creating a patch file with `pnpm patch-commit <path given by pnpm>`.
-
-### Create Favicon Component
-
-To encapsulate all favicon-related stuff (and keep the mess out of app.html), create ``$lib/components/favicon/Favicon.svelte` component. Use it from `src/routes/+layout.svelte` file.
-
-Add `badge.ts` to all png favicons.
+Add `badge.ts` to all png favicons so they dynamically display number of new notifications.
 
 See source files.
 
@@ -385,7 +377,7 @@ A slide-out drawer is a must-have functionality for most modern apps and many we
 
 Let's create one, with animations, accessibility, SSR-friendly.
 
-See `/src/lib/components/drawer/Drawer.svelte` and `src/lib/actions/FocusTrap/focusTrap.ts` sources.
+See `src/lib/components/drawer/Drawer.svelte` and `src/lib/actions/FocusTrap/focusTrap.ts` sources.
 
 Credits:
 
@@ -399,6 +391,8 @@ Modifications include:
 - Use CSS `visibility: hidden` so no interference with layout and other elements.
 - Keyboard handling of 'Escape' to close and 'Tab' to move focus between elements.
 
+The Drawer component is not used yet, but will be needed later.
+
 ### Add Tauri
 
 Add desktop support using Tauri (version 1.2 as of writing time).
@@ -409,9 +403,12 @@ Note: iOS and Android support is promised in Tauri discussions, but not implemen
 
 ```bash
 pnpm i -D @tauri-apps/api @tauri-apps/cli
+rustc --version
+# If needed, update to rustc 1.60 or newer:
+rustup update
 ```
 
-Add scripts to package.json:
+Add scripts to package.json (see source for exact changes, these are the essence):
 
 ```json
    {
@@ -436,6 +433,8 @@ pnpm run tauri init
 # What is your frontend build command? - pnpm run build
 ```
 
+Add some .gitignore/.eslintignore/.prettierignore patterns (see source files).
+
 #### Change bundle identifier
 
 To remove the issue:
@@ -457,9 +456,18 @@ Edit file `src-tauri/tauri.conf.json`:
       ...
 ```
 
+#### Fix Tauri Issues
+
+TODO: (soon):
+
+```bash
+pnpm tauri:dev
+Warn Invalid target triple: x86_64-pc-windows-msvc
+```
+
 ### Set Svelte SPA mode
 
-For using Tauri and Capacitor (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit\'s assumption needing a server.
+For using Tauri and Capacitor (standalone app) - SvelteKit should be set to SPA mode and explicitly opt out of SvelteKit's assumption needing a server.
 
 SPA mode is set by using adapter-static and setting `fallback` option, see <https://github.com/sveltejs/kit/tree/master/packages/adapter-static#spa-mode>.
 
@@ -502,7 +510,7 @@ Create `src/routes/+layout.ts` to set `prerender` and `ssr`:
 // src/routes/+layout.ts
 
 // Let SvelteKit decide to prerender for each page by default:
-export const prerender = 'auto';
+export const prerender = true;
 // As of @sveltejs/kit 1.0.0-next.563, pages with actions (e.g. sub-routes) throw error in `vite build`.
 // Each such route should set prerender = false if needed in `src/routes/**/+page.ts`.
 
@@ -547,7 +555,47 @@ const config = {
 
 See netlify.toml and vercel.json files for other deploy settings.
 
+Add '.netlify' and '.vercel' to .gitignore, .eslintignore, .prettierignore (see sources).
+
 Storybook (below) is deployed on Chromatic.
+
+### Rework Header into Header + PureHeader
+
+Non-pure Header loads $page from $app/store, and it makes it hard to use in Histoire/Storybook - it will need mocking of $app/stores which is a lot of work without benefits. Instead we will make PureHeader.
+
+In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `import { page } from '$app/stores';` and replace all usages of $page.pathname with a component parameter `pathname` in PureHeader. PureHeader will be usable in Histoire/Storybook below.
+
+Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
+
+### Rework PureHeader Corners
+
+Add classes "corner-left" and "corner-right" to left and right corners and split their styling, adding "--corner-left-width" and "--corner-right-width" variables, so their sizes can be changed as needed.
+
+Add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header>PureHeader in "+layout.svelte".
+
+For styling to apply into the slot elements, add `:global()` clauses to some of styles on PureHeader.
+
+(See sources).
+
+### Add DarkMode Component
+
+See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
+
+Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
+
+There is an unresolved "ParseError" issue <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137> in eslint-plugin-svelte3 which is wrongly closed, causing Lint to fail on ColorSchemeManager class in DarkMode.svelte.
+
+See "patches/eslint-plugin-svelte3@4.0.0.patch" for a hot-fix.
+
+See open issue <https://github.com/sveltejs/kit/issues/8081>
+
+### Add Github and Svelte icons to Footer links
+
+See `src/routes/+layout.svelte` source file.
+
+### Add Histoire
+
+See `histoire` branch.
 
 ### Add Storybook
 
@@ -651,10 +699,6 @@ The problem with node<17.0.0 is it breaks playwright which requires node>17. No 
 
 For all other issues, adding `cross-env NODE_OPTIONS=--openssl-legacy-provider` to all affected scripts (storybook ones) in `package.json` is the only practical solution for now (it opens up old security vulnerabilities in legacy openssl).
 
-```bash
-pnpm i -D cross-env
-```
-
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
 
 #### Using \*.stories.svelte files
@@ -664,36 +708,6 @@ An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.s
 <https://github.com/storybookjs/storybook/issues/16673>
 
 At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader).
-
-### Rework Header into Header + PureHeader
-
-Non-pure Header loads $page from $app/store, and it makes it hard to use in Storybook - it will need mocking of $app/stores which is a lot of work and no benefits. Instead we will make PureHeader.
-
-In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `import { page } from '$app/stores';` and replace all usages of $page.pathname to component parameter `pathname` in PureHeader. PureHeader will be usable in Storybook below.
-
-Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
-
-### Rework PureHeader Corners
-
-Add classes "corner-left" and "corner-right" to left and right corners and split their styling, adding "--corner-left-width" and "--corner-right-width" variables, so their sizes can be changed as needed.
-
-Add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header>PureHeader in "+layout.svelte".
-
-For styling to apply into the slot elements, add `:global()` clauses to some of styles on PureHeader.
-
-(See sources).
-
-### Add DarkMode Component
-
-See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
-
-Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
-
-There is an unresolved "ParseError" issue <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137> in eslint-plugin-svelte3 which is wrongly closed, causing Lint to fail on ColorSchemeManager class in DarkMode.svelte.
-
-See "patches/eslint-plugin-svelte3@4.0.0.patch" for a hot-fix.
-
-See open issue <https://github.com/sveltejs/kit/issues/8081>
 
 ### Add @storybook/addon-a11y
 
