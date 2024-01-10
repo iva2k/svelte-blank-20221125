@@ -11,9 +11,9 @@ const pwaConfigurationFnc = async (
   const { backgroundColor, description, siteShortTitle, siteTitle, themeColor } =
     await websiteAsync(env);
 
-  // const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/output/client';
+  // const outDir = process.env.VERCEL ? './.vercel/output/static' : './.svelte-kit/output';
   // const srcDir = process.env.VERCEL ? './src' : './src';
-  const outDir = './.svelte-kit/output/client';
+  const outDir = './.svelte-kit/output'; // Since some rev. @vite-pwa/sveltekit adds '/client' to outDir,
   const srcDir = './src';
   // ? const globDirectory = process.env.VERCEL ? './.vercel/output/static' : 'client';
 
@@ -101,6 +101,10 @@ const pwaConfigurationFnc = async (
       short_name: siteShortTitle, // set programmatically, below
       name: siteTitle, // set programmatically, below
       description,
+      screenshots: [
+        { src: '/icon-txr-512x512.png', type: 'image/png', sizes: '512x512', form_factor: 'wide' }, // TODO: (now) Make wide screenshot image
+        { src: '/icon-txr-512x512.png', type: 'image/png', sizes: '512x512', form_factor: 'narrow' }
+      ],
 
       start_url: scope,
       scope: scope,

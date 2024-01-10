@@ -6,49 +6,55 @@
   "configurations": [
     {
       "command": "pnpm storybook",
-      "name": "Run pnpm storybook",
+      "name": "pnpm storybook",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm storybook:build",
-      "name": "Run pnpm storybook:build",
+      "name": "pnpm storybook:build",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm test",
-      "name": "Run pnpm test",
+      "name": "pnpm test",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm test:debug",
-      "name": "Run pnpm test:debug",
+      "name": "pnpm test:debug",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm build:netlify",
+      "name": "pnpm build:netlify",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm build:vercel",
-      "name": "Run pnpm build:vercel",
+      "name": "pnpm build:vercel",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm build:only",
-      "name": "Run pnpm build:only",
+      "name": "pnpm build:only",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm build:only-sw",
-      "name": "Run pnpm build:only-sw",
+      "name": "pnpm build:only-sw",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "pnpm build:only-destroy",
-      "name": "Run pnpm build:only-destroy",
+      "name": "pnpm build:only-destroy",
       "request": "launch",
       "type": "node-terminal"
     },

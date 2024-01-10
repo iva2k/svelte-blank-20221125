@@ -39,6 +39,7 @@ Is it Native? - No. It uses JavaScript / TypeScript and modern tooling to create
 Out of the box features:
 
 - SEO and integration with Social Networks
+- SSR / Server-Side Rendering
 - Offline mode / can work without Internet connection (after the user visits the app when connected, the app's service worker caches all files for offline operation).
 - Support native features (camera, GPS, etc.) - Capacitor included. Check Geolocation and QR Scanner tabs.
 - Support deep links, in online and in offline modes.
@@ -73,6 +74,16 @@ Continuous Integrations and Deployments:
 - [Chromatic](https://www.chromatic.com) - Storybook Github CI
 - [Netlify](https://svelte-blank-20221125.netlify.app) - App Demo
 - [Vercel](https://svelte-blank-20221125.vercel.app) - App Demo
+
+Enhancements not found in the foundational packages and templates:
+
+- HTTPS support in development
+- Vitest coverage
+- Playwright reports
+- ESLint imports
+- SSR-safe Svelte stores
+- Consolidated website configuration
+- Organized Favicon resolutions with notification badges support
 
 ## Install
 
@@ -125,7 +136,7 @@ When deploying your website to any provider (Netlify, Vercel), make sure to set 
 
 ## Developing Locally
 
-Please follow the [Tauri Getting Started Guide](https://tauri.studio/en/docs/getting-started/intro#steps) to setup your system with the required Rust toolchain.
+Please follow the [Tauri Getting Started Guide](https://tauri.app/v1/guides/getting-started/prerequisites) to setup your system with the required [Rust](https://www.rust-lang.org/) toolchain.
 
 This application is built like a typical Node.js application. However, instead of `npm`, [`pnpm`](https://pnpm.io/) is used for package management.
 
@@ -162,6 +173,7 @@ To run desktop app (using Tauri)
 
 ```bash
 pnpm run tauri:dev
+# The app window will open
 ```
 
 To create desktop executable:
@@ -206,6 +218,7 @@ This project has few of the top UI frameworks integrated in separate git branche
 <!-- prettier-ignore -->
 | Git Branch | UI Framework | Dark Theme Switch | Notes |
 |-|-|:-:|-|
+| main                                      | (none) | Y | |
 | [ui-agnostic](../../tree/ui-agnostic)     | [AgnosticUI](https://github.com/AgnosticUI/agnosticui) | Y | |
 | [ui-bootstrap](../../tree/ui-bootstrap)   | [Bootstrap](https://github.com/twbs/bootstrap) | Y | [Sveltestrap](https://github.com/bestguy/sveltestrap), Themes from [Bootswatch](https://github.com/thomaspark/bootswatch) |
 | [ui-bulma](../../tree/ui-bulma)           | [Bulma](https://bulma.io/) | N | |
