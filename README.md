@@ -218,6 +218,7 @@ This project has few of the top UI frameworks integrated in separate git branche
 <!-- prettier-ignore -->
 | Git Branch | UI Framework | Dark Theme Switch | Notes |
 |-|-|:-:|-|
+| main                                      | (none) | Y | |
 | [ui-agnostic](../../tree/ui-agnostic)     | [AgnosticUI](https://github.com/AgnosticUI/agnosticui) | Y | |
 | [ui-bootstrap](../../tree/ui-bootstrap)   | [Bootstrap](https://github.com/twbs/bootstrap) | Y | [Sveltestrap](https://github.com/bestguy/sveltestrap), Themes from [Bootswatch](https://github.com/thomaspark/bootswatch) |
 | [ui-bulma](../../tree/ui-bulma)           | [Bulma](https://bulma.io/) | N | |

@@ -559,6 +559,36 @@ Add '.netlify' and '.vercel' to .gitignore, .eslintignore, .prettierignore (see 
 
 Storybook (below) is deployed on Chromatic.
 
+### Rework Header into Header + PureHeader
+
+Non-pure Header loads $page from $app/store, and it makes it hard to use in Histoire/Storybook - it will need mocking of $app/stores which is a lot of work without benefits. Instead we will make PureHeader.
+
+In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `import { page } from '$app/stores';` and replace all usages of $page.pathname with a component parameter `pathname` in PureHeader. PureHeader will be usable in Histoire/Storybook below.
+
+Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
+
+### Rework PureHeader Corners
+
+Add classes "corner-left" and "corner-right" to left and right corners and split their styling, adding "--corner-left-width" and "--corner-right-width" variables, so their sizes can be changed as needed.
+
+Add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header>PureHeader in "+layout.svelte".
+
+For styling to apply into the slot elements, add `:global()` clauses to some of styles on PureHeader.
+
+(See sources).
+
+### Add DarkMode Component
+
+See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
+
+Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
+
+There is an unresolved "ParseError" issue <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137> in eslint-plugin-svelte3 which is wrongly closed, causing Lint to fail on ColorSchemeManager class in DarkMode.svelte.
+
+See "patches/eslint-plugin-svelte3@4.0.0.patch" for a hot-fix.
+
+See open issue <https://github.com/sveltejs/kit/issues/8081>
+
 ### Add Storybook
 
 ```bash
@@ -661,10 +691,6 @@ The problem with node<17.0.0 is it breaks playwright which requires node>17. No 
 
 For all other issues, adding `cross-env NODE_OPTIONS=--openssl-legacy-provider` to all affected scripts (storybook ones) in `package.json` is the only practical solution for now (it opens up old security vulnerabilities in legacy openssl).
 
-```bash
-pnpm i -D cross-env
-```
-
 TODO: (blocked by upstream) When there's a fix for node>17 and storybook / webpack@4, remove `NODE_OPTIONS=--openssl-legacy-provider` from `package.json`.
 
 #### Using \*.stories.svelte files
@@ -674,36 +700,6 @@ An open/unresolved issue is storybook's v6.5.3 storyStoreV7=true not parsing `.s
 <https://github.com/storybookjs/storybook/issues/16673>
 
 At least, Storybook is working with stories (.tsx, not .svelte) for Counter and Header (after reworking Header into Header + PureHeader).
-
-### Rework Header into Header + PureHeader
-
-Non-pure Header loads $page from $app/store, and it makes it hard to use in Storybook - it will need mocking of $app/stores which is a lot of work and no benefits. Instead we will make PureHeader.
-
-In "src/lib/components/header" copy Header.svelte to PureHeader.svelte, remove `import { page } from '$app/stores';` and replace all usages of $page.pathname to component parameter `pathname` in PureHeader. PureHeader will be usable in Storybook below.
-
-Rework Header.svelte to use PureHeader and pass it the $page.pathname (see sources).
-
-### Rework PureHeader Corners
-
-Add classes "corner-left" and "corner-right" to left and right corners and split their styling, adding "--corner-left-width" and "--corner-right-width" variables, so their sizes can be changed as needed.
-
-Add `<slot />` to the right corner of PureHeader, and move github logo to be slotted into Header>PureHeader in "+layout.svelte".
-
-For styling to apply into the slot elements, add `:global()` clauses to some of styles on PureHeader.
-
-(See sources).
-
-### Add DarkMode Component
-
-See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
-
-Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
-
-There is an unresolved "ParseError" issue <https://github.com/sveltejs/eslint-plugin-svelte3/issues/137> in eslint-plugin-svelte3 which is wrongly closed, causing Lint to fail on ColorSchemeManager class in DarkMode.svelte.
-
-See "patches/eslint-plugin-svelte3@4.0.0.patch" for a hot-fix.
-
-See open issue <https://github.com/sveltejs/kit/issues/8081>
 
 ### Add @storybook/addon-a11y
 
