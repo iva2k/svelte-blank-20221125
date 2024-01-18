@@ -6,6 +6,7 @@ import PureHeader from './PureHeader.svelte';
 export default {
   title: 'PureHeader',
   component: PureHeader,
+  tags: ['autodocs'],
   argTypes: {
     // Note: For Typescript, keep argTypes in sync with argParams below.
     pathname: {
