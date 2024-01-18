@@ -9,6 +9,7 @@
 5. Push Notifications?
 6. Explore turborepo <https://www.npmjs.com/package/turbo>
 7. Explore Histoire <https://histoire.dev/guide/svelte3/getting-started.html> instead of Storybook
+8. SVG icons, see src/lib/components/image/\* and <https://www.npmjs.com/package/@poppanator/sveltekit-svg>, <https://joshuatz.com/posts/2021/using-svg-files-in-svelte/>
 
 ## Package Updates
 

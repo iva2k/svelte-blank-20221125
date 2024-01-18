@@ -46,7 +46,7 @@ for TARGET_BRANCH in "${TARGET_BRANCHES[@]}"; do
           exit 1
         else
           echo "No unresolved Git conflicts found, continuing..."
-          git commit
+          git commit --no-edit
         fi
 
     fi
