@@ -11,6 +11,9 @@ const mode = process.env.NODE_ENV || 'development';
 const env = loadEnv(mode, process.cwd());
 const { pwaConfiguration } = await pwaConfigurationFnc(env);
 
+import websiteFnc from './src/lib/config/websiteFnc.js';
+const { websiteUrl } = websiteFnc(process.env);
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
@@ -26,11 +29,7 @@ const config = {
   prerender: {
     default: true,
     onError: 'continue',
-    origin: process.env.VERCEL
-      ? 'https://svelte-blank-20221125.vercel.app'
-      : process.env.NETLIFY
-        ? 'https://svelte-blank-20221125.netlify.app'
-        : 'https://svelte-blank-20221125.iva2k.com'
+    origin: websiteUrl
   },
 
   kit: {

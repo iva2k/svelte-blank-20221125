@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  // import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
   import Favicon from '$lib/components/favicon/Favicon.svelte';
   import Offline from '$lib/components/offline/Offline.svelte';
@@ -29,7 +30,11 @@
   });
   // END load 'vanilla-lazyload' lib
 
+  import github_logo from '$lib/images/github.svg';
+  import svelte_logo from '$lib/images/svelte-logo.svg';
+
   onMount(async () => {
+    // await defineCustomElements(window);
     await loadIonicPWAElements(window);
   });
 
@@ -81,8 +86,17 @@
 
   <footer>
     <p>
-      visit <a href={githubRepo}>App GitHub Repo</a> for details | visit
-      <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+      visit
+      <a href={githubRepo}>
+        <img src={github_logo} alt="Github" aria-hidden="true" role="presentation" />
+        <span>App GitHub Repo</span>
+      </a>
+      for details | visit
+      <a href="https://kit.svelte.dev">
+        <img src={svelte_logo} alt="SvelteKit" aria-hidden="true" role="presentation" />
+        <span>kit.svelte.dev</span>
+      </a>
+      to learn SvelteKit
     </p>
   </footer>
 </div>
@@ -114,7 +128,20 @@
   }
 
   footer a {
+    display: inline-block; /* Place link and image inline */
+    text-decoration: none; /* Remove default underline for links */
     font-weight: bold;
+  }
+  footer a span {
+    margin-top: 10px; /* Adjust the margin as needed */
+  }
+
+  footer a :global(img),
+  footer a :global(svg) {
+    vertical-align: middle; /* Aligns image vertically with the text */
+    width: 2em;
+    height: 3em;
+    --fill_color: var(--color-text);
   }
 
   @media (min-width: 480px) {

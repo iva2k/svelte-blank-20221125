@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig, loadEnv } from 'vite';
+import { loadEnv } from 'vite';
+import { defineConfig } from 'vitest/config';
 import type { UserConfig, Plugin } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import basicSsl from '@vitejs/plugin-basic-ssl';
