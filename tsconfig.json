@@ -2,7 +2,6 @@
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     // BEGIN copy from .svelte-kit/tsconfig.json, relatively adjust all paths
-    "baseUrl": ".",
     "rootDirs": [".", "./.svelte-kit/types"],
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
@@ -20,7 +19,8 @@
       "$lib/*": ["./src/lib/*"],
       "@vite-pwa/sveltekit": ["./node_modules/@vite-pwa/sveltekit/dist"],
       "virtual:pwa-client": ["./node_modules/vite-plugin-pwa/client.d.ts"],
-      "virtual:pwa-info": ["./node_modules/vite-plugin-pwa/info.d.ts"]
+      "virtual:pwa-info": ["./node_modules/vite-plugin-pwa/info.d.ts"],
+      "virtual:pwa-register/svelte": ["./node_modules/vite-plugin-pwa/svelte.d.ts"]
       // "*": ["*", "./node_modules/@types/*", "./node_modules/@vite-pwa/sveltekit/*"]
     },
     // END override .svelte-kit/tsconfig.json

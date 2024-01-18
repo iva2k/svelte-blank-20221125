@@ -3,6 +3,11 @@ import { create } from '@storybook/theming';
 export default create({
   // base: 'light',
   base: 'dark',
+
+  // // Typography
+  // fontBase: '"Open Sans", sans-serif',
+  // fontCode: 'monospace',
+
   brandTitle: 'My custom storybook',
   brandUrl: 'https://example.com',
   brandImage: 'https://place-hold.it/350x150',
@@ -14,12 +19,9 @@ export default create({
   // // UI
   // appBg: 'white',
   // appContentBg: 'silver',
+  // appPreviewBg: '#ffffff',
   // appBorderColor: 'grey',
   // appBorderRadius: 4,
-
-  // // Typography
-  // fontBase: '"Open Sans", sans-serif',
-  // fontCode: 'monospace',
 
   // // Text colors
   // textColor: 'black',

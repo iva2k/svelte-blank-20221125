@@ -33,7 +33,7 @@ pnpm icons:build
 To compress SVG files (e.g. remove editor metadata), use SVGO <https://github.com/svg/svgo>:
 
 ```bash
-npm -g install svgo
+pnpm -g install svgo
 # Processing single files:
 svgo logo.svg -o logo.min.svg
 ```
