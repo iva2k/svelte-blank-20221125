@@ -7,7 +7,7 @@ const config: PlaywrightTestConfig = {
     ? [['dot'], ['json', { outputFile: 'test-results.json' }]]
     : [['list'], ['json', { outputFile: 'test-results.json' }], ['html', { open: 'on-failure' }]],
   webServer: {
-    command: 'pnpm run build:only && pnpm run preview:http', // TODO: (blocked by upstream) having "pnpm run build" calls "cap sync android", which hits a bug with no extension windows command file crashing in node --experimental-loader. Current workaround is to remove `cap` from playwright.
+    command: 'pnpm run build:base && pnpm run preview:http',
     port: 4173,
     timeout: 120 * 1000
   },
