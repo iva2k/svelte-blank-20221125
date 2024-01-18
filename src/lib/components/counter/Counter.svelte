@@ -1,7 +1,7 @@
 <script lang="ts">
   import { spring } from 'svelte/motion';
 
-  export let count = 0;
+  let count = 0;
 
   const displayed_count = spring();
   $: displayed_count.set(count);
@@ -34,7 +34,7 @@
   </button>
 </div>
 
-<style>
+<style lang="scss">
   .counter {
     display: flex;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
