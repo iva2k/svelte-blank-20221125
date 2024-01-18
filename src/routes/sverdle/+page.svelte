@@ -19,8 +19,11 @@
   /** The index of the current guess */
   $: i = won ? -1 : data.answers.length;
 
+  /** The current guess */
+  $: currentGuess = data.guesses[i] || '';
+
   /** Whether the current guess can be submitted */
-  $: submittable = data.guesses[i]?.length === 5;
+  $: submittable = currentGuess.length === 5;
 
   /**
    * A map of classnames for all letters that have been guessed,
@@ -60,14 +63,13 @@
    * if client-side JavaScript is enabled
    */
   function update(event: MouseEvent) {
-    const guess = data.guesses[i];
     const key = (event.target as HTMLButtonElement).getAttribute('data-key');
 
     if (key === 'backspace') {
-      data.guesses[i] = guess.slice(0, -1);
+      currentGuess = currentGuess.slice(0, -1);
       if (form?.badGuess) form.badGuess = false;
-    } else if (guess.length < 5) {
-      data.guesses[i] += key;
+    } else if (currentGuess.length < 5) {
+      currentGuess += key;
     }
   }
 
@@ -78,12 +80,10 @@
   function keydown(event: KeyboardEvent) {
     if (event.metaKey) return;
 
-    if (event.key === 'Backspace') {
-      event.preventDefault();
-    }
+    if (event.key === 'Enter' && !submittable) return;
 
     document
-      .querySelector(`[data-key="${event.key.toLowerCase()}" i]`)
+      .querySelector(`[data-key="${event.key}" i]`)
       ?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
   }
 </script>
@@ -107,16 +107,15 @@
   <a class="how-to-play" href="/sverdle/how-to-play">How to play</a>
 
   <div class="grid" class:playing={!won} class:bad-guess={form?.badGuess}>
-    <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-    {#each Array(6) as _, row}
+    {#each Array.from(Array(6).keys()) as row (row)}
       {@const current = row === i}
       <h2 class="visually-hidden">Row {row + 1}</h2>
       <div class="row" class:current>
-        <!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
-        {#each Array(5) as _, column}
+        {#each Array.from(Array(5).keys()) as column (column)}
+          {@const guess = current ? currentGuess : data.guesses[row]}
           {@const answer = data.answers[row]?.[column]}
-          {@const value = data.guesses[row]?.[column] ?? ''}
-          {@const selected = current && column === data.guesses[row].length}
+          {@const value = guess?.[column] ?? ''}
+          {@const selected = current && column === guess.length}
           {@const exact = answer === 'x'}
           {@const close = answer === 'c'}
           {@const missing = answer === '_'}
@@ -169,7 +168,7 @@
                 on:click|preventDefault={update}
                 data-key={letter}
                 class={classnames[letter]}
-                disabled={data.guesses[i].length === 5}
+                disabled={submittable}
                 formaction="?/update"
                 name="key"
                 value={letter}
@@ -189,6 +188,7 @@
   <div
     style="position: absolute; left: 50%; top: 30%"
     use:confetti={{
+      // TODO: (when needed) Remove eslint-disable
       // eslint-disable-next-line svelte/valid-compile
       particleCount: $reduced_motion ? 0 : undefined,
       force: 0.7,
@@ -199,7 +199,7 @@
   />
 {/if}
 
-<style>
+<style lang="scss">
   form {
     width: 100%;
     height: 100%;
@@ -343,11 +343,12 @@
     border: 2px solid var(--color-theme-2);
   }
 
+  /* TODO: (now) revisit, maybe a better way: */
+  /* stylelint-disable-next-line a11y/no-outline-none */
   .keyboard button:focus {
     background: var(--color-theme-1);
     color: white;
-    /* outline: none; */
-    outline: thin dotted;
+    outline: none;
   }
 
   .keyboard button[data-key='enter'],
@@ -381,12 +382,14 @@
     border: none;
   }
 
+  /* TODO: (now) revisit, maybe a better way: */
+  /* stylelint-disable-next-line a11y/no-outline-none */
   .restart:focus,
   .restart:hover {
     background: var(--color-theme-1);
     color: white;
-    /* outline: none; */
-    outline: thin dotted;
+    outline: none;
+    /* outline: thin dotted; */
   }
 
   @keyframes wiggle {

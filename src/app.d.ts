@@ -21,13 +21,18 @@ declare const __UPDATE_CHECK_PERIOD_MS__: string;
 // declare global {
 //   namespace App { ...
 
-declare namespace App {
-  // interface Error {}
-  interface Locals {
-    userid: string;
-    // buildDate: string;
-    // periodicUpdates: boolean;
+declare global {
+  namespace App {
+    // interface Error {}
+    interface Locals {
+      userid: string;
+      // buildDate: string;
+      // periodicUpdates: boolean;
+    }
+    // interface PageData {}
+    // interface PageState {}
+    // interface Platform {}
   }
-  // interface PageData {}
-  // interface Platform {}
 }
+
+export {};
