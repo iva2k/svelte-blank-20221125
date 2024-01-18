@@ -6,7 +6,7 @@
 
 /** @type {import("@ionic/pwa-elements/loader").defineCustomElements} */
 // @ts-ignore
-import { defineCustomElements } from '@ionic/pwa-elements/loader/index.cjs';
+import { defineCustomElements } from '@ionic/pwa-elements/loader/index.cjs.js';
 
 export const loadIonicPWAElements = async (
   // @ts-ignore

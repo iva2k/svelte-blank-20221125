@@ -34,6 +34,10 @@ const websiteFnc = (
   const twitterUserId = '1234567890';
   const wireUsername = '@iva2k';
   const githubRepo = 'https://github.com/iva2k/svelte-blank-20221125';
+  const websiteUrlBase = 'https://svelte-blank-20221125.iva2k.com';
+  const websiteUrlNetlify = 'https://svelte-blank-20221125.netlify.app';
+  const websiteUrlVercel = 'https://svelte-blank-20221125.vercel.app';
+  const websiteUrl = NETLIFY ? websiteUrlNetlify : VERCEL ? websiteUrlVercel : websiteUrlBase;
 
   const googleSiteVerificationNetlify = '';
   const googleSiteVerificationVercel = 'BXO06YUfaqiMbQ-FgBPqQAgWB7giDX-pLEDSz89vUng';
@@ -64,7 +68,9 @@ const websiteFnc = (
     wireUsername,
     googleSiteVerificationNetlify,
     googleSiteVerificationVercel,
-    githubRepo
+    githubRepo,
+    websiteUrlBase,
+    websiteUrl
   };
   console.log('DEBUG websiteFnc.js website=%o, env=%o', website, env);
   return website;

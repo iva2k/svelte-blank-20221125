@@ -5,14 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "pnpm storybook",
-      "name": "pnpm storybook",
+      "command": "pnpm story",
+      "name": "pnpm story",
       "request": "launch",
       "type": "node-terminal"
     },
     {
-      "command": "pnpm storybook:build",
-      "name": "pnpm storybook:build",
+      "command": "pnpm story:build",
+      "name": "pnpm story:build",
       "request": "launch",
       "type": "node-terminal"
     },

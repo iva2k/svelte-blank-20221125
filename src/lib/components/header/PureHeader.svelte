@@ -1,5 +1,7 @@
 <script lang="ts">
   import logo from '$lib/images/logo.svg';
+  import website from '$lib/config/website';
+  const { websiteUrlBase } = website;
 
   export let pathname = '/';
   $: path1st = '/' + (pathname ?? '').split('/')[1];
@@ -15,7 +17,7 @@
 
 <header>
   <div class="corner corner-left">
-    <a href="https://svelte-blank-20221125.vercel.app">
+    <a href={websiteUrlBase}>
       <img src={logo} alt="Total App" />
     </a>
   </div>
@@ -41,7 +43,7 @@
   </div>
 </header>
 
-<style>
+<style lang="scss">
   header {
     display: flex;
     justify-content: space-between;

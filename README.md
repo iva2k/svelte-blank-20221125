@@ -1,5 +1,6 @@
 # Total App | Blank SvelteKit App
 
+<!-- markdownlint-disable MD033 -->
 <!-- prettier-ignore -->
 <table>
     <tbody>
@@ -18,6 +19,7 @@
         </tr>
     </tbody>
 </table>
+<!-- markdownlint-enable MD033 -->
 
 <!-- ![Total App](static/logotype-hor.svg) -->
 
