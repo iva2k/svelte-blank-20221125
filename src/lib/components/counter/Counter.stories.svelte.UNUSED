@@ -1,9 +1,12 @@
-<script lang="ts">
-  import { Meta, Template, Story } from '@storybook/addon-svelte-csf';
+<script lang="ts" context="module">
+  import { Story, Template } from '@storybook/addon-svelte-csf';
   import Counter from './Counter.svelte';
-</script>
 
-<Meta title="Counter" component={Counter} />
+  export const meta = {
+    title: 'Counter .svelte',
+    component: Counter
+  };
+</script>
 
 <Template let:args>
   <Counter {...args} />
