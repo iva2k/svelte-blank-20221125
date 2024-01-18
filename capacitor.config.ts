@@ -4,7 +4,9 @@ const config: CapacitorConfig = {
   appId: 'com.iva2k.svelteblank20221125',
   appName: 'svelte-blank-20221125',
   webDir: 'build',
-  bundledWebRuntime: false
+  server: {
+    androidScheme: 'https'
+  }
 };
 
 export default config;
