@@ -55,10 +55,12 @@
 </script>
 
 <svelte:head>
-  <link
-    rel="stylesheet"
-    href="vendor/bootstrap/themes/{isDarkMode ? 'darkly' : 'flatly'}/bootstrap.min.css"
-  />
+  <!-- <link rel="stylesheet" href="vendor/bootstrap/themes/{isDarkMode ? 'darkly' : 'flatly'}/bootstrap.min.css" /> -->
+  {#if isDarkMode}
+    <link rel="stylesheet" href="/vendor/bootstrap/themes/darkly/bootstrap.min.css" />
+  {:else}
+    <link rel="stylesheet" href="/vendor/bootstrap/themes/flatly/bootstrap.min.css" />
+  {/if}
 </svelte:head>
 
 <div class="app">
@@ -68,7 +70,6 @@
     <DarkMode bind:isDarkMode>
       <svelte:fragment let:data>
         <Input
-          id="c1"
           type="switch"
           label={isDarkMode ? BRIGHT_ENTITY : CRESCENT_MOON_ENTITY}
           checked={isDarkMode}
