@@ -1162,3 +1162,10 @@ Insert code that loads the framework and adds dark theme toggle into `src/routes
 Add example page `src/routes/bootstrap/+page.svelte` (see source).
 
 Add some items to `assets.ts` (see source).
+
+#### Issue with `pnpm check`
+
+```bash
+Error: Argument of type 'typeof Row' is not assignable to parameter of type 'ConstructorOfATypedSvelteComponent'
+Error: Argument of type 'typeof Col' is not assignable to parameter of type 'ConstructorOfATypedSvelteComponent'
+```
