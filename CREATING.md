@@ -1159,4 +1159,6 @@ import { Card } from 'sveltestrap/src';
 
 Insert code that loads the framework and adds dark theme toggle into `src/routes/+layout.svelte` (see source).
 
-Add example page `src/routes/bootstrap/+page.svelte` (see code).
+Add example page `src/routes/bootstrap/+page.svelte` (see source).
+
+Add some items to `assets.ts` (see source).
