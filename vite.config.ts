@@ -45,8 +45,6 @@ export default defineConfig(async ({ mode }) => {
       minify: false
     },
     define: {
-      'process.env.NODE_ENV':
-        process.env.NODE_ENV === 'production' ? '"production"' : '"development"',
       __DATE__: JSON.stringify(new Date().toISOString()),
       __RELOAD_SW__: JSON.stringify(false),
       __UPDATE_CHECK_PERIOD_MS__: JSON.stringify(20000) // in milli-seconds, 20s for testing purposes
