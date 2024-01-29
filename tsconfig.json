@@ -5,10 +5,10 @@
     "rootDirs": [".", "./.svelte-kit/types"],
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    "lib": ["es2020", "DOM", "DOM.Iterable"],
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
     "moduleResolution": "bundler",
-    "module": "es2020",
-    "target": "es2020",
+    "module": "esnext",
+    "target": "esnext",
     // END copy from .svelte-kit/tsconfig.json
 
     // BEGIN override .svelte-kit/tsconfig.json
@@ -33,13 +33,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "outDir": ".types",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@vite-pwa/sveltekit/dist",
-      "./node_modules/vite-plugin-pwa/client",
-      "./node_modules/vite-plugin-pwa/info"
-    ]
+    "outDir": ".types"
   },
   "exclude": [
     "./node_modules/**",
