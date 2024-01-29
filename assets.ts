@@ -13,7 +13,15 @@ const assets: Target[] = [
     dest: 'static/vendor/bootstrap/themes/darkly'
   },
   {
+    src: 'node_modules/bootswatch/dist/darkly/*.css.map',
+    dest: 'static/vendor/bootstrap/themes/darkly'
+  },
+  {
     src: 'node_modules/bootswatch/dist/flatly/*.css',
+    dest: 'static/vendor/bootstrap/themes/flatly'
+  },
+  {
+    src: 'node_modules/bootswatch/dist/flatly/*.css.map',
     dest: 'static/vendor/bootstrap/themes/flatly'
   }
 ];
