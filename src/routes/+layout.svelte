@@ -6,9 +6,9 @@
   import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
-  // import './styles.css';
+  import './styles.css';
   // import '../../node_modules/bulma/css/bulma.min.css';
-  import '../../node_modules/bulma/css/bulma.css';
+  // import '../../node_modules/bulma/css/bulma.css'; // Moved to style.css
   import { loadIonicPWAElements } from '$lib/utils.cjs';
   import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
 
@@ -57,7 +57,7 @@
 <svelte:head>
   <!-- <link
     rel="stylesheet"
-    href="vendor/bulma/themes/{isDarkMode ? 'darkly' : 'flatly'}/bulma.min.css"
+    href="/vendor/bulma/themes/{isDarkMode ? 'darkly' : 'flatly'}/bulma.min.css"
   /> -->
 
   <link
