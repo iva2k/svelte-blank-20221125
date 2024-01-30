@@ -1141,7 +1141,7 @@ If the width of your app's content doesn't match the width of the viewport, your
 
 - Svelte components: <https://www.shadcn-svelte.com/docs>
 
-### Add UI : Framework7
+## Add UI : Framework7
 
 [Framework7 for Svelte](https://framework7.io/svelte/introduction.html)
 
@@ -1149,6 +1149,6 @@ If the width of your app's content doesn't match the width of the viewport, your
 pnpm install framework7 framework7-svelte
 ```
 
-Insert code that loads the framework into `src/routes/__layout.svelte` (see source in repo).
+Insert code that loads the framework into `src/routes/+layout.svelte` (see source in repo).
 
-Add example page `src/routes/framework7/index.svelte` (see code in repo).
+Add example page `src/routes/framework7/+page.svelte` (see source in repo).
