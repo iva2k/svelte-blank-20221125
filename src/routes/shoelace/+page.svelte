@@ -1,9 +1,14 @@
 <script lang="ts">
-  // ? import sl-button from '@shoelace...'
 </script>
 
-<sl-button>Button</sl-button>
+<sl-button variant="default">Default Button</sl-button>
 
-<sl-button type="primary">Primary</sl-button>
+<sl-button variant="primary">Primary</sl-button>
 
-<sl-button type="Secondary">Secondary</sl-button>
+<sl-button variant="success">Success</sl-button>
+
+<sl-button variant="neutral">Neutral</sl-button>
+
+<sl-button variant="warning">Warning</sl-button>
+
+<sl-button variant="danger">Danger</sl-button>
