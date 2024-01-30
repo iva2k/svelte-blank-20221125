@@ -72,7 +72,7 @@
     "@capacitor/ios": "^5.6.0",
     "@fontsource/fira-mono": "^4.5.10",
     "@ionic/pwa-elements": "^3.2.2",
-    "@shoelace-style/shoelace": "2.0.0-beta.88",
+    "@shoelace-style/shoelace": "^2.13.1",
     "qr-scanner": "^1.4.2"
   },
   "devDependencies": {
@@ -175,7 +175,7 @@
   "_id": "svelte-blank-20221125@0.0.1",
   "pnpm": {
     "patchedDependencies": {
-      "@shoelace-style/shoelace@2.0.0-beta.88": "patches/@shoelace-style__shoelace@2.0.0-beta.88.patch"
+      "@shoelace-style/shoelace@2.13.1": "patches/@shoelace-style__shoelace@2.13.1.patch"
     }
   }
 }

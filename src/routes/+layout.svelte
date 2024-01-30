@@ -6,11 +6,7 @@
   import Offline from '$lib/components/offline/Offline.svelte';
   import DarkMode from '$lib/components/darkmode/DarkMode.svelte';
   import Header from '$lib/components/header/Header.svelte';
-  //import './styles.css';
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  import * as _ from '@shoelace-style/shoelace';
-  // import type { SlSwitch } from '@shoelace-style/shoelace';
-
+  import './styles.css';
   import { loadIonicPWAElements } from '$lib/utils.cjs';
   import { BRIGHT_ENTITY, CRESCENT_MOON_ENTITY } from '$lib/constants/entities';
 
@@ -36,6 +32,8 @@
   onMount(async () => {
     // await defineCustomElements(window);
     await loadIonicPWAElements(window);
+
+    await import('@shoelace-style/shoelace');
   });
 
   let isDarkMode: boolean;
@@ -62,7 +60,11 @@
 </script>
 
 <svelte:head>
-  <link rel="stylesheet" href="vendor/shoelace/themes/{isDarkMode ? 'dark' : 'light'}.css" />
+  {#if isDarkMode}
+    <link rel="stylesheet" href="/vendor/shoelace/themes/dark.css" />
+  {:else}
+    <link rel="stylesheet" href="/vendor/shoelace/themes/light.css" />
+  {/if}
 </svelte:head>
 
 <div class="app">
