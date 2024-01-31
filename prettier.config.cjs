@@ -2,10 +2,8 @@ module.exports = {
   overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
   plugins: [
     'prettier-plugin-svelte',
-    require('prettier-plugin-tailwindcss') // MUST come last
+    'prettier-plugin-tailwindcss' // MUST come last
   ],
-  // pluginSearchDirs: ["."],
-  pluginSearchDirs: false,
   printWidth: 100,
   singleQuote: true,
   tabWidth: 2,

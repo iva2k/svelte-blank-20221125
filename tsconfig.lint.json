@@ -15,6 +15,7 @@
     "playwright.config.ts",
     "prettier.config.cjs",
     "pwa-configuration.js",
-    "svelte.config.js"
+    "svelte.config.js",
+    "tailwindcss.config.cjs"
   ]
 }

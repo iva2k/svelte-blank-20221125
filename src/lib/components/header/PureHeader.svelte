@@ -11,7 +11,7 @@
     { path: '/sverdle', title: 'Sverdle' },
     { path: '/geolocation', title: 'Geolocation' },
     { path: '/qrscanner', title: 'QR Scanner' },
-    { path: '/konsta', title: 'Konsta' },
+    { path: '/konsta', title: 'Konsta' }
   ];
 </script>
 

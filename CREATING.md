@@ -1141,7 +1141,7 @@ If the width of your app's content doesn't match the width of the viewport, your
 
 - Svelte components: <https://www.shadcn-svelte.com/docs>
 
-### Add UI : Tailwind CSS
+## Add UI : Tailwind CSS
 
 Tailwind CSS is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
 
@@ -1154,9 +1154,11 @@ pnpm install -D tailwindcss postcss autoprefixer prettier-plugin-tailwindcss
 pnpx tailwindcss init tailwind.config.cjs -p
 ```
 
-Rename ".prettierrc" to "prettier.config.ts" and modify contents to employ `module.exports = {...};` symntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]`.
+Rename ".prettierrc" to "prettier.config.сjs" and modify contents to employ `module.exports = {...};` syntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]` (see source in repo).
 
-### Add UI : Konsta
+Add "tailwindcss: {}," to `plugins` in `postcss.config.cjs` (see source in repo).
+
+## Add UI : Konsta
 
 [Konsta](https://konstaui.com/svelte)
 
@@ -1165,3 +1167,5 @@ First, install required Tailwind CSS (see [Add UI : Tailwind CSS](#add-ui--tailw
 ```bash
 pnpm i konsta @fontsource/roboto
 ```
+
+Modify `tailwindcss.config.cjs` file to use konsta (see source in repo).
