@@ -1141,7 +1141,7 @@ If the width of your app's content doesn't match the width of the viewport, your
 
 - Svelte components: <https://www.shadcn-svelte.com/docs>
 
-### Add UI : SvelteUI
+## Add UI : SvelteUI
 
 [SvelteUI](https://www.svelteui.org)
 
@@ -1156,4 +1156,12 @@ pnpm i @svelteuidev/prism
 
 Insert `SvelteUIProvider` wrapper element from the framework into `src/routes/+layout.svelte` (see source in repo).
 
-Add example page `src/routes/shoelace/+page.svelte` (see code in repo).
+Add example page `src/routes/shoelace/+page.svelte` (see source in repo).
+
+Some styles have to be disabled in `src/routes/styles.css` (see source in repo).
+
+### Issue with @svelteuidev/core
+
+There was a breaking change in Svelte 5, removing functions such as `beforeUpdate` from `svelte/internal` that was used in `@svelteuidev/core`.
+
+FIX: @svelteuidev/core is patched, see `patches/@svelteuidev__core@0.15.4.patch`. It fixes build, but the patch is not functional, so the library remains broken.
