@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@svelteuidev/core@0.15.4':
+    hash: gieqbsx3lj6etykle4r4ljzy3y
+    path: patches/@svelteuidev__core@0.15.4.patch
+
 dependencies:
   '@capacitor/android':
     specifier: ^5.6.0
@@ -24,26 +29,26 @@ dependencies:
     specifier: ^3.2.2
     version: 3.2.2
   '@svelteuidev/composables':
-    specifier: ^0.7.7
-    version: 0.7.7
+    specifier: ^0.15.4
+    version: 0.15.4(svelte@5.0.0-next.28)
   '@svelteuidev/core':
-    specifier: ^0.7.7
-    version: 0.7.7(@svelteuidev/composables@0.7.7)(svelte@5.0.0-next.28)
+    specifier: ^0.15.4
+    version: 0.15.4(patch_hash=gieqbsx3lj6etykle4r4ljzy3y)(@svelteuidev/composables@0.15.4)(svelte@5.0.0-next.28)
   '@svelteuidev/dates':
-    specifier: ^0.7.7
-    version: 0.7.7(@svelteuidev/composables@0.7.7)(@svelteuidev/core@0.7.7)(svelte@5.0.0-next.28)
+    specifier: ^0.15.4
+    version: 0.15.4(@svelteuidev/composables@0.15.4)(@svelteuidev/core@0.15.4)(svelte@5.0.0-next.28)
   '@svelteuidev/motion':
-    specifier: ^0.7.7
-    version: 0.7.7(svelte@5.0.0-next.28)
+    specifier: ^0.15.4
+    version: 0.15.4(svelte@5.0.0-next.28)
   '@svelteuidev/preprocessors':
-    specifier: ^0.7.7
-    version: 0.7.7(svelte@5.0.0-next.28)
+    specifier: ^0.15.4
+    version: 0.15.4(svelte@5.0.0-next.28)
   '@svelteuidev/prism':
-    specifier: ^0.7.7
-    version: 0.7.7(@svelteuidev/composables@0.7.7)(@svelteuidev/core@0.7.7)(svelte@5.0.0-next.28)
+    specifier: ^0.15.4
+    version: 0.15.4(@svelteuidev/composables@0.15.4)(@svelteuidev/core@0.15.4)(svelte@5.0.0-next.28)
   dayjs:
-    specifier: ^1.11.7
-    version: 1.11.7
+    specifier: ^1.11.10
+    version: 1.11.10
   qr-scanner:
     specifier: ^1.4.2
     version: 1.4.2
@@ -3351,20 +3356,15 @@ packages:
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
     dev: true
 
-  /@floating-ui/core@0.7.3:
-    resolution: {integrity: sha512-buc8BXHmG9l82+OQXOFU3Kr2XQx9ys01U/Q9HMIrZ300iLc8HLMgh7dcCqgYzAzf4BkoQvDcXf5Y+CuEZ5JBYg==}
-    dev: false
-
   /@floating-ui/core@1.5.3:
     resolution: {integrity: sha512-O0WKDOo0yhJuugCx6trZQj5jVJ9yR0ystG2JaNAemYUWce+pmM6WUEFIibnWyEJKdrDxhm75NoSRME35FNaM/Q==}
     dependencies:
       '@floating-ui/utils': 0.2.1
-    dev: true
 
-  /@floating-ui/dom@0.5.2:
-    resolution: {integrity: sha512-z1DnEa7F3d8Fm/eXSbii8UEGpcjZGkQaYYUI0WpEVgD3vBfebDW8j/3ysusxonuMexoigA+A3b/fYH7sEqiwyg==}
+  /@floating-ui/dom@1.2.8:
+    resolution: {integrity: sha512-XLwhYV90MxiHDq6S0rzFZj00fnDM+A1R9jhSioZoMsa7G0Q0i+Q4x40ajR8FHSdYDE1bgjG45mIWe6jtv9UPmg==}
     dependencies:
-      '@floating-ui/core': 0.7.3
+      '@floating-ui/core': 1.5.3
     dev: false
 
   /@floating-ui/dom@1.5.4:
@@ -3387,7 +3387,6 @@ packages:
 
   /@floating-ui/utils@0.2.1:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
-    dev: true
 
   /@fontsource/fira-mono@4.5.10:
     resolution: {integrity: sha512-bxUnRP8xptGRo8YXeY073DSpfK74XpSb0ZyRNpHV9WvLnJ7TwPOjZll8hTMin7zLC6iOp59pDZ8EQDj1gzgAQQ==}
@@ -5906,60 +5905,65 @@ packages:
       - supports-color
     dev: true
 
-  /@svelteuidev/composables@0.7.7:
-    resolution: {integrity: sha512-pl7OSIOuez57LUQW+Eu4+NuZCqa6Ee0vhYp1WrHJjI3ICGosmv4RifF43NEuJSFjTw+Z7gTrGDIf9Znu21oTRA==}
-    dev: false
-
-  /@svelteuidev/core@0.7.7(@svelteuidev/composables@0.7.7)(svelte@5.0.0-next.28):
-    resolution: {integrity: sha512-SUt8y8v1OyHaku2wvqywZrqry4WhXtAY1RK4rvq3iZhmstE6G3yTJ5biJjmz46uvQYLFIDTv7Ecag6ooF2rJig==}
+  /@svelteuidev/composables@0.15.4(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-GN7ZiUOCptgeLXs2HGcg6iuxo4aVeiV02tynofFNeVAFKSHX10FXhN1kWx8cDDJlW3/BjEP2qXa2qn4XrYNqTA==}
     peerDependencies:
-      '@svelteuidev/composables': 0.7.7
-      svelte: '>=3.47.0'
+      svelte: '>=3.55.0'
     dependencies:
-      '@floating-ui/dom': 0.5.2
-      '@stitches/core': 1.2.8
-      '@svelteuidev/composables': 0.7.7
       svelte: 5.0.0-next.28
     dev: false
 
-  /@svelteuidev/dates@0.7.7(@svelteuidev/composables@0.7.7)(@svelteuidev/core@0.7.7)(svelte@5.0.0-next.28):
-    resolution: {integrity: sha512-aleNxvivfVeT/00PdnJ7zZu5zr2KYFKOUKDW7Eyl3iRtBvIOlzLLtwgc0RnEmQFbGrD9L/e/TUpoAzHdQV+PvA==}
+  /@svelteuidev/core@0.15.4(patch_hash=gieqbsx3lj6etykle4r4ljzy3y)(@svelteuidev/composables@0.15.4)(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-TwGlFg3mlIMFKy+gm0+MzVF5DOU22coi4cT0wtcKCfV5oGzAkasAxhjLm+ZtUBb52b/lHgVDGv7bjmN7I17UUA==}
     peerDependencies:
-      '@svelteuidev/composables': 0.7.7
-      '@svelteuidev/core': 0.7.7
-      svelte: '>=3.47.0'
+      '@svelteuidev/composables': 0.15.4
+      svelte: '>=3.55.0'
     dependencies:
-      '@svelteuidev/composables': 0.7.7
-      '@svelteuidev/core': 0.7.7(@svelteuidev/composables@0.7.7)(svelte@5.0.0-next.28)
+      '@floating-ui/dom': 1.2.8
+      '@stitches/core': 1.2.8
+      '@svelteuidev/composables': 0.15.4(svelte@5.0.0-next.28)
+      svelte: 5.0.0-next.28
+    dev: false
+    patched: true
+
+  /@svelteuidev/dates@0.15.4(@svelteuidev/composables@0.15.4)(@svelteuidev/core@0.15.4)(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-OLVz623oJ63JJyQv2b4MLXYmdp293F76NNcSreqJmdihbGm2TZEgwfbnWnv6rIhxW8e7iw648oRDt27fi1Rb8Q==}
+    peerDependencies:
+      '@svelteuidev/composables': 0.15.4
+      '@svelteuidev/core': 0.15.4
+      svelte: '>=3.55.0'
+    dependencies:
+      '@svelteuidev/composables': 0.15.4(svelte@5.0.0-next.28)
+      '@svelteuidev/core': 0.15.4(patch_hash=gieqbsx3lj6etykle4r4ljzy3y)(@svelteuidev/composables@0.15.4)(svelte@5.0.0-next.28)
       dayjs: 1.11.1
       svelte: 5.0.0-next.28
     dev: false
 
-  /@svelteuidev/motion@0.7.7(svelte@5.0.0-next.28):
-    resolution: {integrity: sha512-9za82aV0ylId6Aiuw/yQCvmKTW+3RPNAbMy05S6me+qdywkPvoMoFlm+uFaPsD4D9no1pcQMAyIP41CRLbgWwA==}
+  /@svelteuidev/motion@0.15.4(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-Q49C1HCsEUWOswcYEdz2z7hREKQsN9QJOcj/6NURNNijXbQezd8C2VI+H7eSKFk3W9FjwtKlEhe7/GWHfH2oPg==}
     peerDependencies:
-      svelte: '>=3.47.0'
+      svelte: '>=3.55.0'
     dependencies:
       svelte: 5.0.0-next.28
     dev: false
 
-  /@svelteuidev/preprocessors@0.7.7(svelte@5.0.0-next.28):
-    resolution: {integrity: sha512-Zf85p34TWRgnDaTWsDcdCVwEz7GG4lPG0tNqN+7/mesMCXlKMpOpBGnzY9+DRCdFiSN4Tzzgk5biidVEL7m7Ag==}
+  /@svelteuidev/preprocessors@0.15.4(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-Y+D0A6CXRfwp0NRSO7t/mTJQ1H1C72QhxAMIhRJVEXAHmenozILoWOo22lbPqheCU5R/bghZF1onc8a7itseCw==}
     peerDependencies:
-      svelte: '>=3.47.0'
+      svelte: '>=3.55.0'
     dependencies:
       svelte: 5.0.0-next.28
     dev: false
 
-  /@svelteuidev/prism@0.7.7(@svelteuidev/composables@0.7.7)(@svelteuidev/core@0.7.7)(svelte@5.0.0-next.28):
-    resolution: {integrity: sha512-pz5Rm+tUM80H4B66dHkZNJa89EMQXYmu7HKhHRmnhHBUB69j4XHUtgOTABptbNXzh2g5ROwYSiyqg7aTZSdebw==}
+  /@svelteuidev/prism@0.15.4(@svelteuidev/composables@0.15.4)(@svelteuidev/core@0.15.4)(svelte@5.0.0-next.28):
+    resolution: {integrity: sha512-xfE+9uCFZaclSO/OOmVznffR91iRvr3UkhR0pBwDzOEE/70eUecPdoeypCxAGLJTkG/ZEBj+ws+aipvV5gvQFg==}
     peerDependencies:
-      '@svelteuidev/composables': 0.7.7
-      '@svelteuidev/core': 0.7.7
-      svelte: '>=3.47.0'
+      '@svelteuidev/composables': 0.15.4
+      '@svelteuidev/core': 0.15.4
+      svelte: '>=3.55.0'
     dependencies:
-      '@svelteuidev/composables': 0.7.7
-      '@svelteuidev/core': 0.7.7(@svelteuidev/composables@0.7.7)(svelte@5.0.0-next.28)
+      '@svelteuidev/composables': 0.15.4(svelte@5.0.0-next.28)
+      '@svelteuidev/core': 0.15.4(patch_hash=gieqbsx3lj6etykle4r4ljzy3y)(@svelteuidev/composables@0.15.4)(svelte@5.0.0-next.28)
       prism-svelte: 0.5.0
       prismjs: 1.28.0
       svelte: 5.0.0-next.28
@@ -7839,8 +7843,8 @@ packages:
     resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
     dev: false
 
-  /dayjs@1.11.7:
-    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+  /dayjs@1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: false
 
   /debug@2.6.9:
