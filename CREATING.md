@@ -590,7 +590,9 @@ For styling to apply into the slot elements, add `:global()` clauses to some of 
 
 See sources - "src/components/darkmode/\*" and edits to "src/routes/+layout.svelte".
 
-Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/. However, there's no effect visible, as there's no support for dark mode in current "/src/routes/style.css".
+Note: DarkMode toggles 'color-scheme' property on \<html\> tag between 'light' and 'dark'/.
+
+Add dark mode styles to "/src/routes/style.css" (see source).
 
 ### Add Github and Svelte icons to Footer links
 
@@ -1141,7 +1143,7 @@ If the width of your app's content doesn't match the width of the viewport, your
 
 - Svelte components: <https://www.shadcn-svelte.com/docs>
 
-### Add UI : Tailwind CSS
+## Add UI : Tailwind CSS
 
 Tailwind CSS is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
 
@@ -1154,4 +1156,10 @@ pnpm install -D tailwindcss postcss autoprefixer prettier-plugin-tailwindcss
 pnpx tailwindcss init tailwind.config.cjs -p
 ```
 
-Rename ".prettierrc" to "prettier.config.ts" and modify contents to employ `module.exports = {...};` symntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]`.
+Rename ".prettierrc" to "prettier.config.сjs" and modify contents to employ `module.exports = {...};` syntax. Then add `require('prettier-plugin-tailwindcss')` to `plugins: [...]` (see source in repo).
+
+Add "tailwindcss: {}," to `plugins` in `postcss.config.cjs` (see source in repo).
+
+Add tailwind to src/routes/styles.css (see source in repo).
+
+For dark mode to work in tailwind, add code into `src/lib/components/darkmode/DarkMode.svelte` that sets class "dark" on `<body>` tag (see source in repo).
