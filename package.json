@@ -1,6 +1,6 @@
 {
   "name": "svelte-blank-20221125",
-  "description": "",
+  "description": "Cross-platform Desktop / Mobile / Web application starter.",
   "version": "0.0.1",
   "scripts": {
     "DISABLEDprebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
